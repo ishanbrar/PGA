@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Edit3, X, Check } from 'lucide-react';
-import { useContent } from '../contexts/ContentContext';
+import firebaseService from '../services/firebaseService';
 
 interface ContentEditorProps {
   contentId: string;
@@ -18,16 +18,40 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState('');
-  const { getContent, updateContent } = useContent();
+  const [content, setContent] = useState<string>('');
+
+  // Load content from Firebase when component mounts
+  React.useEffect(() => {
+    const loadContent = async () => {
+      try {
+        const contentData = await firebaseService.getContent(contentId);
+        if (contentData) {
+          setContent(contentData.content);
+        } else {
+          setContent(children as string);
+        }
+      } catch (error) {
+        console.error('Error loading content:', error);
+        setContent(children as string);
+      }
+    };
+    loadContent();
+  }, [contentId, children]);
 
   const handleEdit = () => {
-    setEditValue(getContent(contentId));
+    setEditValue(content);
     setIsEditing(true);
   };
 
-  const handleSave = () => {
-    updateContent(contentId, editValue);
-    setIsEditing(false);
+  const handleSave = async () => {
+    try {
+      await firebaseService.updateContent(contentId, editValue);
+      setContent(editValue);
+      setIsEditing(false);
+    } catch (error) {
+      console.error('Error saving content:', error);
+      alert('Failed to save content. Please try again.');
+    }
   };
 
   const handleCancel = () => {
@@ -35,7 +59,7 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
     setEditValue('');
   };
 
-  const content = getContent(contentId) || children;
+  // Content is already loaded in state
 
   if (isEditing) {
     return (
