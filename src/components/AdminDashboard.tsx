@@ -35,42 +35,93 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
 
-  // Sample content sections - in a real app, this would come from a database
+  // Load content sections from Firebase
   useEffect(() => {
-    setContentSections([
-      {
-        id: 'hero-title',
-        contentId: 'hero-title',
-        title: 'Hero Section Title',
-        content: 'The DFW Panjabi Golf Club',
-        page: 'Home',
-        section: 'Hero'
-      },
-      {
-        id: 'hero-subtitle',
-        contentId: 'hero-subtitle',
-        title: 'Hero Section Subtitle',
-        content: 'Connecting the Panjabi community through the love of golf',
-        page: 'Home',
-        section: 'Hero'
-      },
-      {
-        id: 'about-mission',
-        contentId: 'about-mission',
-        title: 'Mission Statement',
-        content: 'To provide an exceptional golf experience while fostering a strong Panjabi community',
-        page: 'About',
-        section: 'Mission'
-      },
-      {
-        id: 'about-vision',
-        contentId: 'about-vision',
-        title: 'Vision Statement',
-        content: 'To be the leading Panjabi golf club in the United States, recognized for excellence, community impact, and cultural preservation while promoting the sport of golf.',
-        page: 'About',
-        section: 'Vision'
+    const loadContentSections = async () => {
+      try {
+        // Get all content from Firebase
+        const contentData = await firebaseService.getAllContent();
+        if (contentData && contentData.length > 0) {
+          setContentSections(contentData);
+        } else {
+          // Fallback to default content if Firebase is empty
+          setContentSections([
+            {
+              id: 'hero-title',
+              contentId: 'hero-title',
+              title: 'Hero Section Title',
+              content: 'The DFW Panjabi Golf Club',
+              page: 'Home',
+              section: 'Hero'
+            },
+            {
+              id: 'hero-subtitle',
+              contentId: 'hero-subtitle',
+              title: 'Hero Section Subtitle',
+              content: 'Connecting the Panjabi community through the love of golf',
+              page: 'Home',
+              section: 'Hero'
+            },
+            {
+              id: 'about-mission',
+              contentId: 'about-mission',
+              title: 'Mission Statement',
+              content: 'To provide an exceptional golf experience while fostering a strong Panjabi community',
+              page: 'About',
+              section: 'Mission'
+            },
+            {
+              id: 'about-vision',
+              contentId: 'about-vision',
+              title: 'Vision Statement',
+              content: 'To be the leading Panjabi golf club in the United States, recognized for excellence, community impact, and cultural preservation while promoting the sport of golf.',
+              page: 'About',
+              section: 'Vision'
+            }
+          ]);
+        }
+      } catch (error) {
+        console.error('Error loading content sections:', error);
+        // Fallback to default content on error
+        setContentSections([
+          {
+            id: 'hero-title',
+            contentId: 'hero-title',
+            title: 'Hero Section Title',
+            content: 'The DFW Panjabi Golf Club',
+            page: 'Home',
+            section: 'Hero'
+          },
+          {
+            id: 'hero-subtitle',
+            contentId: 'hero-subtitle',
+            title: 'Hero Section Subtitle',
+            content: 'Connecting the Panjabi community through the love of golf',
+            page: 'Home',
+            section: 'Hero'
+          },
+          {
+            id: 'about-mission',
+            contentId: 'about-mission',
+            title: 'Mission Statement',
+            content: 'To provide an exceptional golf experience while fostering a strong Panjabi community',
+            page: 'About',
+            section: 'Mission'
+          },
+          {
+            id: 'about-vision',
+            contentId: 'about-vision',
+            title: 'Vision Statement',
+            content: 'To be the leading Panjabi golf club in the United States, recognized for excellence, community impact, and cultural preservation while promoting the sport of golf.',
+            page: 'About',
+            section: 'Vision'
+          }
+        ]);
       }
-    ]);
+    };
+
+    loadContentSections();
+  }, []);
 
     setImages([
       {
@@ -120,12 +171,53 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
         setEditingSection(null);
         setLastSaved(new Date());
         alert('Content saved successfully!');
+        
+        // Refresh content from Firebase to ensure sync
+        setTimeout(() => {
+          loadContentSections();
+        }, 500);
       }
     } catch (error) {
       console.error('Error saving content:', error);
       alert('Failed to save content. Please try again.');
     }
   };
+
+  // Function to reload content sections from Firebase
+  const loadContentSections = async () => {
+    try {
+      // Get all content from Firebase
+      const contentData = await firebaseService.getAllContent();
+      if (contentData && contentData.length > 0) {
+        setContentSections(contentData);
+      }
+    } catch (error) {
+      console.error('Error loading content sections:', error);
+    }
+  };
+
+  // Refresh content when admin dashboard becomes visible
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        // Page became visible, refresh content
+        loadContentSections();
+      }
+    };
+
+    const handleFocus = () => {
+      // Page gained focus, refresh content
+      loadContentSections();
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('focus', handleFocus);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('focus', handleFocus);
+    };
+  }, []);
 
   const handleImageSave = async (id: string, newAlt: string, newCategory: string, newPage: string) => {
     try {
@@ -218,6 +310,18 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
           <div className="flex justify-between items-center py-6">
             <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
             <div className="flex items-center space-x-4">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={loadContentSections}
+                className="flex items-center space-x-2 px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200"
+                title="Refresh content from Firebase"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                <span>Refresh</span>
+              </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
