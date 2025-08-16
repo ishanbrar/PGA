@@ -20,7 +20,7 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
   const [editValue, setEditValue] = useState('');
   const [content, setContent] = useState<string>('');
 
-  // Load content from Firebase when component mounts
+  // Load content from Firebase when component mounts or when contentId changes
   React.useEffect(() => {
     const loadContent = async () => {
       try {
@@ -37,6 +37,23 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
     };
     loadContent();
   }, [contentId, children]);
+
+  // Add a function to manually refresh content
+  const refreshContent = React.useCallback(async () => {
+    try {
+      const contentData = await firebaseService.getContent(contentId);
+      if (contentData) {
+        setContent(contentData.content);
+      }
+    } catch (error) {
+      console.error('Error refreshing content:', error);
+    }
+  }, [contentId]);
+
+  // Expose refresh function to parent component
+  React.useImperativeHandle(React.useRef(), () => ({
+    refreshContent
+  }));
 
   const handleEdit = () => {
     setEditValue(content);
