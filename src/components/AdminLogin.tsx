@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Lock, Eye, EyeOff, Shield, AlertCircle } from 'lucide-react';
+import firebaseService from '../services/firebaseService';
 
 interface AdminLoginProps {
   onLogin: (username: string) => void;
@@ -19,17 +20,24 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
     setIsLoading(true);
     setError('');
 
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    // Simple validation - in production, use proper authentication
-    if (username === 'admin' && password === 'golfclub2024') {
-      onLogin(username);
-    } else {
-      setError('Invalid credentials. Please try again.');
+    try {
+      // Use Firebase authentication
+      const user = await firebaseService.login(username, password);
+      if (user) {
+        onLogin(user.email || username);
+      }
+    } catch (error: any) {
+      console.error('Login error:', error);
+      if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+        setError('Invalid credentials. Please try again.');
+      } else if (error.code === 'auth/too-many-requests') {
+        setError('Too many failed attempts. Please try again later.');
+      } else {
+        setError('Login failed. Please try again.');
+      }
+    } finally {
+      setIsLoading(false);
     }
-    
-    setIsLoading(false);
   };
 
   return (

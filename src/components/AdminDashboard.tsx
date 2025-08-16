@@ -14,22 +14,9 @@ import {
   X,
   LogOut
 } from 'lucide-react';
+import firebaseService, { ContentSection, ImageItem } from '../services/firebaseService';
 
-interface ContentSection {
-  id: string;
-  title: string;
-  content: string;
-  page: string;
-  section: string;
-}
-
-interface ImageItem {
-  id: string;
-  url: string;
-  alt: string;
-  category: string;
-  page: string;
-}
+// Using interfaces from firebaseService
 
 interface AdminDashboardProps {
   onLogout: () => void;
@@ -53,6 +40,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
     setContentSections([
       {
         id: 'hero-title',
+        contentId: 'hero-title',
         title: 'Hero Section Title',
         content: 'The DFW Panjabi Golf Club',
         page: 'Home',
@@ -60,6 +48,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
       },
       {
         id: 'hero-subtitle',
+        contentId: 'hero-subtitle',
         title: 'Hero Section Subtitle',
         content: 'Connecting the Panjabi community through the love of golf',
         page: 'Home',
@@ -67,6 +56,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
       },
       {
         id: 'about-mission',
+        contentId: 'about-mission',
         title: 'Mission Statement',
         content: 'To provide an exceptional golf experience while fostering a strong Panjabi community',
         page: 'About',
@@ -74,6 +64,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
       },
       {
         id: 'about-vision',
+        contentId: 'about-vision',
         title: 'Vision Statement',
         content: 'To be the leading Panjabi golf club in the United States, recognized for excellence, community impact, and cultural preservation while promoting the sport of golf.',
         page: 'About',
@@ -84,103 +75,132 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
     setImages([
       {
         id: 'hero-bg',
+        imageId: 'hero-bg',
+        originalName: 'hero-bg.jpg',
+        filename: 'hero-bg.jpg',
         url: '/images/hero-bg.jpg',
         alt: 'Golf course background',
         category: 'Background',
-        page: 'Home'
+        page: 'Home',
+        fileSize: 1024000,
+        mimeType: 'image/jpeg'
       },
       {
         id: 'gallery-1',
+        imageId: 'gallery-1',
+        originalName: 'gallery-1.jpg',
+        filename: 'gallery-1.jpg',
         url: '/images/gallery-1.jpg',
         alt: 'Golf tournament',
         category: 'Events',
-        page: 'Gallery'
+        page: 'Gallery',
+        fileSize: 1024000,
+        mimeType: 'image/jpeg'
       }
     ]);
   }, []);
 
-  const handleContentSave = (id: string, newContent: string) => {
-    setContentSections(prev => 
-      prev.map(section => 
-        section.id === id 
-          ? { ...section, content: newContent }
-          : section
-      )
-    );
-    setEditingSection(null);
-    
-    // Save to localStorage
-    const updatedSections = contentSections.map(section => 
-      section.id === id 
-        ? { ...section, content: newContent }
-        : section
-    );
-    localStorage.setItem('dfw-golf-content', JSON.stringify(updatedSections));
-    
-    // Update last saved timestamp
-    setLastSaved(new Date());
-    
-    // Show success message
-    alert('Content saved successfully!');
-  };
-
-  const handleImageSave = (id: string, newAlt: string, newCategory: string, newPage: string) => {
-    setImages(prev => {
-      const updated = prev.map(img => 
-        img.id === id 
-          ? { ...img, alt: newAlt, category: newCategory, page: newPage }
-          : img
-      );
-      
-      // Save to localStorage
-      localStorage.setItem('dfw-golf-images', JSON.stringify(updated));
-      
-      return updated;
-    });
-    setEditingImage(null);
-    
-    // Show success message
-    alert('Image details saved successfully!');
-  };
-
-  const handleImageUpload = () => {
-    if (uploadFile && uploadCategory && uploadPage) {
-      // In a real app, this would upload to a server/cloud storage
-      const newImage: ImageItem = {
-        id: `img-${Date.now()}`,
-        url: URL.createObjectURL(uploadFile),
-        alt: uploadFile.name,
-        category: uploadCategory,
-        page: uploadPage
-      };
-      
-      setImages(prev => {
-        const updated = [...prev, newImage];
-        // Save to localStorage
-        localStorage.setItem('dfw-golf-images', JSON.stringify(updated));
-        return updated;
-      });
-      
-      setShowImageUpload(false);
-      setUploadFile(null);
-      setUploadCategory('');
-      setUploadPage('');
-      
-      // Show success message
-      alert('Image uploaded successfully!');
+  const handleContentSave = async (id: string, newContent: string) => {
+    try {
+      // Find the content section by id
+      const section = contentSections.find(s => s.id === id);
+      if (section) {
+        // Update in Firebase
+        await firebaseService.updateContent(section.contentId, newContent);
+        
+        // Update local state
+        setContentSections(prev => 
+          prev.map(s => 
+            s.id === id 
+              ? { ...s, content: newContent }
+              : s
+          )
+        );
+        
+        setEditingSection(null);
+        setLastSaved(new Date());
+        alert('Content saved successfully!');
+      }
+    } catch (error) {
+      console.error('Error saving content:', error);
+      alert('Failed to save content. Please try again.');
     }
   };
 
-  const deleteImage = (id: string) => {
-    setImages(prev => {
-      const updated = prev.filter(img => img.id !== id);
-      // Save to localStorage
-      localStorage.setItem('dfw-golf-images', JSON.stringify(updated));
-      return updated;
-    });
-    
-    // Show success message
-    alert('Image deleted successfully!');
+  const handleImageSave = async (id: string, newAlt: string, newCategory: string, newPage: string) => {
+    try {
+      // Update in Firebase
+      await firebaseService.updateImage(id, {
+        alt: newAlt,
+        category: newCategory,
+        page: newPage
+      });
+      
+      // Update local state
+      setImages(prev => {
+        const updated = prev.map(img => 
+          img.id === id 
+            ? { ...img, alt: newAlt, category: newCategory, page: newPage }
+            : img
+        );
+        return updated;
+      });
+      
+      setEditingImage(null);
+      setLastSaved(new Date());
+      alert('Image details saved successfully!');
+    } catch (error) {
+      console.error('Error saving image:', error);
+      alert('Failed to save image details. Please try again.');
+    }
+  };
+
+  const handleImageUpload = async () => {
+    if (uploadFile && uploadCategory && uploadPage) {
+      try {
+        // Upload to Firebase Storage
+        const newImage = await firebaseService.uploadImage(uploadFile, {
+          imageId: `img-${Date.now()}`,
+          originalName: uploadFile.name,
+          filename: uploadFile.name,
+          alt: uploadFile.name,
+          category: uploadCategory,
+          page: uploadPage,
+          fileSize: uploadFile.size,
+          mimeType: uploadFile.type
+        });
+        
+        // Add to local state
+        setImages(prev => [...prev, newImage]);
+        
+        setShowImageUpload(false);
+        setUploadFile(null);
+        setUploadCategory('');
+        setUploadPage('');
+        
+        setLastSaved(new Date());
+        alert('Image uploaded successfully!');
+      } catch (error) {
+        console.error('Error uploading image:', error);
+        alert('Failed to upload image. Please try again.');
+      }
+    }
+  };
+
+  const deleteImage = async (id: string) => {
+    try {
+      // Delete from Firebase
+      await firebaseService.deleteImage(id);
+      
+      // Remove from local state
+      setImages(prev => prev.filter(img => img.id !== id));
+      
+      setLastSaved(new Date());
+      alert('Image deleted successfully!');
+    } catch (error) {
+      console.error('Error deleting image:', error);
+      alert('Failed to delete image. Please try again.');
+    }
   };
 
   const tabs = [
@@ -202,15 +222,11 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => {
-                  // Save all content to localStorage
-                  localStorage.setItem('dfw-golf-content', JSON.stringify(contentSections));
-                  localStorage.setItem('dfw-golf-images', JSON.stringify(images));
-                  
-                  // Update last saved timestamp
+                  // All changes are already saved to Firebase in real-time
                   setLastSaved(new Date());
                   
                   // Show success message
-                  alert('All changes have been published and saved!');
+                  alert('All changes have been published and saved to Firebase!');
                 }}
                 className="btn-primary"
               >
@@ -257,7 +273,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center space-x-4">
               <span className="text-green-700">
-                💾 Admin Dashboard - All changes are automatically saved
+                💾 Admin Dashboard - All changes are automatically saved to Firebase
               </span>
               {lastSaved && (
                 <span className="text-green-600">
@@ -266,7 +282,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
               )}
             </div>
             <div className="text-green-600">
-              Changes are saved locally and will persist between sessions
+              Changes are saved to Firebase in real-time and will persist between sessions
             </div>
           </div>
         </div>
@@ -326,7 +342,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      onClick={() => setEditingSection(editingSection === section.id ? null : section.id)}
+                      onClick={() => setEditingSection(editingSection === section.id ? null : section.id || '')}
                       className="btn-secondary"
                     >
                       <Edit3 className="w-4 h-4 mr-2" />
@@ -354,7 +370,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          onClick={() => handleContentSave(section.id, section.content)}
+                          onClick={() => handleContentSave(section.id || '', section.content)}
                           className="btn-primary"
                         >
                           <Save className="w-4 h-4 mr-2" />
@@ -502,7 +518,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                       <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        onClick={() => setEditingImage(editingImage === image.id ? null : image.id)}
+                        onClick={() => setEditingImage(editingImage === image.id ? null : image.id || '')}
                         className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md"
                       >
                         <Edit3 className="w-4 h-4 text-gray-600" />
@@ -510,7 +526,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                       <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        onClick={() => deleteImage(image.id)}
+                        onClick={() => deleteImage(image.id || '')}
                         className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center shadow-md"
                       >
                         <Trash2 className="w-4 h-4 text-white" />
@@ -576,7 +592,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                           <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            onClick={() => handleImageSave(image.id, image.alt, image.category, image.page)}
+                            onClick={() => handleImageSave(image.id || '', image.alt, image.category, image.page)}
                             className="btn-primary text-sm flex-1"
                           >
                             Save
@@ -661,8 +677,8 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => {
-                      localStorage.removeItem('dfw-golf-content');
-                      localStorage.removeItem('dfw-golf-images');
+                      // Note: This will only reset the local state
+                      // Firebase data will remain intact
                       window.location.reload();
                     }}
                     className="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex-1"
