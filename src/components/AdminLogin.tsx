@@ -70,20 +70,20 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
           className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8"
         >
           <form onSubmit={handleLogin} className="space-y-6">
-            {/* Username Field */}
+            {/* Email Field */}
             <div>
               <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
-                Username
+                Email
               </label>
               <div className="relative">
                 <input
                   id="username"
-                  type="text"
+                  type="email"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-200"
-                  placeholder="Enter your username"
+                  placeholder="Enter your email"
                 />
               </div>
             </div>
@@ -149,9 +149,9 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
 
           {/* Demo Credentials */}
           <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-            <h3 className="text-sm font-medium text-gray-700 mb-2">Demo Credentials:</h3>
+            <h3 className="text-sm font-medium text-gray-700 mb-2">Admin Credentials:</h3>
             <div className="text-xs text-gray-600 space-y-1">
-              <p><strong>Username:</strong> admin</p>
+              <p><strong>Email:</strong> admin@dfwpunjabigolf.com</p>
               <p><strong>Password:</strong> golfclub2024</p>
             </div>
           </div>

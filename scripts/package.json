@@ -1,0 +1,24 @@
+{
+  "name": "dfw-pga-content-uploader",
+  "version": "1.0.0",
+  "description": "Scripts to upload content to Firebase for DFW PGA website",
+  "main": "uploadContentToFirebase.js",
+  "scripts": {
+    "upload": "node uploadContentToFirebase.js upload",
+    "check": "node uploadContentToFirebase.js check",
+    "cleanup": "node uploadContentToFirebase.js cleanup"
+  },
+  "dependencies": {
+    "firebase-admin": "^11.11.0"
+  },
+  "keywords": [
+    "firebase",
+    "content",
+    "upload",
+    "dfw",
+    "pga",
+    "golf"
+  ],
+  "author": "DFW PGA Team",
+  "license": "MIT"
+}

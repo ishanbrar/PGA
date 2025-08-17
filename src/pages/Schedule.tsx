@@ -1,151 +1,116 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Clock, MapPin, Users, Flag, ChevronLeft, ChevronRight, Plus, Minus, Star } from 'lucide-react';
+import { 
+  Calendar, 
+  MapPin, 
+  Clock, 
+  Users, 
+  DollarSign, 
+  Trophy, 
+  Star, 
+  ChevronRight, 
+  ChevronLeft 
+} from 'lucide-react';
+import ContentEditor from '../components/ContentEditor';
 
 const Schedule: React.FC = () => {
-  const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedCourse, setSelectedCourse] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
-  const courses = [
+  const upcomingEvents = [
     {
-      id: 'prestonwood',
-      name: 'Prestonwood Golf Club',
-      location: 'Plano, TX',
-      rating: 4.8,
-      holes: 36,
-      par: 72,
-      length: '7,200 yards',
+      id: 1,
+      title: 'events-event-1-title',
+      date: 'events-event-1-date',
+      time: 'events-event-1-time',
+      location: 'events-event-1-location',
+      category: 'Tournament',
+      description: 'events-event-1-description',
+      participants: 64,
+      maxParticipants: 80,
+      price: 'events-event-1-price',
       image: '/api/placeholder/600/400',
-      description: 'A championship golf course featuring rolling hills, mature trees, and challenging water hazards.',
-      amenities: ['Pro Shop', 'Driving Range', 'Practice Green', 'Clubhouse', 'Restaurant']
+      features: ['Individual Stroke Play', 'Team Competitions', 'Handicap Divisions', 'Prizes & Awards', 'Lunch Included']
     },
     {
-      id: 'tribute',
-      name: 'Tribute Golf Links',
-      location: 'The Colony, TX',
-      rating: 4.9,
-      holes: 18,
-      par: 72,
-      length: '7,200 yards',
+      id: 2,
+      title: 'events-event-2-title',
+      date: 'events-event-2-date',
+      time: 'events-event-2-time',
+      location: 'events-event-2-location',
+      category: 'Social',
+      description: 'events-event-2-description',
+      participants: 45,
+      maxParticipants: 60,
+      price: 'events-event-2-price',
       image: '/api/placeholder/600/400',
-      description: 'A Scottish links-style course with rolling fairways, deep bunkers, and challenging winds.',
-      amenities: ['Pro Shop', 'Driving Range', 'Practice Green', 'Clubhouse', 'Restaurant']
+      features: ['Networking', 'Welcome Speeches', 'Light Refreshments', 'Member Introductions', 'Club Information']
     },
     {
-      id: 'coyote',
-      name: 'Coyote Ridge Golf Club',
-      location: 'Carrollton, TX',
-      rating: 4.7,
-      holes: 18,
-      par: 72,
-      length: '7,000 yards',
+      id: 3,
+      title: 'events-event-3-title',
+      date: 'events-event-3-date',
+      time: 'events-event-3-time',
+      location: 'events-event-3-location',
+      category: 'Charity',
+      description: 'events-event-3-description',
+      participants: 72,
+      maxParticipants: 100,
+      price: 'events-event-3-price',
       image: '/api/placeholder/600/400',
-      description: 'A scenic course with elevation changes, water features, and strategic bunkering.',
-      amenities: ['Pro Shop', 'Driving Range', 'Practice Green', 'Clubhouse', 'Restaurant']
+      features: ['Scramble Format', 'Charity Auction', 'Dinner & Awards', 'Community Impact', 'Tax Deductible']
     },
     {
-      id: 'heritage',
-      name: 'Heritage Ranch Golf Club',
-      location: 'McKinney, TX',
-      rating: 4.6,
-      holes: 18,
-      par: 72,
-      length: '6,800 yards',
+      id: 4,
+      title: 'events-event-4-title',
+      date: 'events-event-4-date',
+      time: 'events-event-4-time',
+      location: 'events-event-4-location',
+      category: 'Education',
+      description: 'events-event-4-description',
+      participants: 25,
+      maxParticipants: 30,
+      price: 'events-event-4-price',
       image: '/api/placeholder/600/400',
-      description: 'A traditional course with tree-lined fairways and challenging approach shots.',
-      amenities: ['Pro Shop', 'Driving Range', 'Practice Green', 'Clubhouse', 'Restaurant']
+      features: ['Professional Instruction', 'Video Analysis', 'Practice Drills', 'Course Management', 'Equipment Tips']
     }
   ];
 
-  const teeTimes = [
-    { time: '7:00 AM', available: true, price: '$85' },
-    { time: '7:30 AM', available: true, price: '$85' },
-    { time: '8:00 AM', available: false, price: '$95' },
-    { time: '8:30 AM', available: true, price: '$85' },
-    { time: '9:00 AM', available: false, price: '$95' },
-    { time: '9:30 AM', available: true, price: '$85' },
-    { time: '10:00 AM', available: true, price: '$75' },
-    { time: '10:30 AM', available: true, price: '$75' },
-    { time: '11:00 AM', available: true, price: '$75' },
-    { time: '11:30 AM', available: true, price: '$75' },
-    { time: '12:00 PM', available: true, price: '$65' },
-    { time: '12:30 PM', available: true, price: '$65' },
-    { time: '1:00 PM', available: true, price: '$65' },
-    { time: '1:30 PM', available: true, price: '$65' },
-    { time: '2:00 PM', available: true, price: '$55' },
-    { time: '2:30 PM', available: true, price: '$55' },
-    { time: '3:00 PM', available: true, price: '$55' },
-    { time: '3:30 PM', available: true, price: '$55' },
-    { time: '4:00 PM', available: true, price: '$45' },
-    { time: '4:30 PM', available: true, price: '$45' },
-    { time: '5:00 PM', available: true, price: '$45' },
-    { time: '5:30 PM', available: true, price: '$45' }
-  ];
-
-  const events = [
+  const pastEvents = [
     {
-      title: 'Member Tournament',
-      date: 'March 15, 2024',
-      course: 'Prestonwood Golf Club',
-      time: '8:00 AM',
-      type: 'Tournament'
+      id: 5,
+      title: 'events-past-event-1-title',
+      date: 'events-past-event-1-date',
+      location: 'events-past-event-1-location',
+      category: 'Tournament',
+      description: 'events-past-event-1-description',
+      participants: 48,
+      image: '/api/placeholder/600/400',
+      highlights: ['Rajinder Singh - 1st Place', 'Priya Patel - 2nd Place', 'Amarjit Dhillon - 3rd Place', 'Perfect weather conditions', 'Record participation']
     },
     {
-      title: 'Golf Clinic',
-      date: 'March 20, 2024',
-      course: 'Tribute Golf Links',
-      time: '10:00 AM',
-      type: 'Education'
-    },
-    {
-      title: 'Social Round',
-      date: 'March 25, 2024',
-      course: 'Coyote Ridge Golf Club',
-      time: '2:00 PM',
-      type: 'Social'
+      id: 6,
+      title: 'events-past-event-2-title',
+      date: 'events-past-event-2-date',
+      location: 'events-past-event-2-location',
+      category: 'Social',
+      description: 'events-past-event-2-description',
+      participants: 85,
+      image: '/api/placeholder/600/400',
+      highlights: ['Traditional Punjabi Cuisine', 'Live Music Performance', 'Family Activities', 'Gift Exchange', 'Community Bonding']
     }
   ];
 
-  const generateCalendarDays = (date: Date) => {
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
-    const startDate = new Date(firstDay);
-    startDate.setDate(startDate.getDate() - firstDay.getDay());
-    
-    const days = [];
-    for (let i = 0; i < 42; i++) {
-      const currentDate = new Date(startDate);
-      currentDate.setDate(startDate.getDate() + i);
-      days.push(currentDate);
-    }
-    return days;
-  };
+  const categories = [
+    { id: 'all', name: 'All Events', count: upcomingEvents.length },
+    { id: 'tournament', name: 'Tournaments', count: upcomingEvents.filter(e => e.category === 'Tournament').length },
+    { id: 'social', name: 'Social Events', count: upcomingEvents.filter(e => e.category === 'Social').length },
+    { id: 'charity', name: 'Charity Events', count: upcomingEvents.filter(e => e.category === 'Charity').length },
+    { id: 'education', name: 'Education', count: upcomingEvents.filter(e => e.category === 'Education').length }
+  ];
 
-  const calendarDays = generateCalendarDays(currentMonth);
-
-  const nextMonth = () => {
-    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1));
-  };
-
-  const prevMonth = () => {
-    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1));
-  };
-
-  const isToday = (date: Date) => {
-    const today = new Date();
-    return date.toDateString() === today.toDateString();
-  };
-
-  const isSelected = (date: Date) => {
-    return date.toDateString() === selectedDate.toDateString();
-  };
-
-  const isCurrentMonth = (date: Date) => {
-    return date.getMonth() === currentMonth.getMonth();
-  };
+  const filteredEvents = selectedCategory === 'all' 
+    ? upcomingEvents 
+    : upcomingEvents.filter(event => event.category.toLowerCase() === selectedCategory);
 
   return (
     <div className="min-h-screen pt-20">
@@ -162,134 +127,152 @@ const Schedule: React.FC = () => {
             className="text-center max-w-4xl mx-auto"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6 text-shadow-lg">
-              Golf Schedule
+              <ContentEditor contentId="events-hero-title" tag="span">
+                Club Events
+              </ContentEditor>
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
-              Book your tee times, view course schedules, and stay updated with all club activities 
-              and tournaments throughout the year.
+              <ContentEditor contentId="events-hero-subtitle" tag="span">
+                Discover exciting tournaments, social gatherings, and community events that bring 
+                our Punjabi golf community together throughout the year.
+              </ContentEditor>
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Calendar Section */}
+      {/* Category Filter */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Tee Time Calendar
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Browse available tee times and book your preferred slots at our partner golf courses.
-            </p>
-          </motion.div>
-
-          {/* Calendar Navigation */}
-          <div className="flex items-center justify-between mb-8">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={prevMonth}
-              className="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-300"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </motion.button>
-            
-            <h3 className="text-2xl font-bold text-gray-900">
-              {currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-            </h3>
-            
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={nextMonth}
-              className="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-300"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </motion.button>
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {categories.map((category) => (
+              <motion.button
+                key={category.id}
+                onClick={() => setSelectedCategory(category.id)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                  selectedCategory === category.id
+                    ? 'bg-primary-600 text-white shadow-lg'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {category.name} ({category.count})
+              </motion.button>
+            ))}
           </div>
 
-          {/* Calendar Grid */}
-          <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-            {/* Calendar Headers */}
-            <div className="grid grid-cols-7 gap-1 mb-4">
-              {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-                <div key={day} className="text-center text-sm font-semibold text-gray-600 py-2">
-                  {day}
+          {/* Upcoming Events Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+            {filteredEvents.map((event, index) => (
+              <motion.div
+                key={event.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="card overflow-hidden group hover:shadow-xl transition-all duration-300"
+              >
+                <div className="relative h-48 bg-gradient-to-br from-gray-200 to-gray-300 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  <div className="absolute top-4 right-4">
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      event.category === 'Tournament' ? 'bg-gold-500 text-white' :
+                      event.category === 'Social' ? 'bg-primary-500 text-white' :
+                      event.category === 'Charity' ? 'bg-red-500 text-white' :
+                      'bg-purple-500 text-white'
+                    }`}>
+                      {event.category}
+                    </span>
+                  </div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <div className="text-sm font-medium text-gold-400">
+                      <ContentEditor contentId={event.date} tag="span">
+                        {event.date === 'events-event-1-date' ? 'March 15, 2024' :
+                         event.date === 'events-event-2-date' ? 'March 22, 2024' :
+                         event.date === 'events-event-3-date' ? 'April 5, 2024' : 'April 12, 2024'}
+                      </ContentEditor>
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
-
-            {/* Calendar Days */}
-            <div className="grid grid-cols-7 gap-1">
-              {calendarDays.map((day, index) => (
-                <motion.button
-                  key={index}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setSelectedDate(day)}
-                  className={`p-3 text-sm rounded-lg transition-all duration-300 ${
-                    isToday(day)
-                      ? 'bg-primary-600 text-white font-semibold'
-                      : isSelected(day)
-                      ? 'bg-primary-100 text-primary-700 font-semibold'
-                      : isCurrentMonth(day)
-                      ? 'hover:bg-gray-100 text-gray-900'
-                      : 'text-gray-400'
-                  }`}
-                >
-                  {day.getDate()}
-                </motion.button>
-              ))}
-            </div>
-          </div>
-
-          {/* Selected Date Info */}
-          <div className="bg-gradient-to-br from-primary-50 to-golf-50 rounded-xl p-6 mb-8">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-              {selectedDate.toLocaleDateString('en-US', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-              })}
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Available Tee Times</h4>
-                <div className="text-2xl font-bold text-primary-600">
-                  {teeTimes.filter(t => t.available).length}
+                
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    <ContentEditor contentId={event.title} tag="span">
+                      {event.title === 'events-event-1-title' ? 'Spring Championship Tournament' :
+                       event.title === 'events-event-2-title' ? 'New Member Welcome Mixer' :
+                       event.title === 'events-event-3-title' ? 'Charity Golf Outing' : 'Golf Clinic & Skills Workshop'}
+                    </ContentEditor>
+                  </h3>
+                  
+                  <div className="flex items-center space-x-4 text-sm text-gray-600 mb-4">
+                    <div className="flex items-center space-x-2">
+                      <Clock className="w-4 h-4" />
+                      <ContentEditor contentId={event.time} tag="span">
+                        {event.time === 'events-event-1-time' ? '8:00 AM - 6:00 PM' :
+                         event.time === 'events-event-2-time' ? '6:00 PM - 9:00 PM' :
+                         event.time === 'events-event-3-time' ? '9:00 AM - 5:00 PM' : '10:00 AM - 2:00 PM'}
+                      </ContentEditor>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <MapPin className="w-4 h-4" />
+                      <ContentEditor contentId={event.location} tag="span">
+                        {event.location === 'events-event-1-location' ? 'Prestonwood Golf Club' :
+                         event.location === 'events-event-2-location' ? 'Clubhouse' :
+                         event.location === 'events-event-3-location' ? 'Tribute Golf Links' : 'Prestonwood Golf Club'}
+                      </ContentEditor>
+                    </div>
+                  </div>
+                  
+                  <p className="text-gray-600 mb-4">
+                    <ContentEditor contentId={event.description} tag="span">
+                      {event.description === 'events-event-1-description' ? 'Our premier spring tournament featuring individual stroke play, team competitions, and exciting prizes. Open to all skill levels with handicap divisions.' :
+                       event.description === 'events-event-2-description' ? 'Join us for an evening of networking, introductions, and celebration as we welcome our newest members to the DFW Punjabi Golf Club family.' :
+                       event.description === 'events-event-3-description' ? 'Support our community through golf! This charity outing raises funds for local Punjabi community organizations and scholarships.' :
+                       'Improve your game with professional instruction covering putting, chipping, driving, and course management strategies.'}
+                    </ContentEditor>
+                  </p>
+                  
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-4 text-sm text-gray-600">
+                      <div className="flex items-center space-x-2">
+                        <Users className="w-4 h-4" />
+                        <span>{event.participants}/{event.maxParticipants}</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <DollarSign className="w-4 h-4" />
+                        <ContentEditor contentId={event.price} tag="span">
+                          {event.price === 'events-event-1-price' ? '$150' :
+                           event.price === 'events-event-2-price' ? 'Free' :
+                           event.price === 'events-event-3-price' ? '$200' : '$75'}
+                        </ContentEditor>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {event.features.slice(0, 3).map((feature, idx) => (
+                      <span key={idx} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full bg-primary-600 text-white py-3 rounded-lg font-medium hover:bg-primary-700 transition-colors duration-300"
+                  >
+                    Register Now
+                  </motion.button>
                 </div>
-                <p className="text-sm text-gray-600">slots available</p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Course Events</h4>
-                <div className="text-2xl font-bold text-golf-600">
-                  {events.filter(e => e.date === selectedDate.toLocaleDateString('en-US', { 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
-                  })).length}
-                </div>
-                <p className="text-sm text-gray-600">events scheduled</p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Weather</h4>
-                <div className="text-2xl font-bold text-gold-600">72°F</div>
-                <p className="text-sm text-gray-600">partly cloudy</p>
-              </div>
-            </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Tee Time Booking */}
+      {/* Past Events Section */}
       <section className="section-padding bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container-custom">
           <motion.div
@@ -300,196 +283,88 @@ const Schedule: React.FC = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Book Your Tee Time
+              <ContentEditor contentId="past-events-title" tag="span">
+                Past Events
+              </ContentEditor>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Select your preferred course and time slot to reserve your spot on the green.
+              <ContentEditor contentId="past-events-subtitle" tag="span">
+                Relive the memories and achievements from our previous events and tournaments.
+              </ContentEditor>
             </p>
           </motion.div>
 
-          {/* Course Selection */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {courses.map((course, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {pastEvents.map((event, index) => (
               <motion.div
-                key={course.id}
+                key={event.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className={`card p-6 cursor-pointer transition-all duration-300 ${
-                  selectedCourse === course.id ? 'ring-2 ring-primary-500 bg-primary-50' : ''
-                }`}
-                onClick={() => setSelectedCourse(course.id)}
+                className="card overflow-hidden group hover:shadow-xl transition-all duration-300"
               >
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-golf-500 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Flag className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{course.name}</h3>
-                  <div className="flex items-center justify-center space-x-1 mb-2">
-                    <Star className="w-4 h-4 text-gold-400 fill-current" />
-                    <span className="text-sm text-gray-600">{course.rating}</span>
-                  </div>
-                  <p className="text-sm text-gray-600">{course.location}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Tee Time Grid */}
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">
-              Available Tee Times - {courses.find(c => c.id === selectedCourse)?.name}
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-              {teeTimes.map((slot, index) => (
-                <motion.button
-                  key={index}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  disabled={!slot.available}
-                  className={`p-3 rounded-lg text-sm font-medium transition-all duration-300 ${
-                    slot.available
-                      ? 'bg-primary-100 text-primary-700 hover:bg-primary-200'
-                      : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                  }`}
-                >
-                  <div className="font-semibold">{slot.time}</div>
-                  <div className="text-xs">{slot.price}</div>
-                </motion.button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Course Information */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Our Partner Courses
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Experience world-class golf at our carefully selected partner courses throughout the DFW area.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {courses.map((course, index) => (
-              <motion.div
-                key={course.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="card overflow-hidden group"
-              >
-                {/* Course Image */}
                 <div className="relative h-48 bg-gradient-to-br from-gray-200 to-gray-300 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <div className="text-2xl font-bold">{course.name}</div>
-                    <div className="text-sm text-gray-200">{course.location}</div>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                   <div className="absolute top-4 right-4">
-                    <div className="flex items-center space-x-1 bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
-                      <Star className="w-4 h-4 text-gold-400 fill-current" />
-                      <span className="text-white text-sm font-medium">{course.rating}</span>
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      event.category === 'Tournament' ? 'bg-gold-500 text-white' :
+                      'bg-primary-500 text-white'
+                    }`}>
+                      {event.category}
+                    </span>
+                  </div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <div className="text-sm font-medium text-gold-400">
+                      <ContentEditor contentId={event.date} tag="span">
+                        {event.date === 'events-past-event-1-date' ? 'February 10, 2024' : 'December 15, 2023'}
+                      </ContentEditor>
                     </div>
                   </div>
                 </div>
-
-                {/* Course Details */}
+                
                 <div className="p-6">
-                  <p className="text-gray-600 leading-relaxed mb-6">{course.description}</p>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    <ContentEditor contentId={event.title} tag="span">
+                      {event.title === 'events-past-event-1-title' ? 'Winter Classic Tournament' : 'Holiday Celebration Dinner'}
+                    </ContentEditor>
+                  </h3>
                   
-                  {/* Course Stats */}
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    <div className="text-center">
-                      <div className="text-lg font-semibold text-primary-600">{course.holes}</div>
-                      <div className="text-sm text-gray-600">Holes</div>
+                  <div className="flex items-center space-x-4 text-sm text-gray-600 mb-4">
+                    <div className="flex items-center space-x-2">
+                      <MapPin className="w-4 h-4" />
+                      <ContentEditor contentId={event.location} tag="span">
+                        {event.location === 'events-past-event-1-location' ? 'Tribute Golf Links' : 'Clubhouse'}
+                      </ContentEditor>
                     </div>
-                    <div className="text-center">
-                      <div className="text-lg font-semibold text-golf-600">{course.par}</div>
-                      <div className="text-sm text-gray-600">Par</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-lg font-semibold text-gold-600">{course.length}</div>
-                      <div className="text-sm text-gray-600">Length</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-lg font-semibold text-purple-600">{course.amenities.length}</div>
-                      <div className="text-sm text-gray-600">Amenities</div>
+                    <div className="flex items-center space-x-2">
+                      <Users className="w-4 h-4" />
+                      <span>{event.participants} participants</span>
                     </div>
                   </div>
-
-                  {/* Amenities */}
-                  <div className="mb-6">
-                    <h4 className="font-semibold text-gray-900 mb-3">Amenities</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {course.amenities.map((amenity, i) => (
-                        <span key={i} className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded">
-                          {amenity}
-                        </span>
+                  
+                  <p className="text-gray-600 mb-4">
+                    <ContentEditor contentId={event.description} tag="span">
+                      {event.description === 'events-past-event-1-description' ? 'A successful winter tournament with 48 participants competing in challenging winter conditions.' :
+                       'Annual holiday celebration bringing together members and families for a festive evening of food, music, and community.'}
+                    </ContentEditor>
+                  </p>
+                  
+                  <div className="space-y-2">
+                    <h4 className="font-medium text-gray-900">Highlights:</h4>
+                    <ul className="space-y-1">
+                      {event.highlights.slice(0, 3).map((highlight, idx) => (
+                        <li key={idx} className="flex items-center space-x-2 text-sm text-gray-600">
+                          <Star className="w-3 h-3 text-gold-500 flex-shrink-0" />
+                          <span>{highlight}</span>
+                        </li>
                       ))}
-                    </div>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex space-x-3">
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="flex-1 btn-primary text-center"
-                    >
-                      Book Tee Time
-                    </motion.button>
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="px-4 py-2 border border-primary-600 text-primary-600 rounded-lg hover:bg-primary-50 transition-colors duration-300"
-                    >
-                      Course Info
-                    </motion.button>
+                    </ul>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-primary-800 text-white">
-        <div className="container-custom text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Ready to Hit the Links?
-            </h2>
-            <p className="text-xl text-primary-100 mb-8 max-w-3xl mx-auto">
-              Book your tee time today and experience the finest golf courses in the DFW area. 
-              Our member rates and exclusive access make every round special.
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white text-primary-700 font-semibold py-4 px-8 rounded-lg text-lg hover:bg-gray-100 transition-colors duration-300"
-            >
-              Book Now
-            </motion.button>
-          </motion.div>
         </div>
       </section>
     </div>

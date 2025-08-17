@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Camera, Users, Trophy, Heart, ChevronLeft, ChevronRight, X, Download, Share2 } from 'lucide-react';
+import ContentEditor from '../components/ContentEditor';
 
 const Gallery: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -63,7 +64,7 @@ const Gallery: React.FC = () => {
       alt: 'New Member Welcome',
       category: 'events',
       title: 'New Member Welcome',
-      description: 'Welcoming our newest members to the DFW Panjabi Golf Club family.',
+      description: 'Welcoming our newest members to the DFW Punjabi Golf Club family.',
       date: 'March 22, 2024',
       photographer: 'Club Photographer'
     },

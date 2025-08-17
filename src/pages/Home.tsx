@@ -15,7 +15,7 @@ const Home: React.FC = () => {
     {
       icon: Users,
       title: 'Community & Networking',
-      description: 'Connect with fellow Panjabi professionals and build lasting friendships on and off the course.',
+      description: 'Connect with fellow Punjabi professionals and build lasting friendships on and off the course.',
       color: 'from-primary-500 to-primary-600'
     },
     {
@@ -27,50 +27,29 @@ const Home: React.FC = () => {
     {
       icon: Calendar,
       title: 'Flexible Scheduling',
-      description: 'Multiple tee times and events to fit your busy schedule and lifestyle.',
+      description: 'Multiple events and activities to fit your busy schedule and lifestyle.',
       color: 'from-purple-500 to-purple-600'
-    }
-  ];
-
-  const testimonials = [
-    {
-      name: 'Rajinder Singh',
-      role: 'Club President',
-      content: 'The DFW Panjabi Golf Club has been my second home for over a decade. The friendships I\'ve made here are priceless.',
-      rating: 5
-    },
-    {
-      name: 'Priya Patel',
-      role: 'Member since 2018',
-      content: 'As a female golfer, I\'ve found an incredibly supportive community here. The club has helped me improve my game significantly.',
-      rating: 5
-    },
-    {
-      name: 'Amarjit Dhillon',
-      role: 'Board Member',
-      content: 'Our club combines the best of Panjabi culture with the gentleman\'s game of golf. It\'s truly a unique experience.',
-      rating: 5
     }
   ];
 
   const upcomingEvents = [
     {
-      title: 'Spring Championship Tournament',
-      date: 'March 15, 2024',
-      location: 'Prestonwood Golf Club',
-      type: 'Tournament'
+      title: 'home-event-1-title',
+      date: 'home-event-1-date',
+      description: 'home-event-1-description',
+      image: '/images/events/spring-tournament.jpg'
     },
     {
-      title: 'New Member Welcome Mixer',
-      date: 'March 22, 2024',
-      location: 'Clubhouse',
-      type: 'Social'
+      title: 'home-event-2-title',
+      date: 'home-event-2-date',
+      description: 'home-event-2-description',
+      image: '/images/events/charity-outing.jpg'
     },
     {
-      title: 'Charity Golf Outing',
-      date: 'April 5, 2024',
-      location: 'Tribute Golf Links',
-      type: 'Charity'
+      title: 'home-event-3-title',
+      date: 'home-event-3-date',
+      description: 'home-event-3-description',
+      image: '/images/events/member-guest.jpg'
     }
   ];
 
@@ -106,7 +85,7 @@ const Home: React.FC = () => {
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-6 text-shadow-lg">
               <ContentEditor contentId="hero-title" tag="span">
-                The DFW Panjabi
+                The DFW Punjabi
               </ContentEditor>
               <span className="block text-gradient bg-gradient-to-r from-gold-400 to-yellow-300 bg-clip-text text-transparent">
                 <ContentEditor contentId="hero-subtitle" tag="span">
@@ -116,7 +95,7 @@ const Home: React.FC = () => {
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
               <ContentEditor contentId="hero-description" tag="span">
-                Where tradition meets excellence. Join our exclusive community of Panjabi golf enthusiasts 
+                Where tradition meets excellence. Join our exclusive community of Punjabi golf enthusiasts 
                 in the heart of Dallas-Fort Worth.
               </ContentEditor>
             </p>
@@ -128,7 +107,7 @@ const Home: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <Link to="/members">
+            <Link to="/contact">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -156,17 +135,38 @@ const Home: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 max-w-4xl mx-auto"
           >
-            {[
-              { number: '150+', label: 'Active Members' },
-              { number: '25+', label: 'Years History' },
-              { number: '12', label: 'Annual Events' },
-              { number: '4', label: 'Golf Courses' }
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-gold-400 mb-2">{stat.number}</div>
-                <div className="text-gray-300 text-sm">{stat.label}</div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-gold-400 mb-2">
+                <ContentEditor contentId="stats-members" tag="span">150+</ContentEditor>
               </div>
-            ))}
+              <div className="text-gray-300 text-sm">
+                <ContentEditor contentId="stats-members-label" tag="span">Active Members</ContentEditor>
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-gold-400 mb-2">
+                <ContentEditor contentId="stats-years" tag="span">25+</ContentEditor>
+              </div>
+              <div className="text-gray-300 text-sm">
+                <ContentEditor contentId="stats-years-label" tag="span">Years History</ContentEditor>
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-gold-400 mb-2">
+                <ContentEditor contentId="stats-events" tag="span">12</ContentEditor>
+              </div>
+              <div className="text-gray-300 text-sm">
+                <ContentEditor contentId="stats-events-label" tag="span">Annual Events</ContentEditor>
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-gold-400 mb-2">
+                <ContentEditor contentId="stats-courses" tag="span">4</ContentEditor>
+              </div>
+              <div className="text-gray-300 text-sm">
+                <ContentEditor contentId="stats-courses-label" tag="span">Golf Courses</ContentEditor>
+              </div>
+            </div>
           </motion.div>
         </div>
 
@@ -180,7 +180,7 @@ const Home: React.FC = () => {
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="w-1 h-3 bg-white rounded-full mt-2"
+              className="w-1 h-3 bg-white/60 rounded-full mt-2"
             ></motion.div>
           </div>
         </motion.div>
@@ -225,50 +225,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="section-padding bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              What Our Members Say
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Hear from our community about their experiences and the value they find in our club.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="card p-8 relative"
-              >
-                <div className="flex mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-gold-400 fill-current" />
-                  ))}
-                </div>
-                <p className="text-gray-700 italic mb-6 leading-relaxed">"{testimonial.content}"</p>
-                <div>
-                  <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                  <div className="text-sm text-gray-600">{testimonial.role}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Upcoming Events Section */}
       <section className="section-padding bg-white">
         <div className="container-custom">
@@ -280,10 +236,14 @@ const Home: React.FC = () => {
               viewport={{ once: true }}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Upcoming Events
+                <ContentEditor contentId="home-upcoming-events-title" tag="span">
+                  Upcoming Events
+                </ContentEditor>
               </h2>
               <p className="text-xl text-gray-600">
-                Don't miss out on our exciting upcoming events and tournaments.
+                <ContentEditor contentId="home-upcoming-events-subtitle" tag="span">
+                  Don't miss out on our exciting upcoming events and tournaments.
+                </ContentEditor>
               </p>
             </motion.div>
             <motion.div
@@ -299,7 +259,7 @@ const Home: React.FC = () => {
                   className="btn-secondary flex items-center space-x-2"
                 >
                   <span>View All Events</span>
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-4 h-4" />
                 </motion.button>
               </Link>
             </motion.div>
@@ -311,22 +271,46 @@ const Home: React.FC = () => {
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="card p-6 hover:shadow-xl transition-all duration-300"
+                className="card overflow-hidden group"
               >
-                <div className="flex items-center justify-between mb-4">
-                  <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                    event.type === 'Tournament' ? 'bg-gold-100 text-gold-800' :
-                    event.type === 'Social' ? 'bg-primary-100 text-primary-800' :
-                    'bg-green-100 text-green-800'
-                  }`}>
-                    {event.type}
-                  </span>
-                  <span className="text-sm text-gray-500">{event.date}</span>
+                <div className="relative h-48 bg-gradient-to-br from-gray-200 to-gray-300 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <div className="text-sm font-medium text-gold-400">
+                      <ContentEditor contentId={event.date} tag="span">
+                        {event.date === 'home-event-1-date' ? 'March 15-17, 2024' :
+                         event.date === 'home-event-2-date' ? 'April 22, 2024' : 'May 18-19, 2024'}
+                      </ContentEditor>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{event.title}</h3>
-                <p className="text-gray-600 text-sm">{event.location}</p>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    <ContentEditor contentId={event.title} tag="span">
+                      {event.title === 'home-event-1-title' ? 'Spring Championship Tournament' :
+                       event.title === 'home-event-2-title' ? 'Charity Golf Outing' : 'Member-Guest Tournament'}
+                    </ContentEditor>
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    <ContentEditor contentId={event.description} tag="span">
+                      {event.description === 'home-event-1-description' ? 'Our premier annual tournament featuring top players from across the region.' :
+                       event.description === 'home-event-2-description' ? 'Support local causes while enjoying a great day on the course.' :
+                       'Invite your friends and family for a weekend of golf and camaraderie.'}
+                    </ContentEditor>
+                  </p>
+                  <Link to="/events">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="text-primary-600 font-semibold hover:text-primary-700 transition-colors duration-300 flex items-center space-x-2"
+                    >
+                      <span>Learn More</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </motion.button>
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -346,7 +330,7 @@ const Home: React.FC = () => {
               Ready to Join Our Community?
             </h2>
             <p className="text-xl text-primary-100 mb-8 max-w-3xl mx-auto">
-              Become part of the most prestigious Panjabi golf club in the DFW area. 
+              Become part of the most prestigious Punjabi golf club in the DFW area. 
               Experience excellence, build connections, and enjoy the game you love.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

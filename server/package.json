@@ -1,7 +1,7 @@
 {
   "name": "dfw-golf-club-backend",
   "version": "1.0.0",
-  "description": "Backend API for DFW Panjabi Golf Club website",
+  "description": "Backend API for DFW Punjabi Golf Club website",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -32,6 +32,6 @@
     "node": ">=16.0.0"
   },
   "keywords": ["golf-club", "admin", "cms", "api"],
-  "author": "DFW Panjabi Golf Club",
+  "author": "DFW Punjabi Golf Club",
   "license": "MIT"
 }

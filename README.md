@@ -1,6 +1,6 @@
-# The DFW Panjabi Golf Club Website
+# The DFW Punjabi Golf Club Website
 
-A modern, premium website for The DFW Panjabi Golf Club featuring sleek design, smooth animations, and comprehensive functionality.
+A modern, premium website for The DFW Punjabi Golf Club featuring sleek design, smooth animations, and comprehensive functionality.
 
 ## 🏌️ Features
 
@@ -9,7 +9,7 @@ A modern, premium website for The DFW Panjabi Golf Club featuring sleek design, 
 - **About Us** - Club history, mission, values, and achievements
 - **Meet the Board** - Executive board profiles and leadership information
 - **Events** - Upcoming events, past events, and event registration
-- **Schedule** - Tee time booking and course schedules
+- **Schedule** - Event schedules and tournament information
 - **Contact Us** - Contact forms, location info, and department contacts
 - **Gallery** - Photo galleries with lightbox functionality
 - **Members** - Membership information, benefits, and application process
@@ -42,7 +42,7 @@ A modern, premium website for The DFW Panjabi Golf Club featuring sleek design, 
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd dfw-panjabi-golf-club
+   cd dfw-punjabi-golf-club
    ```
 
 2. **Install dependencies**
@@ -207,7 +207,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 📞 Support
 
 For support or questions about the website:
-- **Email** - info@dfwpanjabigolf.com
+- **Email** - info@dfwpunjabigolf.com
 - **Phone** - (555) 123-4567
 - **Website** - Visit our contact page
 
@@ -220,4 +220,4 @@ For support or questions about the website:
 
 ---
 
-**The DFW Panjabi Golf Club** - Where tradition meets excellence on the green.
+**The DFW Punjabi Golf Club** - Where tradition meets excellence on the green.

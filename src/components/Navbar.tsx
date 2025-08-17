@@ -20,7 +20,6 @@ const Navbar: React.FC = () => {
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
     { name: 'Meet the Board', path: '/board' },
-    { name: 'Events', path: '/events' },
     { name: 'Schedule', path: '/schedule' },
     { name: 'Gallery', path: '/gallery' },
     { name: 'Members', path: '/members' },
@@ -50,7 +49,7 @@ const Navbar: React.FC = () => {
               <Flag className="w-6 h-6 text-white" />
             </motion.div>
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-gray-900">DFW Panjabi</h1>
+              <h1 className="text-xl font-bold text-gray-900">DFW Punjabi</h1>
               <p className="text-sm text-gray-600 -mt-1">Golf Club</p>
             </div>
           </Link>
@@ -71,13 +70,15 @@ const Navbar: React.FC = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-golf-600 transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-primary"
-            >
-              Join Now
-            </motion.button>
+            <Link to="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn-primary"
+              >
+                Join Now
+              </motion.button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -114,7 +115,9 @@ const Navbar: React.FC = () => {
                   </Link>
                 ))}
                 <div className="px-4 pt-4">
-                  <button className="btn-primary w-full">Join Now</button>
+                  <Link to="/contact">
+                    <button className="btn-primary w-full">Join Now</button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
