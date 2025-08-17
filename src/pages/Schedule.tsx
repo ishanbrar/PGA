@@ -14,30 +14,26 @@ import {
 import ContentEditor from '../components/ContentEditor';
 
 const Schedule: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-
   const upcomingEvents = [
     {
       id: 1,
       title: 'events-event-1-title',
       date: 'events-event-1-date',
-      time: 'events-event-1-time',
       location: 'events-event-1-location',
       category: 'Tournament',
       description: 'events-event-1-description',
       image: '/api/placeholder/600/400',
-      features: ['Individual Stroke Play', 'Team Competitions', 'Handicap Divisions', 'Prizes & Awards', 'Lunch Included']
+      highlights: ['Championship Format', 'Professional Prizes', 'Live Scoring', 'Awards Ceremony', 'Networking']
     },
     {
       id: 2,
       title: 'events-event-2-title',
       date: 'events-event-2-date',
-      time: 'events-event-2-time',
       location: 'events-event-2-location',
       category: 'Social',
       description: 'events-event-2-description',
       image: '/api/placeholder/600/400',
-      features: ['Networking', 'Welcome Speeches', 'Light Refreshments', 'Member Introductions', 'Club Information']
+      highlights: ['Family Friendly', 'Cultural Activities', 'Food & Refreshments', 'Games & Prizes', 'Community Building']
     }
   ];
 
@@ -116,9 +112,7 @@ const Schedule: React.FC = () => {
     { id: 'social', name: 'Social Events', count: upcomingEvents.filter(e => e.category === 'Social').length }
   ];
 
-  const filteredEvents = selectedCategory === 'all' 
-    ? upcomingEvents 
-    : upcomingEvents.filter(event => event.category.toLowerCase() === selectedCategory);
+  const filteredEvents = upcomingEvents;
 
   return (
     <div className="min-h-screen pt-20">
@@ -149,30 +143,31 @@ const Schedule: React.FC = () => {
         </div>
       </section>
 
-      {/* Category Filter */}
+      {/* Upcoming Events Section */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {categories.map((category) => (
-              <motion.button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                  selectedCategory === category.id
-                    ? 'bg-primary-600 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                {category.name} ({category.count})
-              </motion.button>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <ContentEditor contentId="upcoming-events-title" tag="span">
+                Upcoming Events
+              </ContentEditor>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <ContentEditor contentId="upcoming-events-subtitle" tag="span">
+                Mark your calendar for these exciting upcoming events.
+              </ContentEditor>
+            </p>
+          </motion.div>
 
           {/* Upcoming Events Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {filteredEvents.map((event, index) => (
+            {upcomingEvents.map((event, index) => (
               <motion.div
                 key={event.id}
                 initial={{ opacity: 0, y: 30 }}
@@ -202,44 +197,27 @@ const Schedule: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">
                     <ContentEditor contentId={event.title} tag="span">
                       {event.title === 'events-event-1-title' ? 'Spring Championship Tournament' :
-                       event.title === 'events-event-2-title' ? 'New Member Welcome Mixer' : 'Charity Golf Outing'}
+                       event.title === 'events-event-2-title' ? 'Family Golf Day' : 'Member-Guest Tournament'}
                     </ContentEditor>
                   </h3>
-                  
-                  <div className="flex items-center space-x-4 text-sm text-gray-600 mb-4">
-                    <div className="flex items-center space-x-2">
-                      <Clock className="w-4 h-4" />
-                      <ContentEditor contentId={event.time} tag="span">
-                        {event.time === 'events-event-1-time' ? '8:00 AM - 6:00 PM' :
-                         event.time === 'events-event-2-time' ? '6:00 PM - 9:00 PM' : '9:00 AM - 5:00 PM'}
-                      </ContentEditor>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <MapPin className="w-4 h-4" />
-                      <ContentEditor contentId={event.location} tag="span">
-                        {event.location === 'events-event-1-location' ? 'Prestonwood Golf Club' :
-                         event.location === 'events-event-2-location' ? 'Clubhouse' : 'Tribute Golf Links'}
-                      </ContentEditor>
-                    </div>
-                  </div>
-                  
                   <p className="text-gray-600 mb-4">
                     <ContentEditor contentId={event.description} tag="span">
-                      {event.description === 'events-event-1-description' ? 'Our premier spring tournament featuring individual stroke play, team competitions, and exciting prizes. Open to all skill levels with handicap divisions.' :
-                       event.description === 'events-event-2-description' ? 'Join us for an evening of networking, introductions, and celebration as we welcome our newest members to the DFW Punjabi Golf Club family.' :
-                       'Support our community through golf! This charity outing raises funds for local Punjabi community organizations and scholarships.'}
+                      {event.description === 'events-event-1-description' ? 'Our premier annual tournament featuring top players from across the region.' :
+                       event.description === 'events-event-2-description' ? 'Fun day for all skill levels and ages.' :
+                       'Invite your friends and family for a weekend of golf and camaraderie.'}
                     </ContentEditor>
                   </p>
-                  
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {event.features.slice(0, 3).map((feature, idx) => (
-                      <span key={idx} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
-                        {feature}
+                    {event.highlights.slice(0, 3).map((highlight, idx) => (
+                      <span
+                        key={idx}
+                        className="px-2 py-1 bg-primary-100 text-primary-700 text-xs rounded-full"
+                      >
+                        {highlight}
                       </span>
                     ))}
                   </div>

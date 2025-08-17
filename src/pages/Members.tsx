@@ -20,8 +20,7 @@ const Members: React.FC = () => {
         'Priority event booking',
         'Tournament participation',
         'Social events access',
-        'Member directory access',
-        'Newsletter subscription'
+        'Member directory access'
       ],
       popular: false
     },
@@ -61,7 +60,7 @@ const Members: React.FC = () => {
       color: 'from-primary-500 to-primary-600'
     },
     {
-      icon: Heart,
+      icon: Star,
       title: 'Cultural Connection',
       description: 'Celebrate and preserve Punjabi culture through golf and community events.',
       color: 'from-red-500 to-pink-500'
@@ -139,7 +138,7 @@ const Members: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {membershipTypes.map((type, index) => (
               <motion.div
                 key={type.id}
@@ -159,14 +158,10 @@ const Members: React.FC = () => {
                 
                 <div className="text-center mb-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-4">{type.name}</h3>
-                  <div className="mb-4">
-                    <span className="text-4xl font-bold text-primary-600">{type.price}</span>
-                    <span className="text-gray-600 ml-2">{type.period}</span>
-                  </div>
                   <p className="text-gray-600 mb-6">{type.description}</p>
                 </div>
 
-                <ul className="space-y-4 mb-8">
+                <ul className="space-y-4">
                   {type.features.map((feature, i) => (
                     <li key={i} className="flex items-start space-x-3">
                       <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
@@ -174,18 +169,6 @@ const Members: React.FC = () => {
                     </li>
                   ))}
                 </ul>
-
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`w-full py-3 px-6 rounded-lg font-semibold transition-colors duration-300 ${
-                    type.popular
-                      ? 'bg-primary-600 text-white hover:bg-primary-700'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  Choose {type.name}
-                </motion.button>
               </motion.div>
             ))}
           </div>

@@ -1,12 +1,75 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Flag, Users, Trophy, Heart, Star, Calendar, MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { Users, Trophy, Flag, Star, Calendar, MapPin, Phone, Mail, Linkedin } from 'lucide-react';
 import ContentEditor from '../components/ContentEditor';
 
 const About: React.FC = () => {
+  const boardMembers = [
+    {
+      name: 'Rajinder Singh',
+      position: 'President',
+      email: 'president@dfwpunjabigolf.com',
+      phone: '(555) 123-4567',
+      image: '/images/board/president.jpg',
+      bio: 'Leading our club with over 15 years of golf experience and a passion for community building.',
+      linkedin: '#',
+      term: '2024-2026'
+    },
+    {
+      name: 'Priya Patel',
+      position: 'Vice President',
+      email: 'vicepresident@dfwpunjabigolf.com',
+      phone: '(555) 123-4568',
+      image: '/images/board/vice-president.jpg',
+      bio: 'Dedicated to expanding our club\'s reach and enhancing member experiences.',
+      linkedin: '#',
+      term: '2024-2026'
+    },
+    {
+      name: 'Amarjit Dhillon',
+      position: 'Secretary',
+      email: 'secretary@dfwpunjabigolf.com',
+      phone: '(555) 123-4569',
+      image: '/images/board/secretary.jpg',
+      bio: 'Ensuring smooth communication and maintaining our club\'s official records.',
+      linkedin: '#',
+      term: '2024-2026'
+    },
+    {
+      name: 'Gurpreet Kaur',
+      position: 'Treasurer',
+      email: 'treasurer@dfwpunjabigolf.com',
+      phone: '(555) 123-4570',
+      image: '/images/board/treasurer.jpg',
+      bio: 'Managing our club\'s finances with transparency and fiscal responsibility.',
+      linkedin: '#',
+      term: '2024-2026'
+    },
+    {
+      name: 'Harinder Singh',
+      position: 'Tournament Director',
+      email: 'tournaments@dfwpunjabigolf.com',
+      phone: '(555) 123-4571',
+      image: '/images/board/tournament-director.jpg',
+      bio: 'Organizing exciting tournaments and events that bring our community together.',
+      linkedin: '#',
+      term: '2024-2026'
+    },
+    {
+      name: 'Manpreet Kaur',
+      position: 'Membership Director',
+      email: 'membership@dfwpunjabigolf.com',
+      phone: '(555) 123-4572',
+      image: '/images/board/membership-director.jpg',
+      bio: 'Growing our community and ensuring every member feels valued and supported.',
+      linkedin: '#',
+      term: '2024-2026'
+    }
+  ];
+
   const values = [
     {
-      icon: Heart,
+      icon: Star,
       title: 'value-1-title',
       description: 'value-1-description'
     },
@@ -28,12 +91,10 @@ const About: React.FC = () => {
   ];
 
   const stats = [
-    { number: 'stat-1-number', label: 'stat-1-label', icon: Calendar },
-    { number: 'stat-2-number', label: 'stat-2-label', icon: Users },
-    { number: 'stat-3-number', label: 'stat-3-label', icon: Flag },
-    { number: 'stat-4-number', label: 'stat-4-label', icon: Star },
-    { number: 'stat-5-number', label: 'stat-5-label', icon: Heart },
-    { number: 'stat-6-number', label: 'stat-6-label', icon: Trophy }
+    { number: 'stats-members', label: 'stats-members-label', icon: Users },
+    { number: 'stats-years', label: 'stats-years-label', icon: Trophy },
+    { number: 'stats-events', label: 'stats-events-label', icon: Star },
+    { number: 'stats-courses', label: 'stats-courses-label', icon: Calendar }
   ];
 
   return (
@@ -131,8 +192,130 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="section-padding bg-gradient-to-br from-gray-50 to-blue-50">
+      {/* Stats Section */}
+      <section className="section-padding bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <ContentEditor contentId="stats-title" tag="span">
+                Club Statistics
+              </ContentEditor>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <ContentEditor contentId="stats-subtitle" tag="span">
+                Numbers that tell our story of growth and success.
+              </ContentEditor>
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="text-center group"
+              >
+                <div className="w-20 h-20 bg-gradient-to-br from-primary-500 to-golf-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <stat.icon className="w-10 h-10 text-white" />
+                </div>
+                <div className="text-3xl font-bold text-gold-400 mb-2">
+                  <ContentEditor contentId={stat.number} tag="span">
+                    {stat.number === 'stats-members' ? '150+' :
+                     stat.number === 'stats-years' ? '25+' :
+                     stat.number === 'stats-events' ? '12' : '4'}
+                  </ContentEditor>
+                </div>
+                <div className="text-gray-300">
+                  <ContentEditor contentId={stat.label} tag="span">
+                    {stat.label === 'stats-members-label' ? 'Active Members' :
+                     stat.label === 'stats-years-label' ? 'Years of Excellence' :
+                     stat.label === 'stats-events-label' ? 'Annual Events' : 'Golf Courses'}
+                  </ContentEditor>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Board of Directors Section */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <ContentEditor contentId="board-title" tag="span">
+                Board of Directors
+              </ContentEditor>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <ContentEditor contentId="board-subtitle" tag="span">
+                Meet the dedicated leaders who steer our club towards success.
+              </ContentEditor>
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+            {boardMembers.map((member, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="card p-8 text-center group hover:shadow-xl transition-all duration-300"
+              >
+                <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-6">
+                  <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                </div>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                  <ContentEditor contentId={`board-member-${index + 1}-name`} tag="span">
+                    {member.name}
+                  </ContentEditor>
+                </h3>
+                <p className="text-lg text-gray-600 mb-4">
+                  <ContentEditor contentId={`board-member-${index + 1}-position`} tag="span">
+                    {member.position}
+                  </ContentEditor>
+                </p>
+                <p className="text-gray-600 leading-relaxed">
+                  <ContentEditor contentId={`board-member-${index + 1}-bio`} tag="span">
+                    {member.bio}
+                  </ContentEditor>
+                </p>
+                <div className="mt-6 flex items-center justify-center space-x-4">
+                  <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700 transition-colors">
+                    <Linkedin className="w-6 h-6" />
+                  </a>
+                  <a href={`mailto:${member.email}`} className="text-gray-500 hover:text-gray-700 transition-colors">
+                    <Mail className="w-6 h-6" />
+                  </a>
+                  <a href={`tel:${member.phone.replace(/\D/g, '')}`} className="text-gray-500 hover:text-gray-700 transition-colors">
+                    <Phone className="w-6 h-6" />
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Core Values Section */}
+      <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -148,12 +331,12 @@ const About: React.FC = () => {
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               <ContentEditor contentId="values-subtitle" tag="span">
-                These fundamental principles guide everything we do and shape the culture of our club.
+                The principles that guide everything we do.
               </ContentEditor>
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {values.map((value, index) => (
               <motion.div
                 key={index}
@@ -168,149 +351,21 @@ const About: React.FC = () => {
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">
                   <ContentEditor contentId={value.title} tag="span">
-                    {value.title === 'value-1-title' ? 'Community First' : 
-                     value.title === 'value-2-title' ? 'Excellence' :
-                     value.title === 'value-3-title' ? 'Inclusivity' : 'Sportsmanship'}
+                    {value.title === 'value-1-title' ? 'Excellence' :
+                     value.title === 'value-2-title' ? 'Community' :
+                     value.title === 'value-3-title' ? 'Heritage' : 'Sportsmanship'}
                   </ContentEditor>
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
                   <ContentEditor contentId={value.description} tag="span">
-                    {value.description === 'value-1-description' ? 'We prioritize building strong relationships and fostering a sense of belonging among our members.' :
-                     value.description === 'value-2-description' ? 'We strive for excellence in everything we do, from course conditions to member services.' :
-                     value.description === 'value-3-description' ? 'We welcome golfers of all skill levels and backgrounds to join our diverse community.' :
-                     'We promote the values of integrity, respect, and fair play both on and off the course.'}
+                    {value.description === 'value-1-description' ? 'Striving for the highest standards in everything we do' :
+                     value.description === 'value-2-description' ? 'Building strong relationships and supporting each other' :
+                     value.description === 'value-3-description' ? 'Honoring our cultural roots while embracing new traditions' :
+                     'Playing with integrity, respect, and fair play'}
                   </ContentEditor>
                 </p>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-primary-800 text-white">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <ContentEditor contentId="stats-title" tag="span">
-                By The Numbers
-              </ContentEditor>
-            </h2>
-            <p className="text-xl text-primary-100 max-w-3xl mx-auto">
-              <ContentEditor contentId="stats-subtitle" tag="span">
-                Our achievements and impact in numbers that tell the story of our success.
-              </ContentEditor>
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center"
-              >
-                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <stat.icon className="w-8 h-8 text-white" />
-                </div>
-                <div className="text-3xl md:text-4xl font-bold text-gold-400 mb-2">
-                  <ContentEditor contentId={stat.number} tag="span">
-                    {stat.number === 'stat-1-number' ? '25+' :
-                     stat.number === 'stat-2-number' ? '150+' :
-                     stat.number === 'stat-3-number' ? '4' :
-                     stat.number === 'stat-4-number' ? '12' :
-                     stat.number === 'stat-5-number' ? '95%' : '50+'}
-                  </ContentEditor>
-                </div>
-                <div className="text-primary-100 text-sm">
-                  <ContentEditor contentId={stat.label} tag="span">
-                    {stat.label === 'stat-1-label' ? 'Years' :
-                     stat.label === 'stat-2-label' ? 'Members' :
-                     stat.label === 'stat-3-label' ? 'Courses' :
-                     stat.label === 'stat-4-label' ? 'Events/Year' :
-                     stat.label === 'stat-5-label' ? 'Satisfaction' : 'Tournaments'}
-                  </ContentEditor>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Location & Facilities */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Location & Facilities
-              </h2>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Strategically located in the heart of Dallas-Fort Worth, our club provides easy access 
-                to multiple world-class golf courses and premium amenities.
-              </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-golf-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Prime Location</h3>
-                    <p className="text-gray-600">Centrally located with easy access to major highways and airports.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-golf-500 to-primary-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Flag className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Multiple Courses</h3>
-                    <p className="text-gray-600">Access to 4 premium golf courses with varying difficulty levels.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-gold-500 to-primary-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Trophy className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Pro Shop & Equipment</h3>
-                    <p className="text-gray-600">Fully stocked pro shop with professional fitting services.</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl p-8 h-96 flex items-center justify-center">
-                <div className="text-center text-gray-500">
-                  <MapPin className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                  <p className="text-lg">Interactive Map Coming Soon</p>
-                </div>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
@@ -333,7 +388,7 @@ const About: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {[
               {
                 icon: Phone,
@@ -348,13 +403,6 @@ const About: React.FC = () => {
                 details: ['info@dfwpunjabigolf.com', 'membership@dfwpunjabigolf.com'],
                 description: 'Send us a message and we\'ll respond within 24 hours.',
                 color: 'from-green-500 to-green-600'
-              },
-              {
-                icon: Clock,
-                title: 'Visit Us',
-                details: ['Mon-Fri: 8:00 AM - 8:00 PM', 'Sat-Sun: 7:00 AM - 7:00 PM'],
-                description: 'Stop by our clubhouse during business hours.',
-                color: 'from-purple-500 to-purple-600'
               }
             ].map((method, index) => (
               <motion.div

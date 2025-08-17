@@ -2,17 +2,15 @@
 
 A modern, premium website for The DFW Punjabi Golf Club featuring sleek design, smooth animations, and comprehensive functionality.
 
-## 🏌️ Features
+## Features
 
-### Core Pages
-- **Home** - Hero section, features, testimonials, and call-to-action
-- **About Us** - Club history, mission, values, and achievements
-- **Meet the Board** - Executive board profiles and leadership information
-- **Events** - Upcoming events, past events, and event registration
-- **Schedule** - Event schedules and tournament information
-- **Contact Us** - Contact forms, location info, and department contacts
-- **Gallery** - Photo galleries with lightbox functionality
-- **Members** - Membership information, benefits, and application process
+- **Home** - Welcome page with club overview and upcoming events
+- **About Us** - Club history, mission, values, and board of directors information
+- **Schedule** - Event calendar and upcoming activities
+- **Gallery** - Photo gallery of club events and activities
+- **Members** - Membership information and benefits
+- **Contact** - Contact information and inquiry form
+- **Admin Portal** - Content management system for administrators
 
 ### Premium Features
 - ✨ **Modern Design** - Sleek, professional appearance with premium aesthetics
@@ -73,13 +71,12 @@ src/
 │   └── Footer.tsx      # Footer component
 ├── pages/              # Page components
 │   ├── Home.tsx        # Home page
-│   ├── About.tsx       # About page
-│   ├── Board.tsx       # Board members page
-│   ├── Events.tsx      # Events page
+│   ├── About.tsx       # About page (includes board information)
 │   ├── Schedule.tsx    # Schedule page
 │   ├── Contact.tsx     # Contact page
 │   ├── Gallery.tsx     # Gallery page
-│   └── Members.tsx     # Members page
+│   ├── Members.tsx     # Members page
+│   └── Admin.tsx       # Admin portal
 ├── App.tsx             # Main app component
 ├── index.tsx           # Entry point
 └── index.css           # Global styles

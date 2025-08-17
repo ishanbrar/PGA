@@ -6,7 +6,6 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Members from './pages/Members';
-import Board from './pages/Board';
 import Schedule from './pages/Schedule';
 import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
@@ -26,7 +25,6 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/members" element={<Members />} />
-                <Route path="/board" element={<Board />} />
                 <Route path="/schedule" element={<Schedule />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/gallery" element={<Gallery />} />

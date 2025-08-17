@@ -6,19 +6,14 @@ import { Flag, Mail, Phone, Facebook, Instagram, Twitter, Linkedin } from 'lucid
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
-  const footerLinks = {
-    'Quick Links': [
-      { name: 'About Us', path: '/about' },
-      { name: 'Schedule', path: '/schedule' },
-      { name: 'Gallery', path: '/gallery' },
-      { name: 'Members', path: '/members' },
-    ],
-    'Club Info': [
-      { name: 'Meet the Board', path: '/board' },
-      { name: 'Contact Us', path: '/contact' },
-      { name: 'Membership', path: '/members' },
-    ],
-  };
+  const footerLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'About Us', path: '/about' },
+    { name: 'Schedule', path: '/schedule' },
+    { name: 'Gallery', path: '/gallery' },
+    { name: 'Members', path: '/members' },
+    { name: 'Contact', path: '/contact' }
+  ];
 
   const socialLinks = [
     { icon: Facebook, href: '#', label: 'Facebook' },
@@ -69,7 +64,7 @@ const Footer: React.FC = () => {
           <div className="space-y-6">
             <h4 className="text-lg font-semibold text-white">Quick Links</h4>
             <ul className="space-y-3">
-              {footerLinks['Quick Links'].map((link) => (
+              {footerLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.path}
@@ -86,16 +81,23 @@ const Footer: React.FC = () => {
           <div className="space-y-6">
             <h4 className="text-lg font-semibold text-white">Club Info</h4>
             <ul className="space-y-3">
-              {footerLinks['Club Info'].map((link) => (
-                <li key={link.name}>
-                  <Link
-                    to={link.path}
-                    className="text-gray-300 hover:text-primary-400 transition-colors duration-300 hover:translate-x-1 inline-block"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
+              {/* Removed "Meet the Board" link */}
+              <li>
+                <Link
+                  to="/contact"
+                  className="text-gray-300 hover:text-primary-400 transition-colors duration-300 hover:translate-x-1 inline-block"
+                >
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/members"
+                  className="text-gray-300 hover:text-primary-400 transition-colors duration-300 hover:translate-x-1 inline-block"
+                >
+                  Membership
+                </Link>
+              </li>
             </ul>
           </div>
 

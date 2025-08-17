@@ -5,21 +5,11 @@ import { Menu, X, Flag } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
-    { name: 'Meet the Board', path: '/board' },
     { name: 'Schedule', path: '/schedule' },
     { name: 'Gallery', path: '/gallery' },
     { name: 'Members', path: '/members' },
@@ -31,11 +21,7 @@ const Navbar: React.FC = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200/50'
-          : 'bg-transparent'
-      }`}
+      className="fixed top-0 w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200/50"
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-20">
@@ -44,12 +30,12 @@ const Navbar: React.FC = () => {
             <motion.div
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.6 }}
-              className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden"
+              className="w-24 h-24 rounded-full flex items-center justify-center overflow-hidden"
             >
               <img 
                 src="/images/logo/logo-main.png" 
                 alt="DFW Punjabi Golf Club Logo" 
-                className="w-12 h-12 object-contain"
+                className="w-24 h-24 object-contain"
               />
             </motion.div>
             <div className="hidden sm:block">
@@ -74,15 +60,6 @@ const Navbar: React.FC = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-golf-600 transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
-            <Link to="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-primary"
-              >
-                Join Now
-              </motion.button>
-            </Link>
           </div>
 
           {/* Mobile Menu Button */}

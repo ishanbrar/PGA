@@ -22,14 +22,6 @@ const Contact: React.FC = () => {
       details: ['info@dfwpunjabigolf.com', 'membership@dfwpunjabigolf.com'],
       description: 'Send us an email and we\'ll respond within 24 hours.',
       color: 'from-green-500 to-green-600'
-    },
-
-    {
-      icon: Clock,
-      title: 'Business Hours',
-      details: ['Mon-Fri: 8:00 AM - 8:00 PM', 'Sat-Sun: 7:00 AM - 7:00 PM'],
-      description: 'We\'re here to help you during these hours.',
-      color: 'from-orange-500 to-orange-600'
     }
   ];
 
@@ -89,7 +81,7 @@ const Contact: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {contactMethods.map((method, index) => (
               <motion.div
                 key={index}

@@ -32,6 +32,13 @@ const Home: React.FC = () => {
     }
   ];
 
+  const stats = [
+    { number: 'stats-members', label: 'stats-members-label', icon: Users },
+    { number: 'stats-years', label: 'stats-years-label', icon: Trophy },
+    { number: 'stats-events', label: 'stats-events-label', icon: Calendar },
+    { number: 'stats-courses', label: 'stats-courses-label', icon: Star }
+  ];
+
   const upcomingEvents = [
     {
       title: 'home-event-1-title',
@@ -182,8 +189,8 @@ const Home: React.FC = () => {
         </motion.div>
       </section>
 
-      {/* Features Section */}
-      <section className="section-padding bg-white">
+      {/* Stats Section */}
+      <section className="section-padding bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -192,29 +199,45 @@ const Home: React.FC = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Why Choose Our Club?
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <ContentEditor contentId="stats-title" tag="span">
+                Club Statistics
+              </ContentEditor>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Experience the perfect blend of premium golf amenities, cultural connection, and professional networking.
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <ContentEditor contentId="stats-subtitle" tag="span">
+                Numbers that tell our story of growth and success.
+              </ContentEditor>
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
+            {stats.map((stat, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="card p-8 text-center group"
+                className="text-center group"
               >
-                <div className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <feature.icon className="w-8 h-8 text-white" />
+                <div className="w-20 h-20 bg-gradient-to-br from-primary-500 to-golf-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <stat.icon className="w-10 h-10 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                <div className="text-3xl font-bold text-gold-400 mb-2">
+                  <ContentEditor contentId={stat.number} tag="span">
+                    {stat.number === 'stats-members' ? '150+' :
+                     stat.number === 'stats-years' ? '25+' :
+                     stat.number === 'stats-events' ? '12' : '4'}
+                  </ContentEditor>
+                </div>
+                <div className="text-gray-300">
+                  <ContentEditor contentId={stat.label} tag="span">
+                    {stat.label === 'stats-members-label' ? 'Active Members' :
+                     stat.label === 'stats-years-label' ? 'Years of Excellence' :
+                     stat.label === 'stats-events-label' ? 'Annual Events' : 'Golf Courses'}
+                  </ContentEditor>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -292,7 +315,7 @@ const Home: React.FC = () => {
                   <p className="text-gray-600 mb-4">
                     <ContentEditor contentId={event.description} tag="span">
                       {event.description === 'home-event-1-description' ? 'Our premier annual tournament featuring top players from across the region.' :
-                       event.description === 'home-event-2-description' ? 'Support local causes while enjoying a great day on the course.' :
+                       event.description === 'home-event-2-title' ? 'Support local causes while enjoying a great day on the course.' :
                        'Invite your friends and family for a weekend of golf and camaraderie.'}
                     </ContentEditor>
                   </p>
@@ -300,13 +323,53 @@ const Home: React.FC = () => {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="text-primary-600 font-semibold hover:text-primary-700 transition-colors duration-300 flex items-center space-x-2"
+                      className="btn-primary w-full"
                     >
-                      <span>Learn More</span>
-                      <ArrowRight className="w-4 h-4" />
+                      Learn More
                     </motion.button>
                   </Link>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="section-padding bg-gray-50">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Why Choose Our Club?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <ContentEditor contentId="features-subtitle" tag="span">
+                Experience the perfect blend of premium golf amenities, cultural connection, and professional networking.
+              </ContentEditor>
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="card p-8 text-center group"
+              >
+                <div className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <feature.icon className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">{feature.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -329,16 +392,7 @@ const Home: React.FC = () => {
               Become part of the most prestigious Punjabi golf club in the DFW area. 
               Experience excellence, build connections, and enjoy the game you love.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/members">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-white text-primary-700 font-semibold py-4 px-8 rounded-lg text-lg hover:bg-gray-100 transition-colors duration-300"
-                >
-                  Apply for Membership
-                </motion.button>
-              </Link>
+            <div className="flex justify-center">
               <Link to="/contact">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
