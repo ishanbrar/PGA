@@ -63,7 +63,7 @@ const Gallery: React.FC = () => {
       alt: 'New Member Welcome',
       category: 'events',
       title: 'New Member Welcome',
-      description: 'Welcoming our newest members to the DFW Panjabi Golf Club family.',
+      description: 'Welcoming our newest members to the DFW Punjabi Golf Club family.',
       date: 'March 22, 2024',
       photographer: 'Club Photographer'
     },

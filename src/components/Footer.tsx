@@ -37,23 +37,17 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-16">
           {/* Brand Section */}
           <div className="space-y-6">
-            <div className="flex items-center space-x-3">
-              <motion.div
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
-                className="w-12 h-12 bg-gradient-to-br from-golf-500 to-primary-600 rounded-full flex items-center justify-center"
-              >
-                <Flag className="w-6 h-6 text-white" />
-              </motion.div>
-              <div>
-                <h3 className="text-xl font-bold">DFW Panjabi</h3>
-                <p className="text-gray-300 text-sm">Golf Club</p>
+            <div className="mb-6">
+              <div className="flex items-center space-x-4 mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-primary-600 to-golf-600 rounded-full flex items-center justify-center">
+                  <Flag className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-xl font-bold">DFW Punjabi</h3>
               </div>
+              <p className="text-gray-300 leading-relaxed">
+                Connecting the Punjabi community through the love of golf.
+              </p>
             </div>
-            <p className="text-gray-300 leading-relaxed">
-              Connecting the Panjabi community through the love of golf. 
-              Building friendships, fostering excellence, and creating lasting memories on the green.
-            </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
                 <motion.a
@@ -125,9 +119,9 @@ const Footer: React.FC = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-primary-400" />
-                <a href="mailto:info@dfwpanjabigolf.com" className="text-gray-300 hover:text-primary-400 transition-colors duration-300">
-                  info@dfwpanjabigolf.com
-                </a>
+                              <a href="mailto:info@dfwpunjabigolf.com" className="text-gray-300 hover:text-primary-400 transition-colors duration-300">
+                info@dfwpunjabigolf.com
+              </a>
               </div>
             </div>
           </div>
@@ -161,7 +155,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-gray-700 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
-              © {currentYear} The DFW Panjabi Golf Club. All rights reserved.
+              © {currentYear} The DFW Punjabi Golf Club. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
               <Link to="/privacy" className="text-gray-400 hover:text-primary-400 transition-colors duration-300">

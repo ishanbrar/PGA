@@ -28,7 +28,7 @@ const Events: React.FC = () => {
       time: '6:00 PM - 9:00 PM',
       location: 'Clubhouse',
       category: 'Social',
-      description: 'Join us for an evening of networking, introductions, and celebration as we welcome our newest members to the DFW Panjabi Golf Club family.',
+      description: 'Join us for an evening of networking, introductions, and celebration as we welcome our newest members to the DFW Punjabi Golf Club family.',
       participants: 45,
       maxParticipants: 60,
       price: 'Free',
@@ -42,7 +42,7 @@ const Events: React.FC = () => {
       time: '9:00 AM - 5:00 PM',
       location: 'Tribute Golf Links',
       category: 'Charity',
-      description: 'Support our community through golf! This charity outing raises funds for local Panjabi community organizations and scholarships.',
+      description: 'Support our community through golf! This charity outing raises funds for local Punjabi community organizations and scholarships.',
       participants: 72,
       maxParticipants: 100,
       price: '$200',
@@ -86,7 +86,7 @@ const Events: React.FC = () => {
       description: 'Annual holiday celebration bringing together members and families for a festive evening of food, music, and community.',
       participants: 85,
       image: '/api/placeholder/600/400',
-      highlights: ['Traditional Panjabi Cuisine', 'Live Music Performance', 'Family Activities', 'Gift Exchange', 'Community Bonding']
+      highlights: ['Traditional Punjabi Cuisine', 'Live Music Performance', 'Family Activities', 'Gift Exchange', 'Community Bonding']
     }
   ];
 
@@ -121,7 +121,7 @@ const Events: React.FC = () => {
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
               Discover exciting tournaments, social gatherings, and community events that bring 
-              our Panjabi golf community together throughout the year.
+              our Punjabi golf community together throughout the year.
             </p>
           </motion.div>
         </div>

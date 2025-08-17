@@ -51,14 +51,14 @@ export const ContentProvider: React.FC<ContentProviderProps> = ({ children }) =>
       {
         id: 'hero-title',
         title: 'Hero Section Title',
-        content: 'The DFW Panjabi Golf Club',
+        content: 'The DFW Punjabi Golf Club',
         page: 'Home',
         section: 'Hero'
       },
       {
         id: 'hero-subtitle',
         title: 'Hero Section Subtitle',
-        content: 'Connecting the Panjabi community through the love of golf',
+        content: 'Connecting the Punjabi community through the love of golf',
         page: 'Home',
         section: 'Hero'
       },
@@ -72,21 +72,21 @@ export const ContentProvider: React.FC<ContentProviderProps> = ({ children }) =>
       {
         id: 'about-mission',
         title: 'Mission Statement',
-        content: 'To provide an exceptional golf experience while fostering a strong Panjabi community',
+        content: 'To provide an exceptional golf experience while fostering a strong Punjabi community',
         page: 'About',
         section: 'Mission'
       },
       {
         id: 'about-vision',
         title: 'Vision Statement',
-        content: 'To be the leading Panjabi golf club in the United States, recognized for excellence, community impact, and cultural preservation while promoting the sport of golf.',
+        content: 'To be the leading Punjabi golf club in the United States, recognized for excellence, community impact, and cultural preservation while promoting the sport of golf.',
         page: 'About',
         section: 'Vision'
       },
       {
         id: 'about-history',
         title: 'History Description',
-        content: 'The DFW Panjabi Golf Club was established by a group of passionate golfers who wanted to create a space where the Panjabi community could enjoy their passion for golf while building meaningful connections with people who shared their cultural heritage.',
+        content: 'The DFW Punjabi Golf Club was established by a group of passionate golfers who wanted to create a space where the Punjabi community could enjoy their passion for golf while building meaningful connections with people who shared their cultural heritage.',
         page: 'About',
         section: 'History'
       },
@@ -107,14 +107,14 @@ export const ContentProvider: React.FC<ContentProviderProps> = ({ children }) =>
       {
         id: 'contact-email',
         title: 'Contact Email',
-        content: 'info@dfwpanjabigolf.com',
+        content: 'info@dfwpunjabigolf.com',
         page: 'Contact',
         section: 'Email'
       },
       {
         id: 'members-benefits-intro',
         title: 'Members Benefits Introduction',
-        content: 'Join our exclusive community of Panjabi golf enthusiasts and experience premium golf access, cultural connection, and lasting friendships.',
+        content: 'Join our exclusive community of Punjabi golf enthusiasts and experience premium golf access, cultural connection, and lasting friendships.',
         page: 'Members',
         section: 'Benefits'
       }

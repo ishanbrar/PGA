@@ -1,28 +1,4 @@
-import { 
-  collection, 
-  doc, 
-  getDoc, 
-  getDocs, 
-  addDoc, 
-  updateDoc, 
-  query, 
-  where, 
-  orderBy,
-  serverTimestamp,
-  Timestamp
-} from 'firebase/firestore';
-import { 
-  ref, 
-  uploadBytes, 
-  getDownloadURL, 
-  deleteObject
-} from 'firebase/storage';
-import { 
-  signInWithEmailAndPassword, 
-  signOut, 
-  onAuthStateChanged,
-  User
-} from 'firebase/auth';
+import firebase from 'firebase/app';
 import { db, storage, auth } from '../config/firebase';
 
 // Types
@@ -37,8 +13,8 @@ export interface ContentSection {
   isPublished?: boolean;
   version?: number;
   lastModifiedBy?: string;
-  lastModifiedAt?: Timestamp;
-  createdAt?: Timestamp;
+  lastModifiedAt?: any;
+  createdAt?: any;
 }
 
 export interface ImageItem {
@@ -61,8 +37,8 @@ export interface ImageItem {
   tags?: string[];
   uploadedBy?: string;
   lastModifiedBy?: string;
-  lastModifiedAt?: Timestamp;
-  createdAt?: Timestamp;
+  lastModifiedAt?: any;
+  createdAt?: any;
 }
 
 export interface UserProfile {
@@ -83,16 +59,16 @@ export interface UserProfile {
   phone?: string;
   department?: string;
   notes?: string;
-  createdAt: Timestamp;
-  lastLogin?: Timestamp;
+  createdAt: any;
+  lastLogin?: any;
 }
 
 class FirebaseService {
-  private currentUser: User | null = null;
+  private currentUser: any = null;
 
   constructor() {
     // Listen for auth state changes
-    onAuthStateChanged(auth, (user: any) => {
+    auth.onAuthStateChanged((user: any) => {
       this.currentUser = user;
     });
   }
@@ -100,7 +76,7 @@ class FirebaseService {
   // Authentication methods
   async login(email: string, password: string) {
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await auth.signInWithEmailAndPassword(email, password);
       return userCredential.user;
     } catch (error) {
       console.error('Login error:', error);
@@ -110,26 +86,22 @@ class FirebaseService {
 
   async logout() {
     try {
-      await signOut(auth);
+      await auth.signOut();
     } catch (error) {
       console.error('Logout error:', error);
       throw error;
     }
   }
 
-  getCurrentUser(): User | null {
+  getCurrentUser(): any {
     return this.currentUser;
   }
 
   // Content management methods
   async getContent(contentId: string): Promise<ContentSection | null> {
     try {
-      const q = query(
-        collection(db, 'content'),
-        where('contentId', '==', contentId),
-        where('isPublished', '==', true)
-      );
-      const querySnapshot = await getDocs(q);
+      const q = db.collection('content').where('contentId', '==', contentId).where('isPublished', '==', true);
+      const querySnapshot = await q.get();
       
       if (!querySnapshot.empty) {
         const doc = querySnapshot.docs[0];
@@ -144,13 +116,8 @@ class FirebaseService {
 
   async getAllContent(): Promise<ContentSection[]> {
     try {
-      const q = query(
-        collection(db, 'content'),
-        where('isPublished', '==', true),
-        orderBy('page'),
-        orderBy('section')
-      );
-      const querySnapshot = await getDocs(q);
+      const q = db.collection('content').where('isPublished', '==', true).orderBy('page').orderBy('section');
+      const querySnapshot = await q.get();
       
       return querySnapshot.docs.map((doc: any) => ({
         id: doc.id,
@@ -164,17 +131,14 @@ class FirebaseService {
 
   async updateContent(contentId: string, content: string): Promise<void> {
     try {
-      const q = query(
-        collection(db, 'content'),
-        where('contentId', '==', contentId)
-      );
-      const querySnapshot = await getDocs(q);
+      const q = db.collection('content').where('contentId', '==', contentId);
+      const querySnapshot = await q.get();
       
       if (!querySnapshot.empty) {
-        const docRef = doc(db, 'content', querySnapshot.docs[0].id);
-        await updateDoc(docRef, {
+        const docRef = db.collection('content').doc(querySnapshot.docs[0].id);
+        await docRef.update({
           content,
-          lastModifiedAt: serverTimestamp(),
+          lastModifiedAt: firebase.firestore.FieldValue.serverTimestamp(),
           lastModifiedBy: this.currentUser?.uid
         });
       }
@@ -186,10 +150,10 @@ class FirebaseService {
 
   async createContent(contentData: Omit<ContentSection, 'id' | 'createdAt' | 'lastModifiedAt'>): Promise<string> {
     try {
-      const docRef = await addDoc(collection(db, 'content'), {
+      const docRef = await db.collection('content').add({
         ...contentData,
-        createdAt: serverTimestamp(),
-        lastModifiedAt: serverTimestamp(),
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        lastModifiedAt: firebase.firestore.FieldValue.serverTimestamp(),
         lastModifiedBy: this.currentUser?.uid,
         isPublished: true,
         version: 1
@@ -203,15 +167,12 @@ class FirebaseService {
 
   async deleteContent(contentId: string): Promise<void> {
     try {
-      const q = query(
-        collection(db, 'content'),
-        where('contentId', '==', contentId)
-      );
-      const querySnapshot = await getDocs(q);
+      const q = db.collection('content').where('contentId', '==', contentId);
+      const querySnapshot = await q.get();
       
       if (!querySnapshot.empty) {
-        const docRef = doc(db, 'content', querySnapshot.docs[0].id);
-        await updateDoc(docRef, { isPublished: false });
+        const docRef = db.collection('content').doc(querySnapshot.docs[0].id);
+        await docRef.update({ isPublished: false });
       }
     } catch (error) {
       console.error('Error deleting content:', error);
@@ -222,13 +183,8 @@ class FirebaseService {
   // Image management methods
   async getAllImages(): Promise<ImageItem[]> {
     try {
-      const q = query(
-        collection(db, 'images'),
-        where('isPublished', '==', true),
-        orderBy('category'),
-        orderBy('createdAt', 'desc')
-      );
-      const querySnapshot = await getDocs(q);
+      const q = db.collection('images').where('isPublished', '==', true).orderBy('category').orderBy('createdAt', 'desc');
+      const querySnapshot = await q.get();
       
       return querySnapshot.docs.map((doc: any) => ({
         id: doc.id,
@@ -243,23 +199,23 @@ class FirebaseService {
   async uploadImage(imageFile: File, metadata: Omit<ImageItem, 'id' | 'url' | 'createdAt' | 'lastModifiedAt'>): Promise<ImageItem> {
     try {
       // Upload file to Firebase Storage
-      const storageRef = ref(storage, `images/${Date.now()}_${imageFile.name}`);
-      const snapshot = await uploadBytes(storageRef, imageFile);
-      const downloadURL = await getDownloadURL(snapshot.ref);
+      const storageRef = storage.ref(`images/${Date.now()}_${imageFile.name}`);
+      const snapshot = await storageRef.put(imageFile);
+      const downloadURL = await snapshot.ref.getDownloadURL();
 
       // Create image document in Firestore
       const imageData = {
         ...metadata,
         url: downloadURL,
         filename: snapshot.ref.name,
-        createdAt: serverTimestamp(),
-        lastModifiedAt: serverTimestamp(),
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        lastModifiedAt: firebase.firestore.FieldValue.serverTimestamp(),
         uploadedBy: this.currentUser?.uid,
         lastModifiedBy: this.currentUser?.uid,
         isPublished: true
       };
 
-      const docRef = await addDoc(collection(db, 'images'), imageData);
+      const docRef = await db.collection('images').add(imageData);
       
       return {
         id: docRef.id,
@@ -273,10 +229,10 @@ class FirebaseService {
 
   async updateImage(imageId: string, updates: Partial<ImageItem>): Promise<void> {
     try {
-      const docRef = doc(db, 'images', imageId);
-      await updateDoc(docRef, {
+      const docRef = db.collection('images').doc(imageId);
+      await docRef.update({
         ...updates,
-        lastModifiedAt: serverTimestamp(),
+        lastModifiedAt: firebase.firestore.FieldValue.serverTimestamp(),
         lastModifiedBy: this.currentUser?.uid
       });
     } catch (error) {
@@ -287,20 +243,20 @@ class FirebaseService {
 
   async deleteImage(imageId: string): Promise<void> {
     try {
-      const docRef = doc(db, 'images', imageId);
-      const docSnap = await getDoc(docRef);
+      const docRef = db.collection('images').doc(imageId);
+      const docSnap = await docRef.get();
       
-      if (docSnap.exists()) {
+      if (docSnap.exists) {
         const imageData = docSnap.data() as ImageItem;
         
         // Delete from Storage
         if (imageData.filename) {
-          const storageRef = ref(storage, `images/${imageData.filename}`);
-          await deleteObject(storageRef);
+          const storageRef = storage.ref(`images/${imageData.filename}`);
+          await storageRef.delete();
         }
         
         // Soft delete from Firestore
-        await updateDoc(docRef, { isPublished: false });
+        await docRef.update({ isPublished: false });
       }
     } catch (error) {
       console.error('Error deleting image:', error);
@@ -311,12 +267,8 @@ class FirebaseService {
   // User management methods
   async getUsers(): Promise<UserProfile[]> {
     try {
-      const q = query(
-        collection(db, 'users'),
-        where('isActive', '==', true),
-        orderBy('firstName')
-      );
-      const querySnapshot = await getDocs(q);
+      const q = db.collection('users').where('isActive', '==', true).orderBy('firstName');
+      const querySnapshot = await q.get();
       
       return querySnapshot.docs.map((doc: any) => ({
         uid: doc.id,
@@ -330,9 +282,9 @@ class FirebaseService {
 
   async createUser(userData: Omit<UserProfile, 'uid' | 'createdAt'>): Promise<string> {
     try {
-      const docRef = await addDoc(collection(db, 'users'), {
+      const docRef = await db.collection('users').add({
         ...userData,
-        createdAt: serverTimestamp()
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
       });
       return docRef.id;
     } catch (error) {
@@ -343,8 +295,8 @@ class FirebaseService {
 
   async updateUser(userId: string, updates: Partial<UserProfile>): Promise<void> {
     try {
-      const docRef = doc(db, 'users', userId);
-      await updateDoc(docRef, updates);
+      const docRef = db.collection('users').doc(userId);
+      await docRef.update(updates);
     } catch (error) {
       console.error('Error updating user:', error);
       throw error;
@@ -353,8 +305,8 @@ class FirebaseService {
 
   async deleteUser(userId: string): Promise<void> {
     try {
-      const docRef = doc(db, 'users', userId);
-      await updateDoc(docRef, { isActive: false });
+      const docRef = db.collection('users').doc(userId);
+      await docRef.update({ isActive: false });
     } catch (error) {
       console.error('Error deleting user:', error);
       throw error;
@@ -364,13 +316,8 @@ class FirebaseService {
   // Utility methods
   async getPageContent(page: string): Promise<ContentSection[]> {
     try {
-      const q = query(
-        collection(db, 'content'),
-        where('page', '==', page),
-        where('isPublished', '==', true),
-        orderBy('section')
-      );
-      const querySnapshot = await getDocs(q);
+      const q = db.collection('content').where('page', '==', page).where('isPublished', '==', true).orderBy('section');
+      const querySnapshot = await q.get();
       
       return querySnapshot.docs.map((doc: any) => ({
         id: doc.id,
@@ -384,17 +331,13 @@ class FirebaseService {
 
   async getImagesByCategory(category: string, page?: string): Promise<ImageItem[]> {
     try {
-      let q = query(
-        collection(db, 'images'),
-        where('category', '==', category),
-        where('isPublished', '==', true)
-      );
+      let q = db.collection('images').where('category', '==', category).where('isPublished', '==', true);
       
       if (page) {
-        q = query(q, where('page', '==', page));
+        q = q.where('page', '==', page);
       }
       
-      const querySnapshot = await getDocs(q);
+      const querySnapshot = await q.get();
       
       return querySnapshot.docs.map((doc: any) => ({
         id: doc.id,

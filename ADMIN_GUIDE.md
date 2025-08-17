@@ -1,4 +1,4 @@
-# DFW Panjabi Golf Club - Admin Guide
+# DFW Punjabi Golf Club - Admin Guide
 
 ## 🚀 Quick Start
 

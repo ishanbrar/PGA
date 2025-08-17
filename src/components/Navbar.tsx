@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
               <Flag className="w-6 h-6 text-white" />
             </motion.div>
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-gray-900">DFW Panjabi</h1>
+              <h1 className="text-xl font-bold text-gray-900">DFW Punjabi</h1>
               <p className="text-sm text-gray-600 -mt-1">Golf Club</p>
             </div>
           </Link>

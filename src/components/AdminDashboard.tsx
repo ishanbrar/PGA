@@ -42,7 +42,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
         id: 'hero-title',
         contentId: 'hero-title',
         title: 'Hero Section Title',
-        content: 'The DFW Panjabi Golf Club',
+        content: 'The DFW Punjabi Golf Club',
         page: 'Home',
         section: 'Hero'
       },
@@ -50,7 +50,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
         id: 'hero-subtitle',
         contentId: 'hero-subtitle',
         title: 'Hero Section Subtitle',
-        content: 'Connecting the Panjabi community through the love of golf',
+        content: 'Connecting the Punjabi community through the love of golf',
         page: 'Home',
         section: 'Hero'
       },
@@ -58,7 +58,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
         id: 'about-mission',
         contentId: 'about-mission',
         title: 'Mission Statement',
-        content: 'To provide an exceptional golf experience while fostering a strong Panjabi community',
+        content: 'To provide an exceptional golf experience while fostering a strong Punjabi community',
         page: 'About',
         section: 'Mission'
       },
@@ -66,7 +66,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
         id: 'about-vision',
         contentId: 'about-vision',
         title: 'Vision Statement',
-        content: 'To be the leading Panjabi golf club in the United States, recognized for excellence, community impact, and cultural preservation while promoting the sport of golf.',
+        content: 'To be the leading Punjabi golf club in the United States, recognized for excellence, community impact, and cultural preservation while promoting the sport of golf.',
         page: 'About',
         section: 'Vision'
       }
