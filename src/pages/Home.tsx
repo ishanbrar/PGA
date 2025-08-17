@@ -87,11 +87,7 @@ const Home: React.FC = () => {
               <ContentEditor contentId="hero-title" tag="span">
                 The DFW Punjabi
               </ContentEditor>
-              <span className="block text-gradient bg-gradient-to-r from-gold-400 to-yellow-300 bg-clip-text text-transparent">
-                <ContentEditor contentId="hero-subtitle" tag="span">
-                  Golf Club
-                </ContentEditor>
-              </span>
+             
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
               <ContentEditor contentId="hero-description" tag="span">

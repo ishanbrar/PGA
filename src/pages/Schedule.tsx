@@ -25,9 +25,6 @@ const Schedule: React.FC = () => {
       location: 'events-event-1-location',
       category: 'Tournament',
       description: 'events-event-1-description',
-      participants: 64,
-      maxParticipants: 80,
-      price: 'events-event-1-price',
       image: '/api/placeholder/600/400',
       features: ['Individual Stroke Play', 'Team Competitions', 'Handicap Divisions', 'Prizes & Awards', 'Lunch Included']
     },
@@ -39,45 +36,14 @@ const Schedule: React.FC = () => {
       location: 'events-event-2-location',
       category: 'Social',
       description: 'events-event-2-description',
-      participants: 45,
-      maxParticipants: 60,
-      price: 'events-event-2-price',
       image: '/api/placeholder/600/400',
       features: ['Networking', 'Welcome Speeches', 'Light Refreshments', 'Member Introductions', 'Club Information']
-    },
-    {
-      id: 3,
-      title: 'events-event-3-title',
-      date: 'events-event-3-date',
-      time: 'events-event-3-time',
-      location: 'events-event-3-location',
-      category: 'Charity',
-      description: 'events-event-3-description',
-      participants: 72,
-      maxParticipants: 100,
-      price: 'events-event-3-price',
-      image: '/api/placeholder/600/400',
-      features: ['Scramble Format', 'Charity Auction', 'Dinner & Awards', 'Community Impact', 'Tax Deductible']
-    },
-    {
-      id: 4,
-      title: 'events-event-4-title',
-      date: 'events-event-4-date',
-      time: 'events-event-4-time',
-      location: 'events-event-4-location',
-      category: 'Education',
-      description: 'events-event-4-description',
-      participants: 25,
-      maxParticipants: 30,
-      price: 'events-event-4-price',
-      image: '/api/placeholder/600/400',
-      features: ['Professional Instruction', 'Video Analysis', 'Practice Drills', 'Course Management', 'Equipment Tips']
     }
   ];
 
   const pastEvents = [
     {
-      id: 5,
+      id: 3,
       title: 'events-past-event-1-title',
       date: 'events-past-event-1-date',
       location: 'events-past-event-1-location',
@@ -88,7 +54,7 @@ const Schedule: React.FC = () => {
       highlights: ['Rajinder Singh - 1st Place', 'Priya Patel - 2nd Place', 'Amarjit Dhillon - 3rd Place', 'Perfect weather conditions', 'Record participation']
     },
     {
-      id: 6,
+      id: 4,
       title: 'events-past-event-2-title',
       date: 'events-past-event-2-date',
       location: 'events-past-event-2-location',
@@ -97,15 +63,57 @@ const Schedule: React.FC = () => {
       participants: 85,
       image: '/api/placeholder/600/400',
       highlights: ['Traditional Punjabi Cuisine', 'Live Music Performance', 'Family Activities', 'Gift Exchange', 'Community Bonding']
+    },
+    {
+      id: 5,
+      title: 'events-past-event-3-title',
+      date: 'events-past-event-3-date',
+      location: 'events-past-event-3-location',
+      category: 'Charity',
+      description: 'events-past-event-3-description',
+      participants: 72,
+      image: '/api/placeholder/600/400',
+      highlights: ['Charity Auction Success', 'Community Fundraising', 'Local Organization Support', 'Volunteer Recognition', 'Impact Report']
+    },
+    {
+      id: 6,
+      title: 'events-past-event-4-title',
+      date: 'events-past-event-4-date',
+      location: 'events-past-event-4-location',
+      category: 'Education',
+      description: 'events-past-event-4-description',
+      participants: 35,
+      image: '/api/placeholder/600/400',
+      highlights: ['Professional Instruction', 'Video Analysis', 'Practice Drills', 'Course Management', 'Equipment Tips']
+    },
+    {
+      id: 7,
+      title: 'events-past-event-5-title',
+      date: 'events-past-event-5-date',
+      location: 'events-past-event-5-location',
+      category: 'Tournament',
+      description: 'events-past-event-5-description',
+      participants: 56,
+      image: '/api/placeholder/600/400',
+      highlights: ['Championship Format', 'Prize Distribution', 'Media Coverage', 'Sponsor Recognition', 'Player Interviews']
+    },
+    {
+      id: 8,
+      title: 'events-past-event-6-title',
+      date: 'events-past-event-6-date',
+      location: 'events-past-event-6-location',
+      category: 'Social',
+      description: 'events-past-event-6-description',
+      participants: 92,
+      image: '/api/placeholder/600/400',
+      highlights: ['Cultural Celebration', 'Traditional Music', 'Family Activities', 'Community Awards', 'Networking Success']
     }
   ];
 
   const categories = [
     { id: 'all', name: 'All Events', count: upcomingEvents.length },
     { id: 'tournament', name: 'Tournaments', count: upcomingEvents.filter(e => e.category === 'Tournament').length },
-    { id: 'social', name: 'Social Events', count: upcomingEvents.filter(e => e.category === 'Social').length },
-    { id: 'charity', name: 'Charity Events', count: upcomingEvents.filter(e => e.category === 'Charity').length },
-    { id: 'education', name: 'Education', count: upcomingEvents.filter(e => e.category === 'Education').length }
+    { id: 'social', name: 'Social Events', count: upcomingEvents.filter(e => e.category === 'Social').length }
   ];
 
   const filteredEvents = selectedCategory === 'all' 
@@ -163,7 +171,7 @@ const Schedule: React.FC = () => {
           </div>
 
           {/* Upcoming Events Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {filteredEvents.map((event, index) => (
               <motion.div
                 key={event.id}
@@ -189,8 +197,7 @@ const Schedule: React.FC = () => {
                     <div className="text-sm font-medium text-gold-400">
                       <ContentEditor contentId={event.date} tag="span">
                         {event.date === 'events-event-1-date' ? 'March 15, 2024' :
-                         event.date === 'events-event-2-date' ? 'March 22, 2024' :
-                         event.date === 'events-event-3-date' ? 'April 5, 2024' : 'April 12, 2024'}
+                         event.date === 'events-event-2-date' ? 'March 22, 2024' : 'April 5, 2024'}
                       </ContentEditor>
                     </div>
                   </div>
@@ -200,8 +207,7 @@ const Schedule: React.FC = () => {
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">
                     <ContentEditor contentId={event.title} tag="span">
                       {event.title === 'events-event-1-title' ? 'Spring Championship Tournament' :
-                       event.title === 'events-event-2-title' ? 'New Member Welcome Mixer' :
-                       event.title === 'events-event-3-title' ? 'Charity Golf Outing' : 'Golf Clinic & Skills Workshop'}
+                       event.title === 'events-event-2-title' ? 'New Member Welcome Mixer' : 'Charity Golf Outing'}
                     </ContentEditor>
                   </h3>
                   
@@ -210,16 +216,14 @@ const Schedule: React.FC = () => {
                       <Clock className="w-4 h-4" />
                       <ContentEditor contentId={event.time} tag="span">
                         {event.time === 'events-event-1-time' ? '8:00 AM - 6:00 PM' :
-                         event.time === 'events-event-2-time' ? '6:00 PM - 9:00 PM' :
-                         event.time === 'events-event-3-time' ? '9:00 AM - 5:00 PM' : '10:00 AM - 2:00 PM'}
+                         event.time === 'events-event-2-time' ? '6:00 PM - 9:00 PM' : '9:00 AM - 5:00 PM'}
                       </ContentEditor>
                     </div>
                     <div className="flex items-center space-x-2">
                       <MapPin className="w-4 h-4" />
                       <ContentEditor contentId={event.location} tag="span">
                         {event.location === 'events-event-1-location' ? 'Prestonwood Golf Club' :
-                         event.location === 'events-event-2-location' ? 'Clubhouse' :
-                         event.location === 'events-event-3-location' ? 'Tribute Golf Links' : 'Prestonwood Golf Club'}
+                         event.location === 'events-event-2-location' ? 'Clubhouse' : 'Tribute Golf Links'}
                       </ContentEditor>
                     </div>
                   </div>
@@ -228,27 +232,9 @@ const Schedule: React.FC = () => {
                     <ContentEditor contentId={event.description} tag="span">
                       {event.description === 'events-event-1-description' ? 'Our premier spring tournament featuring individual stroke play, team competitions, and exciting prizes. Open to all skill levels with handicap divisions.' :
                        event.description === 'events-event-2-description' ? 'Join us for an evening of networking, introductions, and celebration as we welcome our newest members to the DFW Punjabi Golf Club family.' :
-                       event.description === 'events-event-3-description' ? 'Support our community through golf! This charity outing raises funds for local Punjabi community organizations and scholarships.' :
-                       'Improve your game with professional instruction covering putting, chipping, driving, and course management strategies.'}
+                       'Support our community through golf! This charity outing raises funds for local Punjabi community organizations and scholarships.'}
                     </ContentEditor>
                   </p>
-                  
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center space-x-4 text-sm text-gray-600">
-                      <div className="flex items-center space-x-2">
-                        <Users className="w-4 h-4" />
-                        <span>{event.participants}/{event.maxParticipants}</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <DollarSign className="w-4 h-4" />
-                        <ContentEditor contentId={event.price} tag="span">
-                          {event.price === 'events-event-1-price' ? '$150' :
-                           event.price === 'events-event-2-price' ? 'Free' :
-                           event.price === 'events-event-3-price' ? '$200' : '$75'}
-                        </ContentEditor>
-                      </div>
-                    </div>
-                  </div>
                   
                   <div className="flex flex-wrap gap-2 mb-4">
                     {event.features.slice(0, 3).map((feature, idx) => (
@@ -257,14 +243,6 @@ const Schedule: React.FC = () => {
                       </span>
                     ))}
                   </div>
-                  
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-full bg-primary-600 text-white py-3 rounded-lg font-medium hover:bg-primary-700 transition-colors duration-300"
-                  >
-                    Register Now
-                  </motion.button>
                 </div>
               </motion.div>
             ))}
@@ -294,7 +272,7 @@ const Schedule: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {pastEvents.map((event, index) => (
               <motion.div
                 key={event.id}
@@ -309,7 +287,9 @@ const Schedule: React.FC = () => {
                   <div className="absolute top-4 right-4">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                       event.category === 'Tournament' ? 'bg-gold-500 text-white' :
-                      'bg-primary-500 text-white'
+                      event.category === 'Social' ? 'bg-primary-500 text-white' :
+                      event.category === 'Charity' ? 'bg-red-500 text-white' :
+                      'bg-purple-500 text-white'
                     }`}>
                       {event.category}
                     </span>
@@ -317,7 +297,11 @@ const Schedule: React.FC = () => {
                   <div className="absolute bottom-4 left-4 text-white">
                     <div className="text-sm font-medium text-gold-400">
                       <ContentEditor contentId={event.date} tag="span">
-                        {event.date === 'events-past-event-1-date' ? 'February 10, 2024' : 'December 15, 2023'}
+                        {event.date === 'events-past-event-1-date' ? 'February 10, 2024' :
+                         event.date === 'events-past-event-2-date' ? 'December 15, 2023' :
+                         event.date === 'events-past-event-3-date' ? 'November 20, 2023' :
+                         event.date === 'events-past-event-4-date' ? 'October 8, 2023' :
+                         event.date === 'events-past-event-5-date' ? 'September 15, 2023' : 'August 22, 2023'}
                       </ContentEditor>
                     </div>
                   </div>
@@ -326,7 +310,11 @@ const Schedule: React.FC = () => {
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">
                     <ContentEditor contentId={event.title} tag="span">
-                      {event.title === 'events-past-event-1-title' ? 'Winter Classic Tournament' : 'Holiday Celebration Dinner'}
+                      {event.title === 'events-past-event-1-title' ? 'Winter Classic Tournament' :
+                       event.title === 'events-past-event-2-title' ? 'Holiday Celebration Dinner' :
+                       event.title === 'events-past-event-3-title' ? 'Fall Charity Golf Outing' :
+                       event.title === 'events-past-event-4-title' ? 'Golf Skills Workshop' :
+                       event.title === 'events-past-event-5-title' ? 'Summer Championship' : 'Community Mixer'}
                     </ContentEditor>
                   </h3>
                   
@@ -334,7 +322,11 @@ const Schedule: React.FC = () => {
                     <div className="flex items-center space-x-2">
                       <MapPin className="w-4 h-4" />
                       <ContentEditor contentId={event.location} tag="span">
-                        {event.location === 'events-past-event-1-location' ? 'Tribute Golf Links' : 'Clubhouse'}
+                        {event.location === 'events-past-event-1-location' ? 'Tribute Golf Links' :
+                         event.location === 'events-past-event-2-location' ? 'Clubhouse' :
+                         event.location === 'events-past-event-3-location' ? 'Prestonwood Golf Club' :
+                         event.location === 'events-past-event-4-location' ? 'Prestonwood Golf Club' :
+                         event.location === 'events-past-event-5-location' ? 'Tribute Golf Links' : 'Clubhouse'}
                       </ContentEditor>
                     </div>
                     <div className="flex items-center space-x-2">
@@ -346,7 +338,11 @@ const Schedule: React.FC = () => {
                   <p className="text-gray-600 mb-4">
                     <ContentEditor contentId={event.description} tag="span">
                       {event.description === 'events-past-event-1-description' ? 'A successful winter tournament with 48 participants competing in challenging winter conditions.' :
-                       'Annual holiday celebration bringing together members and families for a festive evening of food, music, and community.'}
+                       event.description === 'events-past-event-2-description' ? 'Annual holiday celebration bringing together members and families for a festive evening of food, music, and community.' :
+                       event.description === 'events-past-event-3-description' ? 'Fall charity outing that raised significant funds for local community organizations.' :
+                       event.description === 'events-past-event-4-description' ? 'Educational workshop focused on improving golf skills and techniques.' :
+                       event.description === 'events-past-event-5-description' ? 'Summer championship tournament with record participation and exciting competition.' :
+                       'Community networking event that strengthened bonds between club members.'}
                     </ContentEditor>
                   </p>
                   

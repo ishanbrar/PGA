@@ -184,87 +184,97 @@ class FirebaseService {
     }
   }
 
-  // Image management methods
-  async getAllImages(): Promise<ImageItem[]> {
+  // Image Management Methods
+  async uploadImage(
+    file: File, 
+    imageId: string, 
+    onProgress?: (progress: number) => void
+  ): Promise<string> {
     try {
-      const q = db.collection('images').where('isPublished', '==', true).orderBy('category').orderBy('createdAt', 'desc');
-      const querySnapshot = await q.get();
+      const storageRef = firebase.storage().ref();
+      const imageRef = storageRef.child(`images/${imageId}`);
       
-      return querySnapshot.docs.map((doc: any) => ({
-        id: doc.id,
-        ...doc.data()
-      })) as ImageItem[];
-    } catch (error) {
-      console.error('Error getting all images:', error);
-      throw error;
-    }
-  }
+      // Upload file with progress tracking
+      const uploadTask = imageRef.put(file);
+      
+      uploadTask.on('state_changed',
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          if (onProgress) onProgress(progress);
+        },
+        (error) => {
+          console.error('Upload error:', error);
+          throw error;
+        }
+      );
 
-  async uploadImage(imageFile: File, metadata: Omit<ImageItem, 'id' | 'url' | 'createdAt' | 'lastModifiedAt'>): Promise<ImageItem> {
-    try {
-      // Upload file to Firebase Storage
-      const storageRef = storage.ref(`images/${Date.now()}_${imageFile.name}`);
-      const snapshot = await storageRef.put(imageFile);
-      const downloadURL = await snapshot.ref.getDownloadURL();
-
-      // Create image document in Firestore
-      const imageData = {
-        ...metadata,
+      // Wait for upload to complete
+      await uploadTask;
+      
+      // Get download URL
+      const downloadURL = await imageRef.getDownloadURL();
+      
+      // Save image metadata to Firestore
+      await db.collection('images').doc(imageId).set({
+        id: imageId,
         url: downloadURL,
-        filename: snapshot.ref.name,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        lastModifiedAt: firebase.firestore.FieldValue.serverTimestamp(),
-        uploadedBy: this.currentUser?.uid,
-        lastModifiedBy: this.currentUser?.uid,
-        isPublished: true
-      };
+        filename: file.name,
+        size: file.size,
+        type: file.type,
+        uploadedAt: firebase.firestore.FieldValue.serverTimestamp(),
+        uploadedBy: firebase.auth().currentUser?.uid || 'unknown'
+      });
 
-      const docRef = await db.collection('images').add(imageData);
-      
-      return {
-        id: docRef.id,
-        ...imageData
-      } as ImageItem;
+      return downloadURL;
     } catch (error) {
       console.error('Error uploading image:', error);
       throw error;
     }
   }
 
-  async updateImage(imageId: string, updates: Partial<ImageItem>): Promise<void> {
+  async deleteImage(imageId: string): Promise<void> {
     try {
-      const docRef = db.collection('images').doc(imageId);
-      await docRef.update({
-        ...updates,
-        lastModifiedAt: firebase.firestore.FieldValue.serverTimestamp(),
-        lastModifiedBy: this.currentUser?.uid
-      });
+      // Delete from Storage
+      const storageRef = firebase.storage().ref();
+      const imageRef = storageRef.child(`images/${imageId}`);
+      await imageRef.delete();
+      
+      // Delete from Firestore
+      await db.collection('images').doc(imageId).delete();
     } catch (error) {
-      console.error('Error updating image:', error);
+      console.error('Error deleting image:', error);
       throw error;
     }
   }
 
-  async deleteImage(imageId: string): Promise<void> {
+  async getImage(imageId: string): Promise<string | null> {
     try {
-      const docRef = db.collection('images').doc(imageId);
-      const docSnap = await docRef.get();
-      
-      if (docSnap.exists) {
-        const imageData = docSnap.data() as ImageItem;
-        
-        // Delete from Storage
-        if (imageData.filename) {
-          const storageRef = storage.ref(`images/${imageData.filename}`);
-          await storageRef.delete();
-        }
-        
-        // Soft delete from Firestore
-        await docRef.update({ isPublished: false });
+      const doc = await db.collection('images').doc(imageId).get();
+      if (doc.exists) {
+        return doc.data()?.url || null;
       }
+      return null;
     } catch (error) {
-      console.error('Error deleting image:', error);
-      throw error;
+      console.error('Error getting image:', error);
+      return null;
+    }
+  }
+
+  async getAllImages(): Promise<Array<{ id: string; url: string; filename: string; uploadedAt: any }>> {
+    try {
+      const snapshot = await db
+        .collection('images')
+        .where('isPublished', '==', true)
+        .orderBy('uploadedAt', 'desc')
+        .get();
+      
+      return snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      })) as Array<{ id: string; url: string; filename: string; uploadedAt: any }>;
+    } catch (error) {
+      console.error('Error getting all images:', error);
+      return [];
     }
   }
 

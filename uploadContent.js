@@ -17,24 +17,22 @@ const CONTENT_MAPPING = {
   home: {
     hero: {
       'hero-title': 'Hero Title',
-      'hero-subtitle': 'Hero Subtitle', 
+      'hero-subtitle': 'Hero Subtitle',
       'hero-description': 'Hero Description',
-      'hero-cta-primary': 'Primary CTA Text',
-      'hero-cta-secondary': 'Secondary CTA Text'
+      'hero-cta-primary': 'Primary CTA Button',
+      'hero-cta-secondary': 'Secondary CTA Button'
     },
     stats: {
       'stats-members': 'Members Count',
       'stats-members-label': 'Members Label',
-      'stats-years': 'Years History',
+      'stats-years': 'Years Count',
       'stats-years-label': 'Years Label',
-      'stats-events': 'Annual Events',
+      'stats-events': 'Events Count',
       'stats-events-label': 'Events Label',
-      'stats-courses': 'Golf Courses',
+      'stats-courses': 'Courses Count',
       'stats-courses-label': 'Courses Label'
     },
     features: {
-      'features-title': 'Features Section Title',
-      'features-subtitle': 'Features Section Subtitle',
       'feature-1-title': 'Feature 1 Title',
       'feature-1-description': 'Feature 1 Description',
       'feature-2-title': 'Feature 2 Title',
@@ -45,19 +43,16 @@ const CONTENT_MAPPING = {
       'feature-4-description': 'Feature 4 Description'
     },
     upcoming: {
-      'home-upcoming-events-title': 'Home Upcoming Events Title',
-      'home-upcoming-events-subtitle': 'Home Upcoming Events Subtitle'
+      'home-upcoming-events-title': 'Upcoming Events Title',
+      'home-upcoming-events-subtitle': 'Upcoming Events Subtitle'
     },
     events: {
-      'home-event-1-title': 'Home Event 1 Title',
-      'home-event-1-date': 'Home Event 1 Date',
-      'home-event-1-description': 'Home Event 1 Description',
-      'home-event-2-title': 'Home Event 2 Title',
-      'home-event-2-date': 'Home Event 2 Date',
-      'home-event-2-description': 'Home Event 2 Description',
-      'home-event-3-title': 'Home Event 3 Title',
-      'home-event-3-date': 'Home Event 3 Date',
-      'home-event-3-description': 'Home Event 3 Description'
+      'home-event-1-title': 'Event 1 Title',
+      'home-event-1-date': 'Event 1 Date',
+      'home-event-1-description': 'Event 1 Description',
+      'home-event-2-title': 'Event 2 Title',
+      'home-event-2-date': 'Event 2 Date',
+      'home-event-2-description': 'Event 2 Description'
     }
   },
   about: {
@@ -66,14 +61,13 @@ const CONTENT_MAPPING = {
       'about-hero-subtitle': 'About Hero Subtitle'
     },
     mission: {
-      'mission-title': 'Mission Title',
-      'mission-content': 'Mission Content',
-      'vision-title': 'Vision Title',
-      'vision-content': 'Vision Content'
+      'mission-vision-title': 'Mission & Vision Title',
+      'mission-description': 'Mission Description',
+      'vision-description': 'Vision Description'
     },
     values: {
-      'values-title': 'Values Section Title',
-      'values-subtitle': 'Values Section Subtitle',
+      'values-title': 'Values Title',
+      'values-subtitle': 'Values Subtitle',
       'value-1-title': 'Value 1 Title',
       'value-1-description': 'Value 1 Description',
       'value-2-title': 'Value 2 Title',
@@ -84,20 +78,14 @@ const CONTENT_MAPPING = {
       'value-4-description': 'Value 4 Description'
     },
     stats: {
-      'stats-title': 'Stats Section Title',
-      'stats-subtitle': 'Stats Section Subtitle',
-      'stat-1-number': 'Stat 1 Number',
-      'stat-1-label': 'Stat 1 Label',
-      'stat-2-number': 'Stat 2 Number',
-      'stat-2-label': 'Stat 2 Label',
-      'stat-3-number': 'Stat 3 Number',
-      'stat-3-label': 'Stat 3 Label',
-      'stat-4-number': 'Stat 4 Number',
-      'stat-4-label': 'Stat 4 Label',
-      'stat-5-number': 'Stat 5 Number',
-      'stat-5-label': 'Stat 5 Label',
-      'stat-6-number': 'Stat 6 Number',
-      'stat-6-label': 'Stat 6 Label'
+      'about-stats-title': 'About Stats Title',
+      'about-stats-subtitle': 'About Stats Subtitle',
+      'about-stat-1-number': 'About Stat 1 Number',
+      'about-stat-1-label': 'About Stat 1 Label',
+      'about-stat-2-number': 'About Stat 2 Number',
+      'about-stat-2-label': 'About Stat 2 Label',
+      'about-stat-3-number': 'About Stat 3 Number',
+      'about-stat-3-label': 'About Stat 3 Label'
     }
   },
   members: {
@@ -106,27 +94,20 @@ const CONTENT_MAPPING = {
       'members-hero-subtitle': 'Members Hero Subtitle'
     },
     membership: {
-      'membership-title': 'Membership Section Title',
-      'membership-subtitle': 'Membership Section Subtitle',
-      'membership-type-1-title': 'Membership Type 1 Title',
-      'membership-type-1-price': 'Membership Type 1 Price',
-      'membership-type-1-description': 'Membership Type 1 Description',
-      'membership-type-2-title': 'Membership Type 2 Title',
-      'membership-type-2-price': 'Membership Type 2 Price',
-      'membership-type-2-description': 'Membership Type 2 Description',
-      'membership-type-3-title': 'Membership Type 3 Title',
-      'membership-type-3-price': 'Membership Type 3 Price',
-      'membership-type-3-description': 'Membership Type 3 Description'
+      'membership-title': 'Membership Title',
+      'membership-subtitle': 'Membership Subtitle'
     },
     benefits: {
-      'benefits-title': 'Benefits Section Title',
-      'benefits-subtitle': 'Benefits Section Subtitle',
+      'benefits-title': 'Benefits Title',
+      'benefits-subtitle': 'Benefits Subtitle',
       'benefit-1-title': 'Benefit 1 Title',
       'benefit-1-description': 'Benefit 1 Description',
       'benefit-2-title': 'Benefit 2 Title',
       'benefit-2-description': 'Benefit 2 Description',
       'benefit-3-title': 'Benefit 3 Title',
-      'benefit-3-description': 'Benefit 3 Description'
+      'benefit-3-description': 'Benefit 3 Description',
+      'benefit-4-title': 'Benefit 4 Title',
+      'benefit-4-description': 'Benefit 4 Description'
     }
   },
   board: {
@@ -134,14 +115,23 @@ const CONTENT_MAPPING = {
       'board-hero-title': 'Board Hero Title',
       'board-hero-subtitle': 'Board Hero Subtitle'
     },
-    leadership: {
-      'leadership-title': 'Leadership Section Title',
-      'leadership-subtitle': 'Leadership Section Subtitle',
-      'leadership-philosophy': 'Leadership Philosophy'
+    president: {
+      'board-president-name': 'President Name',
+      'board-president-email': 'President Email',
+      'board-president-phone': 'President Phone',
+      'board-president-bio': 'President Bio'
     },
-    members: {
-      'board-members-title': 'Board Members Section Title',
-      'board-members-subtitle': 'Board Members Section Subtitle'
+    treasurer: {
+      'board-treasurer-name': 'Treasurer Name',
+      'board-treasurer-email': 'Treasurer Email',
+      'board-treasurer-phone': 'Treasurer Phone',
+      'board-treasurer-bio': 'Treasurer Bio'
+    },
+    tournamentDirector: {
+      'board-tournament-director-name': 'Tournament Director Name',
+      'board-tournament-director-email': 'Tournament Director Email',
+      'board-tournament-director-phone': 'Tournament Director Phone',
+      'board-tournament-director-bio': 'Tournament Director Bio'
     }
   },
   schedule: {
@@ -150,8 +140,8 @@ const CONTENT_MAPPING = {
       'schedule-hero-subtitle': 'Schedule Hero Subtitle'
     },
     calendar: {
-      'calendar-title': 'Calendar Section Title',
-      'calendar-subtitle': 'Calendar Section Subtitle'
+      'calendar-title': 'Calendar Title',
+      'calendar-subtitle': 'Calendar Subtitle'
     },
     upcoming: {
       'upcoming-events-title': 'Upcoming Events Title',
@@ -165,27 +155,7 @@ const CONTENT_MAPPING = {
       'schedule-event-2-title': 'Schedule Event 2 Title',
       'schedule-event-2-time': 'Schedule Event 2 Time',
       'schedule-event-2-location': 'Schedule Event 2 Location',
-      'schedule-event-2-description': 'Schedule Event 2 Description',
-      'schedule-event-3-title': 'Schedule Event 3 Title',
-      'schedule-event-3-time': 'Schedule Event 3 Time',
-      'schedule-event-3-location': 'Schedule Event 3 Location',
-      'schedule-event-3-description': 'Schedule Event 3 Description',
-      'schedule-event-4-title': 'Schedule Event 4 Title',
-      'schedule-event-4-time': 'Schedule Event 4 Time',
-      'schedule-event-4-location': 'Schedule Event 4 Location',
-      'schedule-event-4-description': 'Schedule Event 4 Description',
-      'schedule-event-5-title': 'Schedule Event 5 Title',
-      'schedule-event-5-time': 'Schedule Event 5 Time',
-      'schedule-event-5-location': 'Schedule Event 5 Location',
-      'schedule-event-5-description': 'Schedule Event 5 Description',
-      'schedule-event-6-title': 'Schedule Event 6 Title',
-      'schedule-event-6-time': 'Schedule Event 6 Time',
-      'schedule-event-6-location': 'Schedule Event 6 Location',
-      'schedule-event-6-description': 'Schedule Event 6 Description',
-      'schedule-event-7-title': 'Schedule Event 7 Title',
-      'schedule-event-7-time': 'Schedule Event 7 Time',
-      'schedule-event-7-location': 'Schedule Event 7 Location',
-      'schedule-event-7-description': 'Schedule Event 7 Description'
+      'schedule-event-2-description': 'Schedule Event 2 Description'
     }
   },
   contact: {
@@ -194,8 +164,8 @@ const CONTENT_MAPPING = {
       'contact-hero-subtitle': 'Contact Hero Subtitle'
     },
     methods: {
-      'contact-methods-title': 'Contact Methods Title',
-      'contact-methods-subtitle': 'Contact Methods Subtitle'
+      'how-to-reach-title': 'How to Reach Us Title',
+      'how-to-reach-subtitle': 'How to Reach Us Subtitle'
     }
   },
   events: {
@@ -203,15 +173,15 @@ const CONTENT_MAPPING = {
       'events-hero-title': 'Events Hero Title',
       'events-hero-subtitle': 'Events Hero Subtitle'
     },
+    calendar: {
+      'events-calendar-title': 'Events Calendar Title',
+      'events-calendar-subtitle': 'Events Calendar Subtitle'
+    },
     upcoming: {
-      'upcoming-events-title': 'Upcoming Events Title',
-      'upcoming-events-subtitle': 'Upcoming Events Subtitle'
+      'events-upcoming-title': 'Events Upcoming Title',
+      'events-upcoming-subtitle': 'Events Upcoming Subtitle'
     },
-    past: {
-      'past-events-title': 'Past Events Title',
-      'past-events-subtitle': 'Past Events Subtitle'
-    },
-    eventDetails: {
+    events: {
       'events-event-1-title': 'Events Event 1 Title',
       'events-event-1-date': 'Events Event 1 Date',
       'events-event-1-time': 'Events Event 1 Time',
@@ -223,27 +193,7 @@ const CONTENT_MAPPING = {
       'events-event-2-time': 'Events Event 2 Time',
       'events-event-2-location': 'Events Event 2 Location',
       'events-event-2-description': 'Events Event 2 Description',
-      'events-event-2-price': 'Events Event 2 Price',
-      'events-event-3-title': 'Events Event 3 Title',
-      'events-event-3-date': 'Events Event 3 Date',
-      'events-event-3-time': 'Events Event 3 Time',
-      'events-event-3-location': 'Events Event 3 Location',
-      'events-event-3-description': 'Events Event 3 Description',
-      'events-event-3-price': 'Events Event 3 Price',
-      'events-event-4-title': 'Events Event 4 Title',
-      'events-event-4-date': 'Events Event 4 Date',
-      'events-event-4-time': 'Events Event 4 Time',
-      'events-event-4-location': 'Events Event 4 Location',
-      'events-event-4-description': 'Events Event 4 Description',
-      'events-event-4-price': 'Events Event 4 Price',
-      'events-past-event-1-title': 'Events Past Event 1 Title',
-      'events-past-event-1-date': 'Events Past Event 1 Date',
-      'events-past-event-1-location': 'Events Past Event 1 Location',
-      'events-past-event-1-description': 'Events Past Event 1 Description',
-      'events-past-event-2-title': 'Events Past Event 2 Title',
-      'events-past-event-2-date': 'Events Past Event 2 Date',
-      'events-past-event-2-location': 'Events Past Event 2 Location',
-      'events-past-event-2-description': 'Events Past Event 2 Description'
+      'events-event-2-price': 'Events Event 2 Price'
     }
   },
   gallery: {
@@ -258,204 +208,175 @@ const CONTENT_MAPPING = {
   }
 };
 
+// Add image content IDs
+CONTENT_MAPPING.images = {
+  'logo-main': 'Main Logo',
+  'logo-footer': 'Footer Logo', 
+  'favicon': 'Favicon',
+  'home-hero-bg': 'Home Hero Background',
+  'home-stats-bg': 'Home Stats Background',
+  'home-events-bg': 'Home Events Background',
+  'about-hero-bg': 'About Hero Background',
+  'about-mission-bg': 'About Mission Background',
+  'about-values-bg': 'About Values Background',
+  'schedule-hero-bg': 'Schedule Hero Background',
+  'event-1-image': 'Event 1 Image',
+  'event-2-image': 'Event 2 Image',
+  'event-3-image': 'Event 3 Image',
+  'event-4-image': 'Event 4 Image',
+  'event-5-image': 'Event 5 Image',
+  'event-6-image': 'Event 6 Image',
+  'gallery-1': 'Gallery Image 1',
+  'gallery-2': 'Gallery Image 2',
+  'gallery-3': 'Gallery Image 3',
+  'gallery-4': 'Gallery Image 4',
+  'gallery-5': 'Gallery Image 5',
+  'gallery-6': 'Gallery Image 6',
+  'gallery-7': 'Gallery Image 7',
+  'gallery-8': 'Gallery Image 8',
+  'gallery-9': 'Gallery Image 9',
+  'gallery-10': 'Gallery Image 10',
+  'gallery-11': 'Gallery Image 11',
+  'gallery-12': 'Gallery Image 12'
+};
+
 // Default content values - matches what's in AdminDashboard.tsx
-const getDefaultContent = (contentId, title, page, section) => {
-  const defaultContentMap = {
-    'hero-title': 'The DFW Punjabi Golf Club',
-    'hero-subtitle': 'Golf Club',
-    'hero-description': 'Where tradition meets excellence. Join our exclusive community of Punjabi golf enthusiasts in the heart of Dallas-Fort Worth.',
+const getDefaultContent = (contentId) => {
+  const defaults = {
+    // Home page defaults
+    'hero-title': 'Welcome to DFW Punjabi Golf Club',
+    'hero-subtitle': 'Building Community Through Golf',
+    'hero-description': 'Join our vibrant community of golf enthusiasts and experience the perfect blend of sport, culture, and friendship.',
     'hero-cta-primary': 'Join Our Club',
     'hero-cta-secondary': 'Learn More',
-          'stats-members': '150+',
-      'stats-members-label': 'Active Members',
-      'stats-years': '25+',
-      'stats-years-label': 'Years History',
-      'stats-events': '12',
-      'stats-events-label': 'Annual Events',
-      'stats-courses': '4',
-      'stats-courses-label': 'Golf Courses',
-    'features-title': 'Why Choose Our Club?',
-    'features-subtitle': 'Experience the perfect blend of premium golf amenities, cultural connection, and professional networking.',
-    'feature-1-title': 'Premium Golf Experience',
-    'feature-1-description': 'Access to top-tier golf courses with exclusive member benefits and professional instruction.',
-    'feature-2-title': 'Community & Networking',
-    'feature-2-description': 'Connect with fellow Punjabi professionals and build lasting friendships on and off the course.',
-    'feature-3-title': 'Tournaments & Events',
-    'feature-3-description': 'Participate in exciting tournaments, charity events, and social gatherings throughout the year.',
-    'feature-4-title': 'Flexible Scheduling',
-          'feature-4-description': 'Multiple events and activities to fit your busy schedule and lifestyle.',
-    'events-title': 'Upcoming Events',
-    'events-subtitle': 'Join us for these exciting upcoming events and tournaments.',
-    'event-1-title': 'Spring Championship Tournament',
-    'event-1-date': 'March 15-17, 2024',
-    'event-1-description': 'Our premier annual tournament featuring top players from across the region.',
-    'event-2-title': 'Charity Golf Outing',
-    'event-2-date': 'April 22, 2024',
-    'event-2-description': 'Support local causes while enjoying a great day on the course.',
+    'stats-members': '150+',
+    'stats-members-label': 'Active Members',
+    'stats-years': '5+',
+    'stats-years-label': 'Years of Excellence',
+    'stats-events': '25+',
+    'stats-events-label': 'Annual Events',
+    'stats-courses': '10+',
+    'stats-courses-label': 'Partner Courses',
+    'feature-1-title': 'Community First',
+    'feature-1-description': 'Building lasting friendships through shared passion for golf',
+    'feature-2-title': 'Cultural Heritage',
+    'feature-2-description': 'Celebrating Punjabi culture while embracing golf traditions',
+    'feature-3-title': 'Professional Development',
+    'feature-3-description': 'Access to top-tier golf courses and professional instruction',
+    'feature-4-title': 'Family Focused',
+    'feature-4-description': 'Events and activities for the entire family',
     'home-upcoming-events-title': 'Upcoming Events',
-    'home-upcoming-events-subtitle': 'Don\'t miss out on our exciting upcoming events and tournaments.',
-    'home-event-1-title': 'Spring Championship Tournament',
-    'home-event-1-date': 'March 15-17, 2024',
-    'home-event-1-description': 'Our premier annual tournament featuring top players from across the region.',
-    'home-event-2-title': 'Charity Golf Outing',
-    'home-event-2-date': 'April 22, 2024',
-    'home-event-2-description': 'Support local causes while enjoying a great day on the course.',
-    'home-event-3-title': 'Member-Guest Tournament',
-    'home-event-3-date': 'May 18-19, 2024',
-    'home-event-3-description': 'Invite your friends and family for a weekend of golf and camaraderie.',
+    'home-upcoming-events-subtitle': 'Join us for these exciting upcoming events',
+    'home-event-1-title': 'Spring Tournament',
+    'home-event-1-date': 'March 15, 2024',
+    'home-event-1-description': 'Annual spring championship tournament',
+    'home-event-2-title': 'Family Golf Day',
+    'home-event-2-date': 'April 20, 2024',
+    'home-event-2-description': 'Fun day for all skill levels',
+
+    // About page defaults
     'about-hero-title': 'About Our Club',
-    'about-hero-subtitle': 'Discover the rich history, core values, and remarkable achievements that make The DFW Punjabi Golf Club a premier destination for golf enthusiasts.',
-    'mission-title': 'Mission',
-    'mission-content': 'To provide an exceptional golf experience while fostering a strong Punjabi community through sportsmanship, cultural connection, and professional networking opportunities.',
-    'vision-title': 'Vision',
-    'vision-content': 'To be the leading Punjabi golf club in the United States, recognized for excellence, community impact, and cultural preservation while promoting the sport of golf.',
+    'about-hero-subtitle': 'A Legacy of Excellence and Community',
+    'mission-vision-title': 'Our Mission & Vision',
+    'mission-description': 'To promote golf excellence while fostering a strong Punjabi community through sportsmanship and cultural pride.',
+    'vision-description': 'To be the premier golf club that celebrates diversity, promotes golf excellence, and builds lasting community bonds.',
     'values-title': 'Our Core Values',
-    'values-subtitle': 'The principles that guide everything we do and define who we are as a community.',
-    'value-1-title': 'Community First',
-    'value-1-description': 'We prioritize building strong relationships and fostering a sense of belonging among our members.',
-    'value-2-title': 'Excellence',
-    'value-2-description': 'We strive for excellence in everything we do, from course conditions to member services.',
-    'value-3-title': 'Inclusivity',
-    'value-3-description': 'We welcome golfers of all skill levels and backgrounds to join our diverse community.',
+    'values-subtitle': 'The principles that guide everything we do',
+    'value-1-title': 'Excellence',
+    'value-1-description': 'Striving for the highest standards in everything we do',
+    'value-2-title': 'Community',
+    'value-2-description': 'Building strong relationships and supporting each other',
+    'value-3-title': 'Heritage',
+    'value-3-description': 'Honoring our cultural roots while embracing new traditions',
     'value-4-title': 'Sportsmanship',
-    'value-4-description': 'We promote the values of integrity, respect, and fair play both on and off the course.',
-    'stats-title': 'Club Statistics',
-    'stats-subtitle': 'Numbers that tell our story of growth and success.',
-    'stat-1-number': '25+',
-    'stat-1-label': 'Years',
-    'stat-2-number': '150+',
-    'stat-2-label': 'Members',
-    'stat-3-number': '4',
-    'stat-3-label': 'Courses',
-    'stat-4-number': '12',
-    'stat-4-label': 'Events/Year',
-    'stat-5-number': '95%',
-    'stat-5-label': 'Satisfaction',
-    'stat-6-number': '50+',
-    'stat-6-label': 'Tournaments',
-    'members-hero-title': 'Membership',
-    'members-hero-subtitle': 'Join our exclusive community and experience the perfect blend of premium golf amenities and cultural connection.',
-    'membership-title': 'Membership Options',
-    'membership-subtitle': 'Choose the membership plan that best fits your lifestyle and golfing needs.',
-    'membership-type-1-title': 'Individual Membership',
-    'membership-type-1-price': '$2,500/year',
-    'membership-type-1-description': 'Full access to all club facilities and events for individual members.',
-    'membership-type-2-title': 'Family Membership',
-    'membership-type-2-price': '$3,500/year',
-    'membership-type-2-description': 'Complete family access including spouse and children under 18.',
-    'membership-type-3-title': 'Corporate Membership',
-    'membership-type-3-price': '$5,000/year',
-    'membership-type-3-description': 'Business membership with multiple employee access and networking opportunities.',
-    'benefits-title': 'Member Benefits',
-    'benefits-subtitle': 'Exclusive perks and privileges that come with your membership.',
-          'benefit-1-title': 'Priority Event Booking',
-      'benefit-1-description': 'Reserved event spots and priority registration for all club events.',
-    'benefit-2-title': 'Professional Instruction',
-    'benefit-2-description': 'Access to PGA-certified instructors and personalized coaching programs.',
-    'benefit-3-title': 'Networking Events',
-    'benefit-3-description': 'Regular social gatherings and business networking opportunities.',
-    'board-hero-title': 'Board of Directors',
-    'board-hero-subtitle': 'Meet the dedicated leaders who guide our club\'s vision and ensure our continued success.',
-    'leadership-title': 'Leadership',
-    'leadership-subtitle': 'Our board members bring diverse expertise and a shared passion for golf and community.',
-    'leadership-philosophy': 'We believe in transparent leadership, member engagement, and continuous improvement. Our board works collaboratively to create an exceptional experience for all members while preserving our cultural heritage and promoting the sport of golf.',
-    'board-members-title': 'Board Members',
-    'board-members-subtitle': 'Dedicated professionals committed to our club\'s success.',
-    'schedule-hero-title': 'Club Schedule',
-          'schedule-hero-subtitle': 'Stay updated with all our upcoming events, tournaments, and social gatherings. View event schedules and stay updated with all club activities',
+    'value-4-description': 'Playing with integrity, respect, and fair play',
+    'about-stats-title': 'Our Impact',
+    'about-stats-subtitle': 'Numbers that tell our story',
+    'about-stat-1-number': '150+',
+    'about-stat-1-label': 'Active Members',
+    'about-stat-2-number': '25+',
+    'about-stat-2-label': 'Annual Events',
+    'about-stat-3-number': '5+',
+    'about-stat-3-label': 'Years of Excellence',
+
+    // Members page defaults
+    'members-hero-title': 'Join Our Club',
+    'members-hero-subtitle': 'Become Part of Something Special',
+    'membership-title': 'Membership Benefits',
+    'membership-subtitle': 'Discover what makes our club unique',
+    'benefits-title': 'Why Choose Us',
+    'benefits-subtitle': 'Exclusive benefits for our members',
+    'benefit-1-title': 'Priority Event Booking',
+    'benefit-1-description': 'Get first access to all club events and tournaments',
+    'benefit-2-title': 'Family Events',
+    'benefit-2-description': 'Special events designed for the whole family',
+    'benefit-3-title': 'Easy Event Management',
+    'benefit-3-description': 'Simple online booking and management system',
+    'benefit-4-title': 'Professional Network',
+    'benefit-4-description': 'Connect with other professionals in our community',
+
+    // Board page defaults
+    'board-hero-title': 'Our Leadership',
+    'board-hero-subtitle': 'Meet the Team Behind Our Success',
+
+    // Schedule page defaults
+    'schedule-hero-title': 'Event Schedule',
+    'schedule-hero-subtitle': 'Stay Updated with Our Latest Events',
     'calendar-title': 'Event Calendar',
-    'calendar-subtitle': 'View our monthly calendar to see all upcoming events, tournaments, and social gatherings.',
+    'calendar-subtitle': 'View all upcoming and past events',
     'upcoming-events-title': 'Upcoming Events',
-    'upcoming-events-subtitle': 'Don\'t miss out on our exciting upcoming events and tournaments.',
-    'schedule-event-1-title': 'Spring Championship Tournament',
-    'schedule-event-1-time': '8:00 AM',
-    'schedule-event-1-location': 'Prestonwood Golf Club',
-    'schedule-event-1-description': 'Our premier annual tournament featuring top players from across the region.',
-    'schedule-event-2-title': 'New Member Welcome Mixer',
-    'schedule-event-2-time': '6:00 PM',
-    'schedule-event-2-location': 'Clubhouse',
-    'schedule-event-2-description': 'Join us for an evening of networking, introductions, and celebration as we welcome our newest members to the DFW Punjabi Golf Club family.',
-    'schedule-event-3-title': 'Charity Golf Outing',
-    'schedule-event-3-time': '9:00 AM',
-    'schedule-event-3-location': 'Tribute Golf Links',
-    'schedule-event-3-description': 'Support our community through golf! This charity outing raises funds for local Punjabi community organizations and scholarships.',
-    'schedule-event-4-title': 'Member-Guest Tournament',
-    'schedule-event-4-time': '8:30 AM',
-    'schedule-event-4-location': 'Multiple Courses',
-    'schedule-event-4-description': 'Invite your friends and family for a weekend of golf and camaraderie.',
-    'schedule-event-5-title': 'Summer Social Gathering',
-    'schedule-event-5-time': '7:00 PM',
-    'schedule-event-5-location': 'Clubhouse',
-    'schedule-event-5-description': 'Enjoy an evening of food, music, and fellowship with fellow members.',
-    'schedule-event-6-title': 'Fall Classic Tournament',
-    'schedule-event-6-time': '8:00 AM',
-    'schedule-event-6-location': 'Prestonwood Golf Club',
-    'schedule-event-6-description': 'Our fall championship tournament with exciting prizes and recognition.',
-    'schedule-event-7-title': 'Holiday Celebration',
-    'schedule-event-7-time': '6:00 PM',
-    'schedule-event-7-location': 'Clubhouse',
-    'schedule-event-7-description': 'Celebrate the holiday season with traditional Punjabi cuisine, live music, and festive activities for the whole family.',
-    'contact-hero-title': 'Contact Us',
-    'contact-hero-subtitle': 'Get in touch with our team. We\'re here to help with any questions, membership inquiries, or support you may need.',
-          'contact-methods-title': 'How to Reach Us',
-      'contact-methods-subtitle': 'Choose the most convenient way to get in touch with our team. We\'re committed to providing excellent service and support.',
-    'events-hero-title': 'Club Events',
-    'events-hero-subtitle': 'Discover exciting tournaments, social gatherings, and community events that bring our Punjabi golf community together throughout the year.',
-    'upcoming-events-title': 'Upcoming Events',
-    'upcoming-events-subtitle': 'Don\'t miss out on our exciting upcoming events and tournaments.',
-    'past-events-title': 'Past Events',
-    'past-events-subtitle': 'Relive the memories and achievements from our previous events and tournaments.',
-    'events-event-1-title': 'Spring Championship Tournament',
+    'upcoming-events-subtitle': 'Mark your calendar for these exciting events',
+    'schedule-event-1-title': 'Spring Championship',
+    'schedule-event-1-time': '9:00 AM - 5:00 PM',
+    'schedule-event-1-location': 'PGA National Golf Club',
+    'schedule-event-1-description': 'Annual spring championship tournament with prizes',
+    'schedule-event-2-title': 'Family Golf Day',
+    'schedule-event-2-time': '10:00 AM - 3:00 PM',
+    'schedule-event-2-location': 'Local Driving Range',
+    'schedule-event-2-description': 'Fun day for all skill levels and ages',
+
+    // Contact page defaults
+    'contact-hero-title': 'Get in Touch',
+    'contact-hero-subtitle': 'We\'d Love to Hear from You',
+    'how-to-reach-title': 'How to Reach Us',
+    'how-to-reach-subtitle': 'Multiple ways to connect with our team',
+
+    // Events page defaults
+    'events-hero-title': 'Our Events',
+    'events-hero-subtitle': 'Discover What\'s Happening',
+    'events-calendar-title': 'Event Calendar',
+    'events-calendar-subtitle': 'Stay updated with all our events',
+    'events-upcoming-title': 'Upcoming Events',
+    'events-upcoming-subtitle': 'Don\'t miss these exciting opportunities',
+    'events-event-1-title': 'Spring Championship',
     'events-event-1-date': 'March 15, 2024',
-    'events-event-1-time': '8:00 AM - 6:00 PM',
-    'events-event-1-location': 'Prestonwood Golf Club',
-    'events-event-1-description': 'Our premier spring tournament featuring individual stroke play, team competitions, and exciting prizes. Open to all skill levels with handicap divisions.',
-    'events-event-1-price': '$150',
-    'events-event-2-title': 'New Member Welcome Mixer',
-    'events-event-2-date': 'March 22, 2024',
-    'events-event-2-time': '6:00 PM - 9:00 PM',
-    'events-event-2-location': 'Clubhouse',
-    'events-event-2-description': 'Join us for an evening of networking, introductions, and celebration as we welcome our newest members to the DFW Punjabi Golf Club family.',
-    'events-event-2-price': 'Free',
-    'events-event-3-title': 'Charity Golf Outing',
-    'events-event-3-date': 'April 5, 2024',
-    'events-event-3-time': '9:00 AM - 5:00 PM',
-    'events-event-3-location': 'Tribute Golf Links',
-    'events-event-3-description': 'Support our community through golf! This charity outing raises funds for local Punjabi community organizations and scholarships.',
-    'events-event-3-price': '$200',
-    'events-event-4-title': 'Golf Clinic & Skills Workshop',
-    'events-event-4-date': 'April 12, 2024',
-    'events-event-4-time': '10:00 AM - 2:00 PM',
-    'events-event-4-location': 'Prestonwood Golf Club',
-    'events-event-4-description': 'Improve your game with professional instruction covering putting, chipping, driving, and course management strategies.',
-    'events-event-4-price': '$75',
-    'events-past-event-1-title': 'Winter Classic Tournament',
-    'events-past-event-1-date': 'February 10, 2024',
-    'events-past-event-1-location': 'Tribute Golf Links',
-    'events-past-event-1-description': 'A successful winter tournament with 48 participants competing in challenging winter conditions.',
-    'events-past-event-2-title': 'Holiday Celebration Dinner',
-    'events-past-event-2-date': 'December 15, 2023',
-    'events-past-event-2-location': 'Clubhouse',
-    'events-past-event-2-description': 'Annual holiday celebration bringing together members and families for a festive evening of food, music, and community.',
-    'gallery-hero-title': 'Photo Gallery',
-    'gallery-hero-subtitle': 'Browse through memorable moments, tournaments, and special events captured in our photo gallery.',
-    'gallery-categories-title': 'Gallery Categories',
-    'gallery-categories-subtitle': 'Explore our photos organized by category and event.'
+    'events-event-1-time': '9:00 AM - 5:00 PM',
+    'events-event-1-location': 'PGA National Golf Club',
+    'events-event-1-description': 'Annual spring championship tournament with prizes',
+    'events-event-1-price': '$75',
+    'events-event-2-title': 'Family Golf Day',
+    'events-event-2-date': 'April 20, 2024',
+    'events-event-2-time': '10:00 AM - 3:00 PM',
+    'events-event-2-location': 'Local Driving Range',
+    'events-event-2-description': 'Fun day for all skill levels and ages',
+    'events-event-2-price': '$25',
+
+    // Board of Directors defaults
+    'board-president-name': 'John Doe',
+    'board-president-email': 'president@dfwpunjabigolf.com',
+    'board-president-phone': '(555) 123-4567',
+    'board-president-bio': 'Experienced golf enthusiast with 15+ years in community leadership',
+    'board-treasurer-name': 'Jane Smith',
+    'board-treasurer-email': 'treasurer@dfwpunjabigolf.com',
+    'board-treasurer-phone': '(555) 234-5678',
+    'board-treasurer-bio': 'Financial professional passionate about building sustainable golf communities',
+    'board-tournament-director-name': 'Mike Johnson',
+    'board-tournament-director-email': 'tournaments@dfwpunjabigolf.com',
+    'board-tournament-director-phone': '(555) 345-6789',
+    'board-tournament-director-bio': 'Tournament organizer with expertise in competitive golf events'
   };
 
-  return {
-    contentId,
-    title,
-    content: defaultContentMap[contentId] || 'Default content - please edit',
-    page: page.charAt(0).toUpperCase() + page.slice(1),
-    section: section.charAt(0).toUpperCase() + section.slice(1),
-    language: 'en',
-    isPublished: true,
-    version: 1,
-    createdAt: admin.firestore.FieldValue.serverTimestamp(),
-    lastModifiedAt: admin.firestore.FieldValue.serverTimestamp(),
-    lastModifiedBy: 'system-upload-script'
-  };
+  return defaults[contentId] || 'Default content - please edit';
 };
 
 // Function to upload all content
@@ -487,7 +408,19 @@ async function uploadAllContent() {
             }
             
             // Create new content
-            const contentData = getDefaultContent(contentId, title, page, sectionName);
+            const contentData = {
+              contentId,
+              title,
+              content: getDefaultContent(contentId),
+              page: page.charAt(0).toUpperCase() + page.slice(1),
+              section: sectionName.charAt(0).toUpperCase() + sectionName.slice(1),
+              language: 'en',
+              isPublished: true,
+              version: 1,
+              createdAt: admin.firestore.FieldValue.serverTimestamp(),
+              lastModifiedAt: admin.firestore.FieldValue.serverTimestamp(),
+              lastModifiedBy: 'system-upload-script'
+            };
             await db.collection('content').add(contentData);
             
             console.log(`    ✅ Uploaded ${contentId}`);

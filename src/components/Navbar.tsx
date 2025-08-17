@@ -44,13 +44,17 @@ const Navbar: React.FC = () => {
             <motion.div
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.6 }}
-              className="w-12 h-12 bg-gradient-to-br from-golf-500 to-primary-600 rounded-full flex items-center justify-center"
+              className="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden"
             >
-              <Flag className="w-6 h-6 text-white" />
+              <img 
+                src="/images/logo/logo-main.png" 
+                alt="DFW Punjabi Golf Club Logo" 
+                className="w-12 h-12 object-contain"
+              />
             </motion.div>
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-gray-900">DFW Punjabi</h1>
-              <p className="text-sm text-gray-600 -mt-1">Golf Club</p>
+              <h1 className="text-xl font-bold text-gray-900">DFW Punjabi GC</h1>
+              <p className="text-sm text-gray-600 -mt-1"></p>
             </div>
           </Link>
 
