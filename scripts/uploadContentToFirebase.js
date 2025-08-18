@@ -19,6 +19,7 @@ const CONTENT_MAPPING = {
       'hero-title': 'Hero Title',
       'hero-subtitle': 'Hero Subtitle', 
       'hero-description': 'Hero Description',
+      'hero-logo': 'Hero Logo',
       'hero-cta-primary': 'Primary CTA Text',
       'hero-cta-secondary': 'Secondary CTA Text'
     },
@@ -212,6 +213,7 @@ const getDefaultContent = (contentId, title, page, section) => {
     'hero-title': 'The DFW Punjabi Golf Club',
     'hero-subtitle': 'Golf Club',
     'hero-description': 'Where tradition meets excellence. Join our exclusive community of Punjabi golf enthusiasts in the heart of Dallas-Fort Worth.',
+    'hero-logo': '/images/logo/logo-main.png',
     'hero-cta-primary': 'Join Our Club',
     'hero-cta-secondary': 'Learn More',
     'stats-members': '150+',

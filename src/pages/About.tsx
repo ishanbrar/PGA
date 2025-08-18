@@ -283,17 +283,29 @@ const About: React.FC = () => {
                   <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
                 </div>
                 <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                  <ContentEditor contentId={`board-member-${index + 1}-name`} tag="span">
+                  <ContentEditor contentId={index === 0 ? 'board-member-1-name' : 
+                                           index === 1 ? 'board-member-2-name' :
+                                           index === 2 ? 'board-member-3-name' :
+                                           index === 3 ? 'board-member-4-name' :
+                                           index === 4 ? 'board-member-5-name' : 'board-member-6-name'} tag="span">
                     {member.name}
                   </ContentEditor>
                 </h3>
                 <p className="text-lg text-gray-600 mb-4">
-                  <ContentEditor contentId={`board-member-${index + 1}-position`} tag="span">
+                  <ContentEditor contentId={index === 0 ? 'board-member-1-position' : 
+                                           index === 1 ? 'board-member-2-position' :
+                                           index === 2 ? 'board-member-3-position' :
+                                           index === 3 ? 'board-member-4-position' :
+                                           index === 4 ? 'board-member-5-position' : 'board-member-6-position'} tag="span">
                     {member.position}
                   </ContentEditor>
                 </p>
                 <p className="text-gray-600 leading-relaxed">
-                  <ContentEditor contentId={`board-member-${index + 1}-bio`} tag="span">
+                  <ContentEditor contentId={index === 0 ? 'board-member-1-bio' : 
+                                           index === 1 ? 'board-member-2-bio' :
+                                           index === 2 ? 'board-member-3-bio' :
+                                           index === 3 ? 'board-member-4-bio' :
+                                           index === 4 ? 'board-member-5-bio' : 'board-member-6-bio'} tag="span">
                     {member.bio}
                   </ContentEditor>
                 </p>

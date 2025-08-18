@@ -83,7 +83,7 @@ const Home: React.FC = () => {
         ></motion.div>
 
         {/* Hero Content */}
-        <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
+        <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto pt-32">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -96,6 +96,23 @@ const Home: React.FC = () => {
               </ContentEditor>
              
             </h1>
+            
+            {/* Logo Section */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="mb-2 flex justify-center"
+            >
+              <div className="w-96 h-96 md:w-[28rem] md:h-[28rem]">
+                <img 
+                  src="/images/logo/logo-main.png" 
+                  alt="DFW Punjabi Golf Club Logo" 
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </motion.div>
+            
             <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
               <ContentEditor contentId="hero-description" tag="span">
                 Where tradition meets excellence. Join our exclusive community of Punjabi golf enthusiasts 

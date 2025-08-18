@@ -8,7 +8,8 @@ import {
   Trash2, 
   RefreshCw, 
   Search,
-  Image as ImageIcon
+  Image as ImageIcon,
+  LogOut
 } from 'lucide-react';
 import firebaseService from '../services/firebaseService';
 import ContentEditor from './ContentEditor';
@@ -21,6 +22,7 @@ const CONTENT_MAPPING = {
       'hero-title': 'Hero Title',
       'hero-subtitle': 'Hero Subtitle',
       'hero-description': 'Hero Description',
+      'hero-logo': 'Hero Logo',
       'hero-cta-primary': 'Primary CTA Button',
       'hero-cta-secondary': 'Secondary CTA Button'
     },
@@ -284,6 +286,18 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
     }
   }, [isLoading, contentSections.length]);
 
+  // Make the populate function available globally for debugging
+  React.useEffect(() => {
+    (window as any).populateBoardContent = populateBoardContent;
+    (window as any).debugContentSections = () => {
+      console.log('Current content sections:', contentSections);
+      console.log('Board content IDs in CONTENT_MAPPING:', Object.keys(CONTENT_MAPPING.about?.board || {}));
+    };
+    console.log('🔧 Debug functions available:');
+    console.log('  - window.populateBoardContent() - Populate board content in Firebase');
+    console.log('  - window.debugContentSections() - Show current content state');
+  }, [contentSections]);
+
   const loadAllContent = async () => {
     setIsLoading(true);
     try {
@@ -315,11 +329,11 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
             if (existing) {
               console.log(`✅ Found existing content: ${contentId} (Firebase ID: ${existing.id})`);
               allContentSections.push(existing);
-        } else {
+            } else {
               console.log(`❌ No existing content found for: ${contentId}, creating default`);
-              // Create default content section with contentId as temporary id
+              // Create default content section with a temporary ID that's clearly not a Firebase ID
               const defaultContent = {
-                id: contentId,
+                id: `temp-${contentId}`,
                 contentId: contentId,
                 content: getDefaultContent(contentId, title as string, page as string, sectionName as string),
                 page: page,
@@ -373,6 +387,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
       'hero-title': 'Welcome to DFW Punjabi Golf Club',
       'hero-subtitle': 'Building Community Through Golf',
       'hero-description': 'Join our vibrant community of golf enthusiasts and experience the perfect blend of sport, culture, and friendship.',
+      'hero-logo': '/images/logo/logo-main.png',
       'hero-cta-primary': 'Join Our Club',
       'hero-cta-secondary': 'Learn More',
       'stats-members': '150+',
@@ -527,6 +542,53 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
     return defaults[contentId] || title;
   };
 
+  const populateBoardContent = async () => {
+    try {
+      const boardContentIds = [
+        'board-title', 'board-subtitle',
+        'board-member-1-name', 'board-member-1-position', 'board-member-1-bio',
+        'board-member-2-name', 'board-member-2-position', 'board-member-2-bio',
+        'board-member-3-name', 'board-member-3-position', 'board-member-3-bio',
+        'board-member-4-name', 'board-member-4-position', 'board-member-4-bio',
+        'board-member-5-name', 'board-member-5-position', 'board-member-5-bio',
+        'board-member-6-name', 'board-member-6-position', 'board-member-6-bio'
+      ];
+
+      for (const contentId of boardContentIds) {
+        const existing = contentSections.find(c => c.contentId === contentId);
+        if (!existing || existing.id.startsWith('temp-')) {
+          console.log(`Creating board content: ${contentId}`);
+          const defaultContent = getDefaultContent(contentId, contentId, 'about', 'board');
+          const newId = await firebaseService.createContent({
+            contentId: contentId,
+            title: contentId.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+            content: defaultContent,
+            page: 'about',
+            section: 'board',
+            language: 'en',
+            isPublished: true,
+            version: 1
+          });
+          
+          // Update local state
+          setContentSections(prev => 
+            prev.map(s => 
+              s.contentId === contentId 
+                ? { ...s, id: newId, content: defaultContent }
+                : s
+            )
+          );
+        }
+      }
+      
+      alert('Board content populated successfully!');
+      loadAllContent(); // Reload to get fresh data
+    } catch (error) {
+      console.error('Error populating board content:', error);
+      alert('Failed to populate board content. Please try again.');
+    }
+  };
+
   // Filter content based on search and selections
   const filteredContent = contentSections.filter(section => {
     const matchesSearch = (section.contentId && section.contentId.toLowerCase().includes(searchTerm.toLowerCase())) ||
@@ -550,25 +612,25 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
       if (section) {
         console.log('Saving content:', { contentId: section.contentId, id: section.id, newContent });
         
-        // Check if this content has a Firebase ID
-        if (section.id && section.id !== section.contentId) {
+        // Check if this content has a Firebase ID (not a temporary ID)
+        if (section.id && !section.id.startsWith('temp-')) {
           // This content exists in Firebase, update it
           try {
-        await firebaseService.updateContent(section.contentId, newContent);
+            await firebaseService.updateContent(section.contentId, newContent);
             console.log('Content updated in Firebase successfully');
-        
-        // Update local state
-        setContentSections(prev => 
-          prev.map(s => 
-            s.id === id 
-              ? { ...s, content: newContent }
-              : s
-          )
-        );
-        
-        setEditingSection(null);
-        setLastSaved(new Date());
-        alert('Content saved successfully!');
+            
+            // Update local state
+            setContentSections(prev => 
+              prev.map(s => 
+                s.id === id 
+                  ? { ...s, content: newContent }
+                  : s
+              )
+            );
+            
+            setEditingSection(null);
+            setLastSaved(new Date());
+            alert('Content saved successfully!');
           } catch (firebaseError) {
             console.error('Firebase update failed:', firebaseError);
             alert('Failed to save content. Please try again.');
@@ -643,15 +705,21 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
               </div>
               <button
                 onClick={loadAllContent}
-                className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="btn-secondary"
               >
-                <RefreshCw className="w-4 h-4" />
-                <span>Refresh</span>
+                Refresh Content
+              </button>
+              <button
+                onClick={populateBoardContent}
+                className="btn-primary"
+              >
+                Populate Board Content
               </button>
               <button
                 onClick={onLogout}
-                className="flex items-center space-x-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                className="btn-secondary"
               >
+                <LogOut className="w-4 h-4 mr-2" />
                 <span>Sign Out</span>
               </button>
             </div>
@@ -664,6 +732,29 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
               </p>
             </div>
           )}
+          
+          {/* Debug Section for Board Content */}
+          <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <h3 className="text-blue-900 font-semibold mb-2">🔧 Board Content Debug</h3>
+            <p className="text-blue-800 text-sm mb-3">
+              If board member content isn't saving, click the button below to populate Firebase with board content.
+            </p>
+            <button
+              onClick={populateBoardContent}
+              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm"
+            >
+              🚀 Populate Board Content in Firebase
+            </button>
+            <button
+              onClick={() => {
+                console.log('Content sections:', contentSections);
+                console.log('Board mapping:', CONTENT_MAPPING.about?.board);
+              }}
+              className="ml-3 bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors text-sm"
+            >
+              📊 Debug Console
+            </button>
+          </div>
         </div>
 
         {/* Tab Navigation */}
