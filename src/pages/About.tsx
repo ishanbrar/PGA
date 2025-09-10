@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, Trophy, Flag, Star, Calendar, MapPin, Phone, Mail, Linkedin } from 'lucide-react';
+import { Users, Trophy, Flag, Star, Phone, Mail, Linkedin } from 'lucide-react';
 import ContentEditor from '../components/ContentEditor';
 
 const About: React.FC = () => {
@@ -32,26 +32,6 @@ const About: React.FC = () => {
       phone: '(555) 123-4569',
       image: '/images/board/secretary.jpg',
       bio: 'Ensuring smooth communication and maintaining our club\'s official records.',
-      linkedin: '#',
-      term: '2024-2026'
-    },
-    {
-      name: 'Gurpreet Kaur',
-      position: 'Treasurer',
-      email: 'treasurer@dfwpunjabigolf.com',
-      phone: '(555) 123-4570',
-      image: '/images/board/treasurer.jpg',
-      bio: 'Managing our club\'s finances with transparency and fiscal responsibility.',
-      linkedin: '#',
-      term: '2024-2026'
-    },
-    {
-      name: 'Harinder Singh',
-      position: 'Tournament Director',
-      email: 'tournaments@dfwpunjabigolf.com',
-      phone: '(555) 123-4571',
-      image: '/images/board/tournament-director.jpg',
-      bio: 'Organizing exciting tournaments and events that bring our community together.',
       linkedin: '#',
       term: '2024-2026'
     },
@@ -90,12 +70,6 @@ const About: React.FC = () => {
     }
   ];
 
-  const stats = [
-    { number: 'stats-members', label: 'stats-members-label', icon: Users },
-    { number: 'stats-years', label: 'stats-years-label', icon: Trophy },
-    { number: 'stats-events', label: 'stats-events-label', icon: Star },
-    { number: 'stats-courses', label: 'stats-courses-label', icon: Calendar }
-  ];
 
   return (
     <div className="min-h-screen pt-20">
@@ -179,11 +153,9 @@ const About: React.FC = () => {
                   <div className="w-20 h-20 bg-gradient-to-br from-primary-600 to-golf-600 rounded-full flex items-center justify-center mx-auto">
                     <Flag className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="text-2xl font-semibold text-gray-900">Why We Exist</h3>
+                  <h3 className="text-2xl font-semibold text-gray-900">Founders: Why We Exist</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Our club was born from a simple idea: to create a space where Punjabi professionals 
-                    could enjoy their passion for golf while building meaningful connections with people 
-                    who share their cultural heritage and professional aspirations.
+                    Our club was born from a simple idea shared by our founders Jessie Mann, Charanpal Sekhon, Rajdeep Brar, Upinder Ghumman, J P Bains, Mohit Verma, Tej Gill and Paul Buttar : to create a space where Punjabi professionals could enjoy their passion for golf while building meaningful connections with people who share their cultural heritage and professional aspirations.
                   </p>
                 </div>
               </div>
@@ -192,60 +164,6 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="section-padding bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <ContentEditor contentId="stats-title" tag="span">
-                Club Statistics
-              </ContentEditor>
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              <ContentEditor contentId="stats-subtitle" tag="span">
-                Numbers that tell our story of growth and success.
-              </ContentEditor>
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center group"
-              >
-                <div className="w-20 h-20 bg-gradient-to-br from-primary-500 to-golf-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <stat.icon className="w-10 h-10 text-white" />
-                </div>
-                <div className="text-3xl font-bold text-gold-400 mb-2">
-                  <ContentEditor contentId={stat.number} tag="span">
-                    {stat.number === 'stats-members' ? '150+' :
-                     stat.number === 'stats-years' ? '25+' :
-                     stat.number === 'stats-events' ? '12' : '4'}
-                  </ContentEditor>
-                </div>
-                <div className="text-gray-300">
-                  <ContentEditor contentId={stat.label} tag="span">
-                    {stat.label === 'stats-members-label' ? 'Active Members' :
-                     stat.label === 'stats-years-label' ? 'Years of Excellence' :
-                     stat.label === 'stats-events-label' ? 'Annual Events' : 'Golf Courses'}
-                  </ContentEditor>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Board of Directors Section */}
       <section className="section-padding bg-white">
