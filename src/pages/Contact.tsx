@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, Clock } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import ContentEditor from '../components/ContentEditor';
 
 const Contact: React.FC = () => {
@@ -109,106 +109,6 @@ const Contact: React.FC = () => {
 
 
 
-      {/* FAQ Section */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Find quick answers to common questions about our club, membership, and services.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                question: 'How do I become a member?',
-                answer: 'To become a member, please fill out our membership application form and submit it along with the required documentation. Our membership committee will review your application and contact you within 48 hours.'
-              },
-              {
-                question: 'What are the membership fees?',
-                answer: 'Membership fees vary based on the type of membership you choose. We offer individual, family, and corporate memberships. Please contact our membership department for current pricing information.'
-              },
-              {
-                question: 'Can I bring guests to the club?',
-                answer: 'Yes, members can bring guests to the club. Guest fees apply and vary by course. Please check with our staff for current guest policies and pricing.'
-              },
-              {
-                question: 'How do I register for events?',
-                answer: 'Event registration can be done through our website, mobile app, or by contacting our events team. Members receive priority registration and early access to all events.'
-              }
-            ].map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="card p-8"
-              >
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">{faq.question}</h3>
-                <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Additional Contact Info */}
-      <section className="section-padding bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Additional Information
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Find more ways to connect with us and stay updated with club news and events.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-golf-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Mail className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Email Contacts</h3>
-              <div className="space-y-2 text-sm text-gray-600">
-                <p>General: dfwpunjabigolf@gmail.com</p>
-                <p>Membership: dfwpunjabigolf@gmail.com</p>
-                <p>Events: dfwpunjabigolf@gmail.com</p>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-golf-500 to-primary-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Phone className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Phone Numbers</h3>
-              <div className="space-y-2 text-sm text-gray-600">
-                <p>Main Office: 469-406-7988</p>
-                <p>Membership: 469-406-7988</p>
-                <p>Events: 469-406-7988</p>
-              </div>
-            </div>
-
-
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

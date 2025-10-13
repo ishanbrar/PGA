@@ -1,15 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Calendar, 
   MapPin, 
-  Clock, 
-  Users, 
-  DollarSign, 
-  Trophy, 
-  Star, 
-  ChevronRight, 
-  ChevronLeft 
+  Users 
 } from 'lucide-react';
 import ContentEditor from '../components/ContentEditor';
 
@@ -17,11 +10,6 @@ const Schedule: React.FC = () => {
   // Helper function to get highlights content ID
   const getHighlightsContentId = (eventTitle: string) => {
     return eventTitle.replace('-title', '-highlights');
-  };
-
-  // Helper function to parse highlights string into array
-  const parseHighlights = (highlightsString: string) => {
-    return highlightsString.split(', ').filter(highlight => highlight.trim() !== '');
   };
   const upcomingEvents = [
     {
@@ -115,13 +103,6 @@ const Schedule: React.FC = () => {
     }
   ];
 
-  const categories = [
-    { id: 'all', name: 'All Events', count: upcomingEvents.length },
-    { id: 'tournament', name: 'Tournaments', count: upcomingEvents.filter(e => e.category === 'Tournament').length },
-    { id: 'social', name: 'Social Events', count: upcomingEvents.filter(e => e.category === 'Social').length }
-  ];
-
-  const filteredEvents = upcomingEvents;
 
   return (
     <div className="min-h-screen pt-20">
@@ -339,18 +320,10 @@ const Schedule: React.FC = () => {
                       <ContentEditor 
                         contentId={getHighlightsContentId(event.title)}
                         tag="div"
-                        className="space-y-1"
                         allowDirectEdit={true}
                         showSaveButton={true}
                       >
-                        <ul className="space-y-1">
-                          {event.highlights.slice(0, 3).map((highlight, idx) => (
-                            <li key={idx} className="flex items-center space-x-2">
-                              <Star className="w-3 h-3 text-gold-500 flex-shrink-0" />
-                              <span>{highlight}</span>
-                            </li>
-                          ))}
-                        </ul>
+                        {event.highlights.join(', ')}
                       </ContentEditor>
                     </div>
                   </div>

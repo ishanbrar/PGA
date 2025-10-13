@@ -148,46 +148,6 @@ const Home: React.FC = () => {
             </Link>
           </motion.div>
 
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 max-w-4xl mx-auto"
-          >
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-gold-400 mb-2">
-                <ContentEditor contentId="stats-members" tag="span">150+</ContentEditor>
-              </div>
-              <div className="text-gray-300 text-sm">
-                <ContentEditor contentId="stats-members-label" tag="span">Active Members</ContentEditor>
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-gold-400 mb-2">
-                <ContentEditor contentId="stats-years" tag="span">25+</ContentEditor>
-              </div>
-              <div className="text-gray-300 text-sm">
-                <ContentEditor contentId="stats-years-label" tag="span">Years History</ContentEditor>
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-gold-400 mb-2">
-                <ContentEditor contentId="stats-events" tag="span">12</ContentEditor>
-              </div>
-              <div className="text-gray-300 text-sm">
-                <ContentEditor contentId="stats-events-label" tag="span">Annual Events</ContentEditor>
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-gold-400 mb-2">
-                <ContentEditor contentId="stats-courses" tag="span">4</ContentEditor>
-              </div>
-              <div className="text-gray-300 text-sm">
-                <ContentEditor contentId="stats-courses-label" tag="span">Golf Courses</ContentEditor>
-              </div>
-            </div>
-          </motion.div>
         </div>
 
         {/* Scroll Indicator */}

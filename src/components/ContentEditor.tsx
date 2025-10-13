@@ -69,7 +69,28 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
     
     try {
       setIsSaving(true);
-      await firebaseService.updateContent(contentId, content);
+      
+      // Try to update first, if it fails, create new content
+      try {
+        await firebaseService.updateContent(contentId, content);
+      } catch (updateError) {
+        console.log('Content not found, creating new content:', contentId);
+        // Extract page and section from contentId or use defaults
+        const page = contentId.includes('past-event') ? 'events' : 'home';
+        const section = contentId.includes('highlights') ? 'pastEvents' : 'default';
+        
+        await firebaseService.createContent({
+          contentId,
+          title: contentId.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+          content,
+          page,
+          section,
+          language: 'en',
+          isPublished: true,
+          version: 1
+        });
+      }
+      
       setOriginalContent(content);
       setHasChanges(false);
       setIsEditing(false);
