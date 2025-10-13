@@ -12,14 +12,14 @@ const Contact: React.FC = () => {
     {
       icon: Phone,
       title: 'Phone',
-      details: ['(555) 123-4567', '(555) 123-4568'],
+      details: ['469-406-7988'],
       description: 'Call us during business hours for immediate assistance.',
       color: 'from-blue-500 to-blue-600'
     },
     {
       icon: Mail,
       title: 'Email',
-      details: ['info@dfwpunjabigolf.com', 'membership@dfwpunjabigolf.com'],
+      details: ['dfwpunjabigolf@gmail.com'],
       description: 'Send us an email and we\'ll respond within 24 hours.',
       color: 'from-green-500 to-green-600'
     }
@@ -187,9 +187,9 @@ const Contact: React.FC = () => {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Email Contacts</h3>
               <div className="space-y-2 text-sm text-gray-600">
-                <p>General: info@dfwpunjabigolf.com</p>
-                <p>Membership: membership@dfwpunjabigolf.com</p>
-                <p>Events: events@dfwpunjabigolf.com</p>
+                <p>General: dfwpunjabigolf@gmail.com</p>
+                <p>Membership: dfwpunjabigolf@gmail.com</p>
+                <p>Events: dfwpunjabigolf@gmail.com</p>
               </div>
             </div>
 
@@ -199,9 +199,9 @@ const Contact: React.FC = () => {
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Phone Numbers</h3>
               <div className="space-y-2 text-sm text-gray-600">
-                <p>Main Office: (555) 123-4567</p>
-                <p>Membership: (555) 123-4568</p>
-                <p>Events: (555) 123-4569</p>
+                <p>Main Office: 469-406-7988</p>
+                <p>Membership: 469-406-7988</p>
+                <p>Events: 469-406-7988</p>
               </div>
             </div>
 

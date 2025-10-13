@@ -204,8 +204,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 📞 Support
 
 For support or questions about the website:
-- **Email** - info@dfwpunjabigolf.com
-- **Phone** - (555) 123-4567
+- **Email** - dfwpunjabigolf@gmail.com
+- **Phone** - 469-406-7988
 - **Website** - Visit our contact page
 
 ## 🙏 Acknowledgments

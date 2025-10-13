@@ -8,8 +8,8 @@ const About: React.FC = () => {
     {
       name: 'Rajinder Singh',
       position: 'President',
-      email: 'president@dfwpunjabigolf.com',
-      phone: '(555) 123-4567',
+      email: 'dfwpunjabigolf@gmail.com',
+      phone: '469-406-7988',
       image: '/images/board/president.jpg',
       bio: 'Leading our club with over 15 years of golf experience and a passion for community building.',
       linkedin: '#',
@@ -18,8 +18,8 @@ const About: React.FC = () => {
     {
       name: 'Priya Patel',
       position: 'Vice President',
-      email: 'vicepresident@dfwpunjabigolf.com',
-      phone: '(555) 123-4568',
+      email: 'dfwpunjabigolf@gmail.com',
+      phone: '469-406-7988',
       image: '/images/board/vice-president.jpg',
       bio: 'Dedicated to expanding our club\'s reach and enhancing member experiences.',
       linkedin: '#',
@@ -28,8 +28,8 @@ const About: React.FC = () => {
     {
       name: 'Amarjit Dhillon',
       position: 'Secretary',
-      email: 'secretary@dfwpunjabigolf.com',
-      phone: '(555) 123-4569',
+      email: 'dfwpunjabigolf@gmail.com',
+      phone: '469-406-7988',
       image: '/images/board/secretary.jpg',
       bio: 'Ensuring smooth communication and maintaining our club\'s official records.',
       linkedin: '#',
@@ -38,8 +38,8 @@ const About: React.FC = () => {
     {
       name: 'Manpreet Kaur',
       position: 'Membership Director',
-      email: 'membership@dfwpunjabigolf.com',
-      phone: '(555) 123-4572',
+      email: 'dfwpunjabigolf@gmail.com',
+      phone: '469-406-7988',
       image: '/images/board/membership-director.jpg',
       bio: 'Growing our community and ensuring every member feels valued and supported.',
       linkedin: '#',
@@ -323,14 +323,14 @@ const About: React.FC = () => {
               {
                 icon: Phone,
                 title: 'Call Us',
-                details: ['(555) 123-4567', '(555) 123-4568'],
+                details: ['469-406-7988'],
                 description: 'Speak directly with our team for immediate assistance.',
                 color: 'from-blue-500 to-blue-600'
               },
               {
                 icon: Mail,
                 title: 'Email Us',
-                details: ['info@dfwpunjabigolf.com', 'membership@dfwpunjabigolf.com'],
+                details: ['dfwpunjabigolf@gmail.com'],
                 description: 'Send us a message and we\'ll respond within 24 hours.',
                 color: 'from-green-500 to-green-600'
               }

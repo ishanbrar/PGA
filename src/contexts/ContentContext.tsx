@@ -100,14 +100,14 @@ export const ContentProvider: React.FC<ContentProviderProps> = ({ children }) =>
       {
         id: 'contact-phone',
         title: 'Contact Phone',
-        content: '(555) 123-4567',
+        content: '469-406-7988',
         page: 'Contact',
         section: 'Phone'
       },
       {
         id: 'contact-email',
         title: 'Contact Email',
-        content: 'info@dfwpunjabigolf.com',
+        content: 'dfwpunjabigolf@gmail.com',
         page: 'Contact',
         section: 'Email'
       },

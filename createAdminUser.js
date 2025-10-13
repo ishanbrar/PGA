@@ -16,7 +16,7 @@ async function createAdminUser() {
     
     // Create user with email and password
     const userRecord = await admin.auth().createUser({
-      email: 'admin@dfwpunjabigolf.com',
+      email: 'dfwpunjabigolf@gmail.com',
       password: 'golfclub2024',
       displayName: 'Admin User',
       emailVerified: true
@@ -41,14 +41,14 @@ async function createAdminUser() {
     console.log('✅ Admin role and permissions set!');
     console.log('\n🎉 Admin user setup complete!');
     console.log('\n📋 Login Credentials:');
-    console.log('   Email: admin@dfwpunjabigolf.com');
+    console.log('   Email: dfwpunjabigolf@gmail.com');
     console.log('   Password: golfclub2024');
     
   } catch (error) {
     if (error.code === 'auth/email-already-exists') {
       console.log('ℹ️  Admin user already exists!');
       console.log('   You can use the existing credentials:');
-      console.log('   Email: admin@dfwpunjabigolf.com');
+      console.log('   Email: dfwpunjabigolf@gmail.com');
       console.log('   Password: golfclub2024');
     } else {
       console.error('❌ Error creating admin user:', error.message);

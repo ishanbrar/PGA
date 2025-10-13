@@ -14,6 +14,15 @@ import {
 import ContentEditor from '../components/ContentEditor';
 
 const Schedule: React.FC = () => {
+  // Helper function to get highlights content ID
+  const getHighlightsContentId = (eventTitle: string) => {
+    return eventTitle.replace('-title', '-highlights');
+  };
+
+  // Helper function to parse highlights string into array
+  const parseHighlights = (highlightsString: string) => {
+    return highlightsString.split(', ').filter(highlight => highlight.trim() !== '');
+  };
   const upcomingEvents = [
     {
       id: 1,
@@ -326,14 +335,24 @@ const Schedule: React.FC = () => {
                   
                   <div className="space-y-2">
                     <h4 className="font-medium text-gray-900">Highlights:</h4>
-                    <ul className="space-y-1">
-                      {event.highlights.slice(0, 3).map((highlight, idx) => (
-                        <li key={idx} className="flex items-center space-x-2 text-sm text-gray-600">
-                          <Star className="w-3 h-3 text-gold-500 flex-shrink-0" />
-                          <span>{highlight}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="text-sm text-gray-600">
+                      <ContentEditor 
+                        contentId={getHighlightsContentId(event.title)}
+                        tag="div"
+                        className="space-y-1"
+                        allowDirectEdit={true}
+                        showSaveButton={true}
+                      >
+                        <ul className="space-y-1">
+                          {event.highlights.slice(0, 3).map((highlight, idx) => (
+                            <li key={idx} className="flex items-center space-x-2">
+                              <Star className="w-3 h-3 text-gold-500 flex-shrink-0" />
+                              <span>{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </ContentEditor>
+                    </div>
                   </div>
                 </div>
               </motion.div>

@@ -34,13 +34,13 @@ node createAdminUser.js
 🔐 Creating admin user...
 ✅ Admin user created successfully!
    UID: [some-uid]
-   Email: admin@dfwpunjabigolf.com
+   Email: dfwpunjabigolf@gmail.com
    Display Name: Admin User
 ✅ Admin role and permissions set!
 🎉 Admin user setup complete!
 
 📋 Login Credentials:
-   Email: admin@dfwpunjabigolf.com
+   Email: dfwpunjabigolf@gmail.com
    Password: golfclub2024
 ```
 
@@ -48,7 +48,7 @@ node createAdminUser.js
 1. **Restart your React app** (if running)
 2. **Go to Admin page** (`/admin`)
 3. **Login with:**
-   - Email: `admin@dfwpunjabigolf.com`
+   - Email: `dfwpunjabigolf@gmail.com`
    - Password: `golfclub2024`
 
 ### **Step 3: Verify Everything Works**
