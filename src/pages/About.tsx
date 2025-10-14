@@ -85,17 +85,11 @@ const About: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-shadow-lg">
+            <h1 className="text-5xl md:text-6xl font-bold text-shadow-lg">
               <ContentEditor contentId="about-hero-title" tag="span">
                 About Our Club
               </ContentEditor>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed text-center max-w-3xl mx-auto">
-              <ContentEditor contentId="about-hero-subtitle" tag="span">
-                Discover the rich history, core values, and remarkable achievements that make 
-                The DFW Punjabi Golf Club a premier destination for golf enthusiasts.
-              </ContentEditor>
-            </p>
           </motion.div>
         </div>
       </section>
@@ -103,62 +97,79 @@ const About: React.FC = () => {
       {/* Mission & Vision Section */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                <ContentEditor contentId="mission-vision-title" tag="span">
-                  Our Mission & Vision
-                </ContentEditor>
-              </h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-2xl font-semibold text-primary-600 mb-3">
-                    <ContentEditor contentId="mission-title" tag="span">Mission</ContentEditor>
-                  </h3>
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    <ContentEditor contentId="mission-content" tag="span">
-                      To provide an exceptional golf experience while fostering a strong Punjabi community 
-                      through sportsmanship, cultural connection, and professional networking opportunities.
-                    </ContentEditor>
-                  </p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+              <ContentEditor contentId="mission-vision-title" tag="span">
+                Our Mission & Vision
+              </ContentEditor>
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto mb-16"
+          >
+            <div className="bg-gradient-to-br from-primary-100 to-golf-100 rounded-2xl p-8">
+              <div className="text-center space-y-6">
+                <div className="w-20 h-20 bg-gradient-to-br from-primary-600 to-golf-600 rounded-full flex items-center justify-center mx-auto">
+                  <Flag className="w-10 h-10 text-white" />
                 </div>
-                <div>
-                  <h3 className="text-2xl font-semibold text-golf-600 mb-3">
-                    <ContentEditor contentId="vision-title" tag="span">Vision</ContentEditor>
-                  </h3>
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    <ContentEditor contentId="vision-content" tag="span">
-                      To be the leading Punjabi golf club in the United States, recognized for excellence, 
-                      community impact, and cultural preservation while promoting the sport of golf.
-                    </ContentEditor>
-                  </p>
-                </div>
+                <h3 className="text-2xl font-semibold text-gray-900">Founders: Why We Exist</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Our club was born from a simple idea shared by our founders <strong>Jessie Mann</strong>, <strong>Charanpal Sekhon</strong>, <strong>Rajdeep Brar</strong>, <strong>Upinder Ghumman</strong>, <strong>JP Bains</strong>, <strong>Mohit Verma</strong>, <strong>Tej Gill</strong> and <strong>Paul Buttar</strong>: to create a space where Punjabi professionals could enjoy their passion for golf while building meaningful connections with people who share their cultural heritage and professional aspirations.
+                </p>
               </div>
+            </div>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="card p-8 text-center group hover:shadow-xl transition-all duration-300"
+            >
+              <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Trophy className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                <ContentEditor contentId="mission-title" tag="span">Mission</ContentEditor>
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                <ContentEditor contentId="mission-content" tag="span">
+                  To provide an exceptional golf experience while fostering a strong Punjabi community through sportsmanship, cultural connection, and professional networking opportunities.
+                </ContentEditor>
+              </p>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="relative"
+              className="card p-8 text-center group hover:shadow-xl transition-all duration-300"
             >
-              <div className="bg-gradient-to-br from-primary-100 to-golf-100 rounded-2xl p-8">
-                <div className="text-center space-y-6">
-                  <div className="w-20 h-20 bg-gradient-to-br from-primary-600 to-golf-600 rounded-full flex items-center justify-center mx-auto">
-                    <Flag className="w-10 h-10 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-semibold text-gray-900">Founders: Why We Exist</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Our club was born from a simple idea shared by our founders <strong>Jessie Mann</strong>, <strong>Charanpal Sekhon</strong>, <strong>Rajdeep Brar</strong>, <strong>Upinder Ghumman</strong>, <strong>JP Bains</strong>, <strong>Mohit Verma</strong>, <strong>Tej Gill</strong> and <strong>Paul Buttar</strong>: to create a space where Punjabi professionals could enjoy their passion for golf while building meaningful connections with people who share their cultural heritage and professional aspirations.
-                  </p>
-                </div>
+              <div className="w-16 h-16 bg-gradient-to-br from-golf-500 to-golf-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Star className="w-8 h-8 text-white" />
               </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                <ContentEditor contentId="vision-title" tag="span">Vision</ContentEditor>
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                <ContentEditor contentId="vision-content" tag="span">
+                  To be the leading Punjabi golf club in the United States, recognized for excellence, community impact, and cultural preservation while promoting the sport of golf.
+                </ContentEditor>
+              </p>
             </motion.div>
           </div>
         </div>
