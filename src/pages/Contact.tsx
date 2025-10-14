@@ -48,7 +48,7 @@ const Contact: React.FC = () => {
                 Contact Us
               </ContentEditor>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed text-center max-w-3xl mx-auto">
               <ContentEditor contentId="contact-hero-subtitle" tag="span">
                 Get in touch with our team. We\'re here to help with any questions, 
                 membership inquiries, or support you may need.
@@ -73,7 +73,7 @@ const Contact: React.FC = () => {
                 How to Reach Us
               </ContentEditor>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-center leading-relaxed">
               <ContentEditor contentId="contact-methods-subtitle" tag="span">
                 Choose the most convenient way to get in touch with our team. 
                 We\'re committed to providing excellent service and support.

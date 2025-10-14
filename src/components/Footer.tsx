@@ -38,9 +38,9 @@ const Footer: React.FC = () => {
                     className="w-12 h-12 rounded-full object-cover"
                   />
                 </div>
-                <h3 className="text-xl font-bold">DFW Punjabi</h3>
+                <h3 className="text-xl font-bold">DFW Punjabi Golf Club</h3>
               </div>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-gray-300 leading-relaxed text-center">
                 Connecting the Punjabi community through the love of golf.
               </p>
             </div>

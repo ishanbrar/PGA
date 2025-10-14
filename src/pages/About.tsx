@@ -6,41 +6,41 @@ import ContentEditor from '../components/ContentEditor';
 const About: React.FC = () => {
   const boardMembers = [
     {
-      name: 'Rajinder Singh',
+      name: 'Charanpal Sekhon',
       position: 'President',
       email: 'dfwpunjabigolf@gmail.com',
       phone: '469-406-7988',
-      image: '/images/board/president.jpg',
+      image: '/images/board/charanpal-sekhon.jpg',
       bio: 'Leading our club with over 15 years of golf experience and a passion for community building.',
       linkedin: '#',
       term: '2024-2026'
     },
     {
-      name: 'Priya Patel',
+      name: 'Rajdeep Brar',
       position: 'Vice President',
       email: 'dfwpunjabigolf@gmail.com',
       phone: '469-406-7988',
-      image: '/images/board/vice-president.jpg',
+      image: '/images/board/rajdeep-brar.jpg',
       bio: 'Dedicated to expanding our club\'s reach and enhancing member experiences.',
       linkedin: '#',
       term: '2024-2026'
     },
     {
-      name: 'Amarjit Dhillon',
+      name: 'Upinder Ghumman',
       position: 'Secretary',
       email: 'dfwpunjabigolf@gmail.com',
       phone: '469-406-7988',
-      image: '/images/board/secretary.jpg',
+      image: '/images/board/upinder-ghumman.jpg',
       bio: 'Ensuring smooth communication and maintaining our club\'s official records.',
       linkedin: '#',
       term: '2024-2026'
     },
     {
-      name: 'Manpreet Kaur',
+      name: 'Kit Virk',
       position: 'Membership Director',
       email: 'dfwpunjabigolf@gmail.com',
       phone: '469-406-7988',
-      image: '/images/board/membership-director.jpg',
+      image: '/images/board/kit-virk.jpg',
       bio: 'Growing our community and ensuring every member feels valued and supported.',
       linkedin: '#',
       term: '2024-2026'
@@ -90,7 +90,7 @@ const About: React.FC = () => {
                 About Our Club
               </ContentEditor>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed text-center max-w-3xl mx-auto">
               <ContentEditor contentId="about-hero-subtitle" tag="span">
                 Discover the rich history, core values, and remarkable achievements that make 
                 The DFW Punjabi Golf Club a premier destination for golf enthusiasts.
@@ -155,7 +155,7 @@ const About: React.FC = () => {
                   </div>
                   <h3 className="text-2xl font-semibold text-gray-900">Founders: Why We Exist</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Our club was born from a simple idea shared by our founders Jessie Mann, Charanpal Sekhon, Rajdeep Brar, Upinder Ghumman, J P Bains, Mohit Verma, Tej Gill and Paul Buttar : to create a space where Punjabi professionals could enjoy their passion for golf while building meaningful connections with people who share their cultural heritage and professional aspirations.
+                    Our club was born from a simple idea shared by our founders <strong>Jessie Mann</strong>, <strong>Charanpal Sekhon</strong>, <strong>Rajdeep Brar</strong>, <strong>Upinder Ghumman</strong>, <strong>JP Bains</strong>, <strong>Mohit Verma</strong>, <strong>Tej Gill</strong> and <strong>Paul Buttar</strong>: to create a space where Punjabi professionals could enjoy their passion for golf while building meaningful connections with people who share their cultural heritage and professional aspirations.
                   </p>
                 </div>
               </div>
@@ -218,7 +218,7 @@ const About: React.FC = () => {
                     {member.position}
                   </ContentEditor>
                 </p>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed text-center">
                   <ContentEditor contentId={index === 0 ? 'board-member-1-bio' : 
                                            index === 1 ? 'board-member-2-bio' :
                                            index === 2 ? 'board-member-3-bio' :

@@ -1,10 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowRight, Flag, Users, Trophy, Calendar, Star, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Flag, Users, Trophy, Calendar, Star, ChevronRight, ChevronLeft } from 'lucide-react';
 import ContentEditor from '../components/ContentEditor';
 
 const Home: React.FC = () => {
+  // Community images for carousel
+  const communityImages = [
+    {
+      src: '/images/community/pic1.jpg',
+      alt: 'Golfers group enjoying the course'
+    },
+    {
+      src: '/images/community/pic2.JPG',
+      alt: 'Golf community gathering'
+    },
+    {
+      src: '/images/community/pic3.jpg',
+      alt: 'Individual golfer on the course'
+    },
+    {
+      src: '/images/community/pic4.jpg',
+      alt: 'Golf course scenery'
+    },
+    {
+      src: '/images/community/pic5.jpg',
+      alt: 'Club members socializing'
+    }
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Auto-rotate carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        prevIndex === communityImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [communityImages.length]);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === communityImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === 0 ? communityImages.length - 1 : prevIndex - 1
+    );
+  };
+
   const features = [
     {
       icon: Flag,
@@ -113,7 +162,7 @@ const Home: React.FC = () => {
               </div>
             </motion.div>
             
-            <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed text-center">
               <ContentEditor contentId="hero-description" tag="span">
                 Where tradition meets excellence. Join our exclusive community of Punjabi golf enthusiasts 
                 in the heart of Dallas-Fort Worth.
@@ -353,14 +402,15 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Ready to Join Section with Carousel */}
       <section className="section-padding bg-gradient-to-br from-primary-600 to-primary-800 text-white">
-        <div className="container-custom text-center">
+        <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Ready to Join Our Community?
@@ -369,17 +419,86 @@ const Home: React.FC = () => {
               Become part of the most prestigious Punjabi golf club in the DFW area. 
               Experience excellence, build connections, and enjoy the game you love.
             </p>
-            <div className="flex justify-center">
-              <Link to="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="border-2 border-white text-white font-semibold py-4 px-8 rounded-lg text-lg hover:bg-white hover:text-primary-700 transition-colors duration-300"
+          </motion.div>
+
+          {/* Image Carousel */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="relative max-w-4xl mx-auto"
+          >
+            <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentImageIndex}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.5 }}
+                  className="relative"
                 >
-                  Contact Us
-                </motion.button>
-              </Link>
+                  <img 
+                    src={communityImages[currentImageIndex].src}
+                    alt={communityImages[currentImageIndex].alt}
+                    className="w-full h-96 object-cover"
+                    style={{ objectPosition: 'center 30%' }}
+                  />
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Navigation Buttons */}
+              <button
+                onClick={prevImage}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm"
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full transition-all duration-300 backdrop-blur-sm"
+                aria-label="Next image"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+
+              {/* Dot Indicators */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                {communityImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentImageIndex 
+                        ? 'bg-white scale-125' 
+                        : 'bg-white/50 hover:bg-white/75'
+                    }`}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
+          </motion.div>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="text-center mt-8"
+          >
+            <Link to="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="border-2 border-white text-white font-semibold py-4 px-8 rounded-lg text-lg hover:bg-white hover:text-primary-700 transition-colors duration-300"
+              >
+                Contact Us
+              </motion.button>
+            </Link>
           </motion.div>
         </div>
       </section>

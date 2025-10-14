@@ -1,16 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  MapPin, 
-  Users 
+  MapPin
 } from 'lucide-react';
 import ContentEditor from '../components/ContentEditor';
 
 const Schedule: React.FC = () => {
-  // Helper function to get highlights content ID
-  const getHighlightsContentId = (eventTitle: string) => {
-    return eventTitle.replace('-title', '-highlights');
-  };
   const upcomingEvents = [
     {
       id: 1,
@@ -168,18 +163,8 @@ const Schedule: React.FC = () => {
               >
                 <div className="relative h-48 bg-gradient-to-br from-gray-200 to-gray-300 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <div className="absolute top-4 right-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      event.category === 'Tournament' ? 'bg-gold-500 text-white' :
-                      event.category === 'Social' ? 'bg-primary-500 text-white' :
-                      event.category === 'Charity' ? 'bg-red-500 text-white' :
-                      'bg-purple-500 text-white'
-                    }`}>
-                      {event.category}
-                    </span>
-                  </div>
                   <div className="absolute bottom-4 left-4 text-white">
-                    <div className="text-sm font-medium text-gold-400">
+                    <div className="text-lg font-bold text-gold-400 bg-black/30 px-3 py-1 rounded-lg">
                       <ContentEditor contentId={event.date} tag="span">
                         {event.date === 'events-event-1-date' ? 'March 15, 2024' :
                          event.date === 'events-event-2-date' ? 'March 22, 2024' : 'April 5, 2024'}
@@ -194,23 +179,13 @@ const Schedule: React.FC = () => {
                        event.title === 'events-event-2-title' ? 'Family Golf Day' : 'Member-Guest Tournament'}
                     </ContentEditor>
                   </h3>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-gray-600 mb-4 leading-relaxed">
                     <ContentEditor contentId={event.description} tag="span">
                       {event.description === 'events-event-1-description' ? 'Our premier annual tournament featuring top players from across the region.' :
                        event.description === 'events-event-2-description' ? 'Fun day for all skill levels and ages.' :
                        'Invite your friends and family for a weekend of golf and camaraderie.'}
                     </ContentEditor>
                   </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {event.highlights.slice(0, 3).map((highlight, idx) => (
-                      <span
-                        key={idx}
-                        className="px-2 py-1 bg-primary-100 text-primary-700 text-xs rounded-full"
-                      >
-                        {highlight}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               </motion.div>
             ))}
@@ -252,18 +227,8 @@ const Schedule: React.FC = () => {
               >
                 <div className="relative h-48 bg-gradient-to-br from-gray-200 to-gray-300 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <div className="absolute top-4 right-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      event.category === 'Tournament' ? 'bg-gold-500 text-white' :
-                      event.category === 'Social' ? 'bg-primary-500 text-white' :
-                      event.category === 'Charity' ? 'bg-red-500 text-white' :
-                      'bg-purple-500 text-white'
-                    }`}>
-                      {event.category}
-                    </span>
-                  </div>
                   <div className="absolute bottom-4 left-4 text-white">
-                    <div className="text-sm font-medium text-gold-400">
+                    <div className="text-lg font-bold text-gold-400 bg-black/30 px-3 py-1 rounded-lg">
                       <ContentEditor contentId={event.date} tag="span">
                         {event.date === 'events-past-event-1-date' ? 'February 10, 2024' :
                          event.date === 'events-past-event-2-date' ? 'December 15, 2023' :
@@ -297,13 +262,9 @@ const Schedule: React.FC = () => {
                          event.location === 'events-past-event-5-location' ? 'Tribute Golf Links' : 'Clubhouse'}
                       </ContentEditor>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Users className="w-4 h-4" />
-                      <span>{event.participants} participants</span>
-                    </div>
                   </div>
                   
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-gray-600 mb-4 leading-relaxed">
                     <ContentEditor contentId={event.description} tag="span">
                       {event.description === 'events-past-event-1-description' ? 'A successful winter tournament with 48 participants competing in challenging winter conditions.' :
                        event.description === 'events-past-event-2-description' ? 'Annual holiday celebration bringing together members and families for a festive evening of food, music, and community.' :
@@ -314,19 +275,6 @@ const Schedule: React.FC = () => {
                     </ContentEditor>
                   </p>
                   
-                  <div className="space-y-2">
-                    <h4 className="font-medium text-gray-900">Highlights:</h4>
-                    <div className="text-sm text-gray-600">
-                      <ContentEditor 
-                        contentId={getHighlightsContentId(event.title)}
-                        tag="div"
-                        allowDirectEdit={true}
-                        showSaveButton={true}
-                      >
-                        {event.highlights.join(', ')}
-                      </ContentEditor>
-                    </div>
-                  </div>
                 </div>
               </motion.div>
             ))}
