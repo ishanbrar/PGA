@@ -13,14 +13,12 @@ const Contact: React.FC = () => {
       icon: Phone,
       title: 'Phone',
       details: ['469-406-7988'],
-      description: 'Call us during business hours for immediate assistance.',
       color: 'from-blue-500 to-blue-600'
     },
     {
       icon: Mail,
       title: 'Email',
       details: ['dfwpunjabigolf@gmail.com'],
-      description: 'Send us an email and we\'ll respond within 24 hours.',
       color: 'from-green-500 to-green-600'
     }
   ];
@@ -91,16 +89,33 @@ const Contact: React.FC = () => {
                 viewport={{ once: true }}
                 className="card p-8 text-center group hover:shadow-xl transition-all duration-300"
               >
-                <div className={`w-16 h-16 bg-gradient-to-br ${method.color} rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <method.icon className="w-8 h-8 text-white" />
+                <div className={`w-24 h-24 bg-gradient-to-br ${method.color} rounded-full flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300`}>
+                  <method.icon className="w-12 h-12 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">{method.title}</h3>
-                <div className="space-y-2 mb-4">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">{method.title}</h3>
+                <div className="space-y-3">
                   {method.details.map((detail, i) => (
-                    <p key={i} className="text-gray-600 text-sm">{detail}</p>
+                    <p key={i} className="text-xl font-semibold text-gray-800">
+                      {method.title === 'Email' ? (
+                        <a 
+                          href={`mailto:${detail}`}
+                          className="text-primary-600 hover:text-primary-800 transition-colors duration-300 hover:underline"
+                        >
+                          {detail}
+                        </a>
+                      ) : method.title === 'Phone' ? (
+                        <a 
+                          href={`tel:${detail}`}
+                          className="text-primary-600 hover:text-primary-800 transition-colors duration-300 hover:underline"
+                        >
+                          {detail}
+                        </a>
+                      ) : (
+                        detail
+                      )}
+                    </p>
                   ))}
                 </div>
-                <p className="text-gray-500 text-sm leading-relaxed">{method.description}</p>
               </motion.div>
             ))}
           </div>
@@ -114,3 +129,4 @@ const Contact: React.FC = () => {
 };
 
 export default Contact;
+// Force deployment update
