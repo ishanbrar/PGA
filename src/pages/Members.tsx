@@ -32,6 +32,21 @@ const Members: React.FC = () => {
       src: '/images/community/pic5.jpg',
       alt: 'Club members socializing',
       title: 'Social Connections'
+    },
+    {
+      src: '/images/community/pic6.jpg',
+      alt: 'Golf tournament action',
+      title: 'Tournament Excitement'
+    },
+    {
+      src: '/images/community/pic7.jpg',
+      alt: 'Club celebration event',
+      title: 'Celebrations'
+    },
+    {
+      src: '/images/community/pic8.jpg',
+      alt: 'Members networking',
+      title: 'Networking'
     }
   ];
 
@@ -94,10 +109,6 @@ const Members: React.FC = () => {
 
   const benefits = [
     {
-      icon: Flag,
-      title: 'Premium Golf Access'
-    },
-    {
       icon: Trophy,
       title: 'Tournament Participation',
       description: 'Compete in exclusive tournaments and events with exciting prizes and recognition.',
@@ -152,7 +163,7 @@ const Members: React.FC = () => {
             <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
               <ContentEditor contentId="members-hero-subtitle" tag="span">
                 Join our exclusive community of Punjabi golf enthusiasts and experience 
-                premium golf access, cultural connection, and lasting friendships.
+                cultural connection, tournament participation, and lasting friendships.
               </ContentEditor>
             </p>
           </motion.div>

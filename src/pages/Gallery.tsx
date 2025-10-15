@@ -28,6 +28,18 @@ const Gallery: React.FC = () => {
     {
       src: '/images/community/pic5.jpg',
       alt: 'Club members socializing'
+    },
+    {
+      src: '/images/community/pic6.jpg',
+      alt: 'Golf tournament action'
+    },
+    {
+      src: '/images/community/pic7.jpg',
+      alt: 'Club celebration event'
+    },
+    {
+      src: '/images/community/pic8.jpg',
+      alt: 'Members networking'
     }
   ];
 
