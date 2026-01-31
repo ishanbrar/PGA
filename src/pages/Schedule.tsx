@@ -14,7 +14,7 @@ const Schedule: React.FC = () => {
       location: 'events-event-1-location',
       category: 'Tournament',
       description: 'events-event-1-description',
-      image: '/api/placeholder/600/400',
+      image: '/images/courses/PecanHollow.jpeg',
       highlights: ['Championship Format', 'Professional Prizes', 'Live Scoring', 'Awards Ceremony', 'Networking']
     },
     {
@@ -24,7 +24,7 @@ const Schedule: React.FC = () => {
       location: 'events-event-2-location',
       category: 'Social',
       description: 'events-event-2-description',
-      image: '/api/placeholder/600/400',
+      image: '/images/courses/PrestonwoodHills.jpeg',
       highlights: ['Family Friendly', 'Cultural Activities', 'Food & Refreshments', 'Games & Prizes', 'Community Building']
     }
   ];
@@ -38,7 +38,7 @@ const Schedule: React.FC = () => {
       category: 'Tournament',
       description: 'events-past-event-1-description',
       participants: 48,
-      image: '/api/placeholder/600/400',
+      image: '/images/courses/PrestonwoodHills.jpeg',
       highlights: ['Rajinder Singh - 1st Place', 'Priya Patel - 2nd Place', 'Amarjit Dhillon - 3rd Place', 'Perfect weather conditions', 'Record participation']
     },
     {
@@ -49,7 +49,7 @@ const Schedule: React.FC = () => {
       category: 'Social',
       description: 'events-past-event-2-description',
       participants: 85,
-      image: '/api/placeholder/600/400',
+      image: '/images/courses/Woodbridge.jpg',
       highlights: ['Traditional Punjabi Cuisine', 'Live Music Performance', 'Family Activities', 'Gift Exchange', 'Community Bonding']
     },
     {
@@ -60,7 +60,7 @@ const Schedule: React.FC = () => {
       category: 'Charity',
       description: 'events-past-event-3-description',
       participants: 72,
-      image: '/api/placeholder/600/400',
+      image: '/images/courses/IronHorse.jpeg',
       highlights: ['Charity Auction Success', 'Community Fundraising', 'Local Organization Support', 'Volunteer Recognition', 'Impact Report']
     },
     {
@@ -71,7 +71,7 @@ const Schedule: React.FC = () => {
       category: 'Education',
       description: 'events-past-event-4-description',
       participants: 35,
-      image: '/api/placeholder/600/400',
+      image: '/images/courses/PecanHollow.jpeg',
       highlights: ['Professional Instruction', 'Video Analysis', 'Practice Drills', 'Course Management', 'Equipment Tips']
     },
     {
@@ -82,7 +82,7 @@ const Schedule: React.FC = () => {
       category: 'Tournament',
       description: 'events-past-event-5-description',
       participants: 56,
-      image: '/api/placeholder/600/400',
+      image: '/images/courses/FriscoFarms.jpeg',
       highlights: ['Championship Format', 'Prize Distribution', 'Media Coverage', 'Sponsor Recognition', 'Player Interviews']
     },
     {
@@ -93,7 +93,7 @@ const Schedule: React.FC = () => {
       category: 'Social',
       description: 'events-past-event-6-description',
       participants: 92,
-      image: '/api/placeholder/600/400',
+      image: '/images/courses/Woodbridge.jpg',
       highlights: ['Cultural Celebration', 'Traditional Music', 'Family Activities', 'Community Awards', 'Networking Success']
     }
   ];
@@ -161,7 +161,12 @@ const Schedule: React.FC = () => {
                 viewport={{ once: true }}
                 className="card overflow-hidden group hover:shadow-xl transition-all duration-300"
               >
-                <div className="relative h-48 bg-gradient-to-br from-gray-200 to-gray-300 overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={event.image} 
+                    alt={event.title} 
+                    className="w-full h-full object-cover"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
                     <div className="text-lg font-bold text-gold-400 bg-black/30 px-3 py-1 rounded-lg">
@@ -225,7 +230,14 @@ const Schedule: React.FC = () => {
                 viewport={{ once: true }}
                 className="card overflow-hidden group hover:shadow-xl transition-all duration-300"
               >
-                <div className="relative h-48 bg-gradient-to-br from-gray-200 to-gray-300 overflow-hidden">
+                <div className={`relative h-48 overflow-hidden ${event.image === '/api/placeholder/600/400' ? 'bg-gradient-to-br from-gray-200 to-gray-300' : ''}`}>
+                  {event.image !== '/api/placeholder/600/400' && (
+                    <img 
+                      src={event.image} 
+                      alt={event.title} 
+                      className="w-full h-full object-cover"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
                     <div className="text-lg font-bold text-gold-400 bg-black/30 px-3 py-1 rounded-lg">

@@ -113,19 +113,19 @@ const Home: React.FC = () => {
       title: 'home-event-1-title',
       date: 'home-event-1-date',
       description: 'home-event-1-description',
-      image: '/images/events/spring-tournament.jpg'
+      image: '/images/courses/PrestonwoodHills.jpeg'
     },
     {
       title: 'home-event-2-title',
       date: 'home-event-2-date',
       description: 'home-event-2-description',
-      image: '/images/events/charity-outing.jpg'
+      image: '/images/courses/PecanHollow.jpeg'
     },
     {
       title: 'home-event-3-title',
       date: 'home-event-3-date',
       description: 'home-event-3-description',
-      image: '/images/events/member-guest.jpg'
+      image: '/images/courses/Woodbridge.jpg'
     }
   ];
 
@@ -340,7 +340,12 @@ const Home: React.FC = () => {
                 viewport={{ once: true }}
                 className="card overflow-hidden group"
               >
-                <div className="relative h-48 bg-gradient-to-br from-gray-200 to-gray-300 overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={event.image} 
+                    alt={event.title} 
+                    className="w-full h-full object-cover"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 text-white">
                     <div className="text-sm font-medium text-gold-400">
