@@ -120,8 +120,21 @@ class FirebaseService {
 
   async getAllContent(): Promise<ContentSection[]> {
     try {
-      const q = db.collection('content').where('isPublished', '==', true).orderBy('page').orderBy('section');
-      const querySnapshot = await q.get();
+      // Try with orderBy first, but fallback to simple query if index doesn't exist
+      let querySnapshot;
+      try {
+        const q = db.collection('content').where('isPublished', '==', true).orderBy('page').orderBy('section');
+        querySnapshot = await q.get();
+      } catch (indexError: any) {
+        // If index error, try without orderBy
+        if (indexError.code === 'failed-precondition' || indexError.message?.includes('index')) {
+          console.warn('Firestore index not found, fetching without orderBy');
+          const q = db.collection('content').where('isPublished', '==', true);
+          querySnapshot = await q.get();
+        } else {
+          throw indexError;
+        }
+      }
       
       return querySnapshot.docs.map((doc: any) => ({
         id: doc.id,
@@ -135,6 +148,12 @@ class FirebaseService {
 
   async updateContent(contentId: string, content: string): Promise<void> {
     try {
+      // Get current user synchronously to ensure we have the latest auth state
+      const currentUser = auth.currentUser;
+      if (!currentUser) {
+        throw new Error('User not authenticated. Please log in to save content.');
+      }
+
       const q = db.collection('content').where('contentId', '==', contentId);
       const querySnapshot = await q.get();
       
@@ -143,28 +162,51 @@ class FirebaseService {
         await docRef.update({
           content,
           lastModifiedAt: firebase.firestore.FieldValue.serverTimestamp(),
-          lastModifiedBy: this.currentUser?.uid
+          lastModifiedBy: currentUser.uid
         });
+        console.log(`✅ Content updated successfully: ${contentId}`);
+      } else {
+        // Throw error if content doesn't exist so caller can create it
+        throw new Error(`Content not found: ${contentId}`);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error updating content:', error);
+      // Provide more helpful error messages
+      if (error.code === 'permission-denied') {
+        throw new Error('Permission denied. Please check Firebase security rules and ensure you are logged in.');
+      } else if (error.code === 'unauthenticated') {
+        throw new Error('Authentication required. Please log in to save content.');
+      }
       throw error;
     }
   }
 
   async createContent(contentData: Omit<ContentSection, 'id' | 'createdAt' | 'lastModifiedAt'>): Promise<string> {
     try {
+      // Get current user synchronously to ensure we have the latest auth state
+      const currentUser = auth.currentUser;
+      if (!currentUser) {
+        throw new Error('User not authenticated. Please log in to create content.');
+      }
+
       const docRef = await db.collection('content').add({
         ...contentData,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         lastModifiedAt: firebase.firestore.FieldValue.serverTimestamp(),
-        lastModifiedBy: this.currentUser?.uid,
+        lastModifiedBy: currentUser.uid,
         isPublished: true,
         version: 1
       });
+      console.log(`✅ Content created successfully: ${contentData.contentId} with ID: ${docRef.id}`);
       return docRef.id;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error creating content:', error);
+      // Provide more helpful error messages
+      if (error.code === 'permission-denied') {
+        throw new Error('Permission denied. Please check Firebase security rules and ensure you are logged in.');
+      } else if (error.code === 'unauthenticated') {
+        throw new Error('Authentication required. Please log in to create content.');
+      }
       throw error;
     }
   }

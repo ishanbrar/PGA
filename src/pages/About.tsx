@@ -1,13 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, Trophy, Flag, Star, Phone, Mail, Linkedin } from 'lucide-react';
+import { Users, Trophy, Flag, Star, Phone, Mail } from 'lucide-react';
 import ContentEditor from '../components/ContentEditor';
 
 const About: React.FC = () => {
   const boardMembers = [
     {
       name: 'Charanpal Sekhon',
-      position: 'President',
+      position: 'Chairman',
       email: 'dfwpunjabigolf@gmail.com',
       phone: '469-406-7988',
       image: '/images/board/charanpal-sekhon.jpg',
@@ -17,7 +17,7 @@ const About: React.FC = () => {
     },
     {
       name: 'Rajdeep Brar',
-      position: 'Vice President',
+      position: 'Captain',
       email: 'dfwpunjabigolf@gmail.com',
       phone: '469-406-7988',
       image: '/images/board/rajdeep-brar.jpg',
@@ -37,7 +37,7 @@ const About: React.FC = () => {
     },
     {
       name: 'Kit Virk',
-      position: 'Membership Director',
+      position: 'Treasurer',
       email: 'dfwpunjabigolf@gmail.com',
       phone: '469-406-7988',
       image: '/images/board/kit-virk.jpg',
@@ -176,7 +176,7 @@ const About: React.FC = () => {
       </section>
 
 
-      {/* Board of Directors Section */}
+      {/* Managing Committee Section */}
       <section className="section-padding bg-white">
         <div className="container-custom">
           <motion.div
@@ -188,7 +188,7 @@ const About: React.FC = () => {
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               <ContentEditor contentId="board-title" tag="span">
-                Board of Directors
+                Managing Committee
               </ContentEditor>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -239,9 +239,6 @@ const About: React.FC = () => {
                   </ContentEditor>
                 </p>
                 <div className="mt-6 flex items-center justify-center space-x-4">
-                  <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700 transition-colors">
-                    <Linkedin className="w-6 h-6" />
-                  </a>
                   <a href={`mailto:${member.email}`} className="text-gray-500 hover:text-gray-700 transition-colors">
                     <Mail className="w-6 h-6" />
                   </a>

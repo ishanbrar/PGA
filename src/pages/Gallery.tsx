@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, Users, Trophy, Heart, ChevronLeft, ChevronRight, X, Download, Share2 } from 'lucide-react';
+import { Camera, Trophy, Heart, ChevronLeft, ChevronRight, X, Download, Share2 } from 'lucide-react';
 import ContentEditor from '../components/ContentEditor';
 
 const Gallery: React.FC = () => {
@@ -40,6 +40,14 @@ const Gallery: React.FC = () => {
     {
       src: '/images/community/pic8.jpg',
       alt: 'Members networking'
+    },
+    {
+      src: '/images/community/pic9.jpg',
+      alt: 'Golf course landscape'
+    },
+    {
+      src: '/images/community/pic10.jpg',
+      alt: 'Club social gathering'
     }
   ];
 
@@ -69,11 +77,9 @@ const Gallery: React.FC = () => {
   };
 
   const categories = [
-    { id: 'all', name: 'All Photos', count: 156 },
+    { id: 'all', name: 'All Photos', count: 83 },
     { id: 'tournaments', name: 'Tournaments', count: 45 },
-    { id: 'events', name: 'Social Events', count: 38 },
-    { id: 'members', name: 'Member Photos', count: 52 },
-    { id: 'courses', name: 'Golf Courses', count: 21 }
+    { id: 'events', name: 'Social Events', count: 38 }
   ];
 
   const galleryImages = [
@@ -137,68 +143,6 @@ const Gallery: React.FC = () => {
       title: 'Charity Dinner',
       description: 'Raising funds for our community through our annual charity dinner.',
       date: 'November 10, 2023',
-      photographer: 'Club Photographer'
-    },
-    // Member Photos
-    {
-      id: 7,
-      src: '/api/placeholder/600/400',
-      alt: 'Member Golfing',
-      category: 'members',
-      title: 'Member Golfing',
-      description: 'Our members enjoying a beautiful day on the course.',
-      date: 'February 28, 2024',
-      photographer: 'Club Photographer'
-    },
-    {
-      id: 8,
-      src: '/api/placeholder/600/400',
-      alt: 'Group Photo',
-      category: 'members',
-      title: 'Group Photo',
-      description: 'Members gathering for our monthly social event.',
-      date: 'February 15, 2024',
-      photographer: 'Club Photographer'
-    },
-    // Golf Courses
-    {
-      id: 9,
-      src: '/api/placeholder/600/400',
-      alt: 'Prestonwood Golf Club',
-      category: 'courses',
-      title: 'Prestonwood Golf Club',
-      description: 'The beautiful 18th hole at Prestonwood Golf Club.',
-      date: 'January 20, 2024',
-      photographer: 'Club Photographer'
-    },
-    {
-      id: 10,
-      src: '/api/placeholder/600/400',
-      alt: 'Tribute Golf Links',
-      category: 'courses',
-      title: 'Tribute Golf Links',
-      description: 'Scenic views from our partner course, Tribute Golf Links.',
-      date: 'January 15, 2024',
-      photographer: 'Club Photographer'
-    },
-    {
-      id: 11,
-      src: '/api/placeholder/600/400',
-      alt: 'Coyote Ridge',
-      category: 'courses',
-      title: 'Coyote Ridge',
-      description: 'The challenging par-3 7th hole at Coyote Ridge Golf Club.',
-      date: 'January 10, 2024',
-      photographer: 'Club Photographer'
-    },
-    {
-      id: 12,
-      src: '/api/placeholder/600/400',
-      alt: 'Heritage Ranch',
-      category: 'courses',
-      title: 'Heritage Ranch',
-      description: 'Tree-lined fairways at Heritage Ranch Golf Club.',
-      date: 'January 5, 2024',
       photographer: 'Club Photographer'
     }
   ];
@@ -402,7 +346,6 @@ const Gallery: React.FC = () => {
                     <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
                       image.category === 'tournaments' ? 'bg-gold-100 text-gold-800' :
                       image.category === 'events' ? 'bg-primary-100 text-primary-800' :
-                      image.category === 'members' ? 'bg-green-100 text-green-800' :
                       'bg-purple-100 text-purple-800'
                     }`}>
                       {image.category.charAt(0).toUpperCase() + image.category.slice(1)}
@@ -444,7 +387,7 @@ const Gallery: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
                 title: 'Tournament Highlights 2024',
@@ -459,13 +402,6 @@ const Gallery: React.FC = () => {
                 image: '/api/placeholder/600/400',
                 count: 38,
                 icon: Heart
-              },
-              {
-                title: 'Member Moments',
-                description: 'Candid shots capturing the spirit and camaraderie of our members.',
-                image: '/api/placeholder/600/400',
-                count: 52,
-                icon: Users
               }
             ].map((collection, index) => (
               <motion.div

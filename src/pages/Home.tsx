@@ -38,6 +38,14 @@ const Home: React.FC = () => {
     {
       src: '/images/community/pic8.jpg',
       alt: 'Members networking'
+    },
+    {
+      src: '/images/community/pic9.jpg',
+      alt: 'Golf course landscape'
+    },
+    {
+      src: '/images/community/pic10.jpg',
+      alt: 'Club social gathering'
     }
   ];
 
@@ -153,7 +161,7 @@ const Home: React.FC = () => {
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-6 text-shadow-lg">
               <ContentEditor contentId="hero-title" tag="span">
-                The DFW Punjabi
+                The DFW Punjabi Golf Club
               </ContentEditor>
              
             </h1>
@@ -264,9 +272,9 @@ const Home: React.FC = () => {
                 </div>
                 <div className="text-3xl font-bold text-gold-400 mb-2">
                   <ContentEditor contentId={stat.number} tag="span">
-                    {stat.number === 'stats-members' ? '150+' :
+                    {stat.number === 'stats-members' ? '90+' :
                      stat.number === 'stats-years' ? '25+' :
-                     stat.number === 'stats-events' ? '12' : '4'}
+                     stat.number === 'stats-events' ? '12' : '10'}
                   </ContentEditor>
                 </div>
                 <div className="text-gray-300">
@@ -337,8 +345,8 @@ const Home: React.FC = () => {
                   <div className="absolute bottom-4 left-4 text-white">
                     <div className="text-sm font-medium text-gold-400">
                       <ContentEditor contentId={event.date} tag="span">
-                        {event.date === 'home-event-1-date' ? 'March 15-17, 2024' :
-                         event.date === 'home-event-2-date' ? 'April 22, 2024' : 'May 18-19, 2024'}
+                        {event.date === 'home-event-1-date' ? 'March 2026' :
+                         event.date === 'home-event-2-date' ? 'April 2026' : 'May 2026'}
                       </ContentEditor>
                     </div>
                   </div>
@@ -346,15 +354,15 @@ const Home: React.FC = () => {
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">
                     <ContentEditor contentId={event.title} tag="span">
-                      {event.title === 'home-event-1-title' ? 'Spring Championship Tournament' :
-                       event.title === 'home-event-2-title' ? 'Charity Golf Outing' : 'Member-Guest Tournament'}
+                      {event.title === 'home-event-1-title' ? 'Season Opener' :
+                       event.title === 'home-event-2-title' ? 'Spring Championship Tournament' : 'Stableford Tournament'}
                     </ContentEditor>
                   </h3>
                   <p className="text-gray-600 mb-4">
                     <ContentEditor contentId={event.description} tag="span">
-                      {event.description === 'home-event-1-description' ? 'Our premier annual tournament featuring top players from across the region.' :
-                       event.description === 'home-event-2-title' ? 'Support local causes while enjoying a great day on the course.' :
-                       'Invite your friends and family for a weekend of golf and camaraderie.'}
+                      {event.description === 'home-event-1-description' ? '2 Man Scramble' :
+                       event.description === 'home-event-2-description' ? 'Our premier annual tournament featuring top players from across the region.' :
+                       'A competitive tournament using the Stableford scoring system.'}
                     </ContentEditor>
                   </p>
                   <Link to="/events">

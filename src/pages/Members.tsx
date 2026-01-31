@@ -47,6 +47,16 @@ const Members: React.FC = () => {
       src: '/images/community/pic8.jpg',
       alt: 'Members networking',
       title: 'Networking'
+    },
+    {
+      src: '/images/community/pic9.jpg',
+      alt: 'Golf course landscape',
+      title: 'Beautiful Scenery'
+    },
+    {
+      src: '/images/community/pic10.jpg',
+      alt: 'Club social gathering',
+      title: 'Social Events'
     }
   ];
 

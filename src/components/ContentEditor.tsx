@@ -64,6 +64,30 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
     setHasChanges(newContent !== originalContent);
   };
 
+  // Helper function to determine page and section from contentId
+  const getPageAndSection = (contentId: string): { page: string; section: string } => {
+    // Common patterns for page detection
+    if (contentId.startsWith('home-')) return { page: 'home', section: contentId.split('-')[1] || 'default' };
+    if (contentId.startsWith('about-')) return { page: 'about', section: contentId.split('-')[1] || 'default' };
+    if (contentId.startsWith('members-')) return { page: 'members', section: contentId.split('-')[1] || 'default' };
+    if (contentId.startsWith('schedule-')) return { page: 'schedule', section: contentId.split('-')[1] || 'default' };
+    if (contentId.startsWith('contact-')) return { page: 'contact', section: contentId.split('-')[1] || 'default' };
+    if (contentId.startsWith('events-') || contentId.includes('past-event')) return { page: 'events', section: contentId.includes('past-event') ? 'pastEvents' : 'events' };
+    if (contentId.startsWith('gallery-')) return { page: 'gallery', section: contentId.split('-')[1] || 'default' };
+    if (contentId.startsWith('board-')) return { page: 'board', section: contentId.split('-')[1] || 'default' };
+    
+    // Try to extract from contentId pattern: page-section-field
+    const parts = contentId.split('-');
+    if (parts.length >= 2) {
+      const possiblePage = parts[0];
+      const possibleSection = parts[1];
+      return { page: possiblePage, section: possibleSection };
+    }
+    
+    // Default fallback
+    return { page: 'home', section: 'default' };
+  };
+
   const handleSave = async () => {
     if (!hasChanges) return;
     
@@ -73,13 +97,12 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
       // Try to update first, if it fails, create new content
       try {
         await firebaseService.updateContent(contentId, content);
-      } catch (updateError) {
+        console.log(`✅ Content updated: ${contentId}`);
+      } catch (updateError: any) {
         console.log('Content not found, creating new content:', contentId);
-        // Extract page and section from contentId or use defaults
-        const page = contentId.includes('past-event') ? 'events' : 'home';
-        const section = contentId.includes('highlights') ? 'pastEvents' : 'default';
+        const { page, section } = getPageAndSection(contentId);
         
-        await firebaseService.createContent({
+        const newId = await firebaseService.createContent({
           contentId,
           title: contentId.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
           content,
@@ -89,14 +112,24 @@ const ContentEditor: React.FC<ContentEditorProps> = ({
           isPublished: true,
           version: 1
         });
+        console.log(`✅ Content created: ${contentId} with ID: ${newId}`);
       }
       
       setOriginalContent(content);
       setHasChanges(false);
       setIsEditing(false);
-    } catch (error) {
+      
+      // Show success message
+      if (showSaveButton) {
+        // Small delay to show success state
+        setTimeout(() => {
+          // Success is indicated by the button state change
+        }, 100);
+      }
+    } catch (error: any) {
       console.error('Error saving content:', error);
-      alert('Failed to save content. Please try again.');
+      const errorMessage = error?.message || 'Failed to save content. Please try again.';
+      alert(`Failed to save content: ${errorMessage}`);
     } finally {
       setIsSaving(false);
     }

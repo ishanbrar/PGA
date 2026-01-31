@@ -166,8 +166,8 @@ const Schedule: React.FC = () => {
                   <div className="absolute bottom-4 left-4 text-white">
                     <div className="text-lg font-bold text-gold-400 bg-black/30 px-3 py-1 rounded-lg">
                       <ContentEditor contentId={event.date} tag="span">
-                        {event.date === 'events-event-1-date' ? 'March 15, 2024' :
-                         event.date === 'events-event-2-date' ? 'March 22, 2024' : 'April 5, 2024'}
+                        {event.date === 'events-event-1-date' ? 'March 2026' :
+                         event.date === 'events-event-2-date' ? 'April 2026' : 'May 2026'}
                       </ContentEditor>
                     </div>
                   </div>
@@ -175,15 +175,15 @@ const Schedule: React.FC = () => {
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">
                     <ContentEditor contentId={event.title} tag="span">
-                      {event.title === 'events-event-1-title' ? 'Spring Championship Tournament' :
-                       event.title === 'events-event-2-title' ? 'Family Golf Day' : 'Member-Guest Tournament'}
+                      {event.title === 'events-event-1-title' ? 'Season Opener' :
+                       event.title === 'events-event-2-title' ? 'Spring Championship Tournament' : 'Stableford Tournament'}
                     </ContentEditor>
                   </h3>
                   <p className="text-gray-600 mb-4 leading-relaxed">
                     <ContentEditor contentId={event.description} tag="span">
-                      {event.description === 'events-event-1-description' ? 'Our premier annual tournament featuring top players from across the region.' :
-                       event.description === 'events-event-2-description' ? 'Fun day for all skill levels and ages.' :
-                       'Invite your friends and family for a weekend of golf and camaraderie.'}
+                      {event.description === 'events-event-1-description' ? '2 Man Scramble' :
+                       event.description === 'events-event-2-description' ? 'Our premier annual tournament featuring top players from across the region.' :
+                       'A competitive tournament using the Stableford scoring system.'}
                     </ContentEditor>
                   </p>
                 </div>
@@ -230,11 +230,11 @@ const Schedule: React.FC = () => {
                   <div className="absolute bottom-4 left-4 text-white">
                     <div className="text-lg font-bold text-gold-400 bg-black/30 px-3 py-1 rounded-lg">
                       <ContentEditor contentId={event.date} tag="span">
-                        {event.date === 'events-past-event-1-date' ? 'February 10, 2024' :
-                         event.date === 'events-past-event-2-date' ? 'December 15, 2023' :
-                         event.date === 'events-past-event-3-date' ? 'November 20, 2023' :
-                         event.date === 'events-past-event-4-date' ? 'October 8, 2023' :
-                         event.date === 'events-past-event-5-date' ? 'September 15, 2023' : 'August 22, 2023'}
+                        {event.date === 'events-past-event-1-date' ? 'Dec 7, 2025' :
+                         event.date === 'events-past-event-2-date' ? 'November 16, 2025' :
+                         event.date === 'events-past-event-3-date' ? 'October 19, 2025' :
+                         event.date === 'events-past-event-4-date' ? 'September 21, 2025' :
+                         event.date === 'events-past-event-5-date' ? 'August 16, 2025' : 'July 19, 2025'}
                       </ContentEditor>
                     </div>
                   </div>
@@ -243,11 +243,11 @@ const Schedule: React.FC = () => {
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">
                     <ContentEditor contentId={event.title} tag="span">
-                      {event.title === 'events-past-event-1-title' ? 'Winter Classic Tournament' :
-                       event.title === 'events-past-event-2-title' ? 'Holiday Celebration Dinner' :
-                       event.title === 'events-past-event-3-title' ? 'Fall Charity Golf Outing' :
-                       event.title === 'events-past-event-4-title' ? 'Golf Skills Workshop' :
-                       event.title === 'events-past-event-5-title' ? 'Summer Championship' : 'Community Mixer'}
+                      {event.title === 'events-past-event-1-title' ? 'Punjab Cup' :
+                       event.title === 'events-past-event-2-title' ? 'Stableford Tournament' :
+                       event.title === 'events-past-event-3-title' ? 'Strokeplay Event' :
+                       event.title === 'events-past-event-4-title' ? 'Strokeplay Event' :
+                       event.title === 'events-past-event-5-title' ? '2-Man Best Ball' : '2-Man Scramble'}
                     </ContentEditor>
                   </h3>
                   
@@ -255,23 +255,23 @@ const Schedule: React.FC = () => {
                     <div className="flex items-center space-x-2">
                       <MapPin className="w-4 h-4" />
                       <ContentEditor contentId={event.location} tag="span">
-                        {event.location === 'events-past-event-1-location' ? 'Tribute Golf Links' :
-                         event.location === 'events-past-event-2-location' ? 'Clubhouse' :
-                         event.location === 'events-past-event-3-location' ? 'Prestonwood Golf Club' :
-                         event.location === 'events-past-event-4-location' ? 'Prestonwood Golf Club' :
-                         event.location === 'events-past-event-5-location' ? 'Tribute Golf Links' : 'Clubhouse'}
+                        {event.location === 'events-past-event-1-location' ? 'Prestonwood Hills CC' :
+                         event.location === 'events-past-event-2-location' ? 'Woodbridge GC' :
+                         event.location === 'events-past-event-3-location' ? 'Iron Horse Golf Club' :
+                         event.location === 'events-past-event-4-location' ? 'Pecan Hollow GC' :
+                         event.location === 'events-past-event-5-location' ? 'Frisco Farms GC' : 'Woodbridge GC'}
                       </ContentEditor>
                     </div>
                   </div>
                   
                   <p className="text-gray-600 mb-4 leading-relaxed">
                     <ContentEditor contentId={event.description} tag="span">
-                      {event.description === 'events-past-event-1-description' ? 'A successful winter tournament with 48 participants competing in challenging winter conditions.' :
-                       event.description === 'events-past-event-2-description' ? 'Annual holiday celebration bringing together members and families for a festive evening of food, music, and community.' :
-                       event.description === 'events-past-event-3-description' ? 'Fall charity outing that raised significant funds for local community organizations.' :
-                       event.description === 'events-past-event-4-description' ? 'Educational workshop focused on improving golf skills and techniques.' :
-                       event.description === 'events-past-event-5-description' ? 'Summer championship tournament with record participation and exciting competition.' :
-                       'Community networking event that strengthened bonds between club members.'}
+                      {event.description === 'events-past-event-1-description' ? 'Team competition between Shan-E-Punjab and Sher-E-Punjab.' :
+                       event.description === 'events-past-event-2-description' ? 'Individual Stableford' :
+                       event.description === 'events-past-event-3-description' ? 'Individual Strokeplay' :
+                       event.description === 'events-past-event-4-description' ? 'Individual Strokeplay' :
+                       event.description === 'events-past-event-5-description' ? '2-Man Best Ball' :
+                       '2-Man Scramble'}
                     </ContentEditor>
                   </p>
                   

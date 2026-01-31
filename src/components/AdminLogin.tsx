@@ -146,23 +146,6 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin }) => {
               )}
             </motion.button>
           </form>
-
-          {/* Demo Credentials */}
-          <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-            <h3 className="text-sm font-medium text-gray-700 mb-2">Admin Credentials:</h3>
-            <div className="text-xs text-gray-600 space-y-1">
-              <p><strong>Email:</strong> admin@dfwpga.com</p>
-              <p><strong>Password:</strong> golfclub2024</p>
-            </div>
-          </div>
-
-          {/* Security Notice */}
-          <div className="mt-6 text-center">
-            <p className="text-xs text-gray-500">
-              This is a demo admin panel. In production, implement proper authentication, 
-              HTTPS, and security measures.
-            </p>
-          </div>
         </motion.div>
       </motion.div>
     </div>
