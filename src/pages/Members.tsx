@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Users, Trophy, Flag, Star, CheckCircle, Shield, Heart, Calendar, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Users, Trophy, Star, CheckCircle, Shield, Calendar, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 import ContentEditor from '../components/ContentEditor';
 
 const Members: React.FC = () => {

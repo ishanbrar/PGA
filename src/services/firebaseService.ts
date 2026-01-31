@@ -1,5 +1,5 @@
 import firebase from 'firebase/app';
-import { db, storage, auth } from '../config/firebase';
+import { db, auth } from '../config/firebase';
 
 // Types
 export interface ContentSection {

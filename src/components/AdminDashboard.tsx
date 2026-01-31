@@ -2,11 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Edit3, 
-  Save, 
-  X, 
-  Plus, 
-  Trash2, 
-  RefreshCw, 
   Search,
   Image as ImageIcon,
   LogOut
@@ -278,18 +273,10 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
   const [activeTab, setActiveTab] = useState('content');
   const [contentSections, setContentSections] = useState<any[]>([]); // Changed to any[] to match new structure
   const [images, setImages] = useState<Array<{ id: string; url: string; filename: string }>>([]); // Changed to Array<{ id: string; url: string; filename: string }>
-  const [editingSection, setEditingSection] = useState<string | null>(null);
-  const [editingImage, setEditingImage] = useState<string | null>(null);
-  const [showImageUpload, setShowImageUpload] = useState(false);
-  const [uploadFile, setUploadFile] = useState<File | null>(null);
-  const [uploadCategory, setUploadCategory] = useState('');
-  const [uploadPage, setUploadPage] = useState('');
-  const [lastSaved, setLastSaved] = useState<Date | null>(null);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedPage, setSelectedPage] = useState('all');
-  const [selectedSection, setSelectedSection] = useState('all');
   const [firebaseStatus, setFirebaseStatus] = useState<'connected' | 'disconnected' | 'unknown'>('unknown');
 
 
@@ -330,6 +317,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
     console.log('🔧 Debug functions available:');
     console.log('  - window.populateBoardContent() - Populate board content in Firebase');
     console.log('  - window.debugContentSections() - Show current content state');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contentSections]);
 
   const loadAllContent = async () => {
@@ -657,23 +645,6 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
     }
   };
 
-  // Filter content based on search and selections
-  const filteredContent = contentSections.filter(section => {
-    const matchesSearch = (section.contentId && section.contentId.toLowerCase().includes(searchTerm.toLowerCase())) ||
-                         (section.content && section.content.toLowerCase().includes(searchTerm.toLowerCase())) ||
-                         (section.page && section.page.toLowerCase().includes(searchTerm.toLowerCase())) ||
-                         (section.section && section.section.toLowerCase().includes(searchTerm.toLowerCase()));
-    
-    const matchesPage = selectedPage === 'all' || (section.page && section.page.toLowerCase() === selectedPage.toLowerCase());
-    const matchesSection = selectedSection === 'all' || (section.section && section.section.toLowerCase() === selectedSection.toLowerCase());
-    
-    return matchesSearch && matchesPage && matchesSection;
-  });
-
-  // Get unique pages and sections for filters
-  const uniquePages = ['all', ...Array.from(new Set(contentSections.map(s => s.page)))];
-  const uniqueSections = ['all', ...Array.from(new Set(contentSections.map(s => s.section)))];
-
   const handleContentSave = async (id: string, newContent: string) => {
     try {
       const section = contentSections.find(s => s.id === id);
@@ -696,8 +667,6 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
               )
             );
             
-            setEditingSection(null);
-            setLastSaved(new Date());
             alert('Content saved successfully!');
           } catch (firebaseError) {
             console.error('Firebase update failed:', firebaseError);
@@ -727,9 +696,6 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
               )
             );
             console.log('Content created in Firebase successfully with ID:', newId);
-            
-            setEditingSection(null);
-            setLastSaved(new Date());
             alert('Content saved successfully!');
           } catch (createError) {
             console.error('Firebase creation failed:', createError);
@@ -742,13 +708,6 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
       alert('Failed to save content. Please try again.');
     }
   };
-
-
-
-  const tabs = [
-    { id: 'content', label: 'Content Management', icon: Edit3 },
-    { id: 'images', label: 'Image Management', icon: ImageIcon }
-  ];
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
